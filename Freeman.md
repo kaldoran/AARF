@@ -12,7 +12,15 @@
                 y <- prochainY(dcom)
                 dcom <- (dcom + 1) % 6
             Tant que A[i+x][j+y] != 1
-     
+            i <- i + x
+            j <- j + y
+            si (dcom = 0)
+                dcom <- 7
+            sinon 
+                dcom <- dcom - 1
+            code <- code . dcom
+            d <- dcom
+        Tant que i != x0 et j != y0
      
     prochainX(d) 
         si d = 0 OU d = 4 
