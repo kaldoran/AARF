@@ -6,7 +6,6 @@
 package app_auto.ig;
 
 import java.awt.BorderLayout;
-import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 /**

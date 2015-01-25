@@ -7,6 +7,7 @@ package app_auto.ig;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
@@ -15,21 +16,21 @@ import javax.swing.border.TitledBorder;
  *
  * @author kaldoran
  */
-public class ZoneCodeFreeman extends JPanel {
-    
+public class ZoneResultat extends JPanel {
+
+    private TexteResultat valeur_trouvee;
     private TitledBorder bordure;
-    private JTextField code_freeman;
-    public ZoneCodeFreeman() {
+
+    public ZoneResultat() {
         super();
         this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension(240, 50));
-        
-        bordure = new TitledBorder("Code Freeman");
-        code_freeman = new TexteResultat();
-        
+        this.setPreferredSize(new Dimension(50, 50));
+        valeur_trouvee = new TexteResultatTrouvee();
+
+        bordure = new TitledBorder("Out");
+
         this.setBorder(bordure);
-        this.add(code_freeman);
-        
+        this.add(valeur_trouvee);
     }
-    
+
 }

@@ -12,9 +12,9 @@ import javax.swing.JTextField;
  *
  * @author kaldoran
  */
-public class TexteCodeFreeman extends JTextField{
+public class TexteResultat extends JTextField{
 
-    public TexteCodeFreeman() {
+    public TexteResultat() {
         super();
         this.setEditable(false);
         this.setBackground(Color.white);

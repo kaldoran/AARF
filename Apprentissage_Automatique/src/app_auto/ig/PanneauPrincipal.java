@@ -1,6 +1,7 @@
 package app_auto.ig;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 
@@ -15,15 +16,14 @@ import javax.swing.JPanel;
  */
 public class PanneauPrincipal extends JPanel {
 
-    private ZoneCodeFreeman code_freeman;
-    
+    private BarreResulat barre_resultat;
     public PanneauPrincipal() {
         super();
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(300, 400));
-        
-        code_freeman = new ZoneCodeFreeman();
-        this.add(code_freeman, BorderLayout.NORTH);
+
+        barre_resultat = new BarreResulat();
+        this.add(barre_resultat, BorderLayout.NORTH);
     }
 
 }
