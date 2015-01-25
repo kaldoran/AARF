@@ -22,12 +22,12 @@ public class ZoneCodeFreeman extends JPanel {
     public ZoneCodeFreeman() {
         super();
         this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension(240, 50));
+        this.setPreferredSize(new Dimension(290, 50));
         
         bordure = new TitledBorder("Code Freeman");
-        code_freeman = new TexteResultat();
-        
         this.setBorder(bordure);
+        
+        code_freeman = new TexteResultat(); 
         this.add(code_freeman);
         
     }

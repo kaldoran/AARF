@@ -10,9 +10,9 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author kevin
+ * @author kaldoran
  */
-public class FenetrePrincipale{
+public class FenetrePrincipale {
     
     /** Attribut de la fenetre*/
     private JFrame cadre;
@@ -34,6 +34,7 @@ public class FenetrePrincipale{
         cadre.setContentPane(panneau_principal);
         cadre.pack();
         cadre.setVisible(true);
+        cadre.setResizable(false);
         cadre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
