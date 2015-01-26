@@ -5,6 +5,7 @@
  */
 package app_auto.ig;
 
+import app_auto.utils.IgConstante;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JPanel;
@@ -16,19 +17,16 @@ import javax.swing.border.TitledBorder;
  */
 public class ZoneResultat extends JPanel {
 
-    private TexteResultat valeur_trouvee;
-    private TitledBorder bordure;
-
     public ZoneResultat() {
         super();
+        
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(50, 50));
-        valeur_trouvee = new TexteResultatTrouvee();
+        
+        this.setBorder(IgConstante.OUT);
 
-        bordure = new TitledBorder("Out");
-
-        this.setBorder(bordure);
-        this.add(valeur_trouvee);
+        IgConstante.VALEUR_TROUVEE = new TexteResultat();
+        this.add(IgConstante.VALEUR_TROUVEE);
     }
 
 }

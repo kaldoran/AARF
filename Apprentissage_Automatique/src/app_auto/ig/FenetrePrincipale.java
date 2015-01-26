@@ -7,28 +7,29 @@ package app_auto.ig;
 
 import javax.swing.JFrame;
 
-
 /**
  *
  * @author kaldoran
  */
 public class FenetrePrincipale {
-    
-    /** Attribut de la fenetre*/
+
+    /**
+     * Attribut de la fenetre
+     */
     private JFrame cadre;
     private BarreMenu barre_menu;
     private PanneauPrincipal panneau_principal;
-    
+
     public FenetrePrincipale() {
         this.setBaseConf();
-    }      
+    }
 
     private void setBaseConf() {
         cadre = new javax.swing.JFrame("Apprentissage Automatique");
-        
-        barre_menu = new BarreMenu();
+
         panneau_principal = new PanneauPrincipal();
-                        
+        barre_menu = new BarreMenu();
+
         cadre.setJMenuBar(barre_menu);
         cadre.setLocation(200, 100);
         cadre.setContentPane(panneau_principal);

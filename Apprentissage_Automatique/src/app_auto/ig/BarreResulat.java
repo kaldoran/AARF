@@ -5,6 +5,7 @@
  */
 package app_auto.ig;
 
+import app_auto.utils.IgConstante;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -16,7 +17,7 @@ import javax.swing.JPanel;
  */
 public class BarreResulat extends JPanel {
     
-    ZoneCodeFreeman code_freeman;
+    private ZoneCodeFreeman code_freeman;
     private ZoneResultat resultat_trouvee;
     
     public BarreResulat() {
@@ -26,8 +27,8 @@ public class BarreResulat extends JPanel {
         code_freeman = new ZoneCodeFreeman();
         this.add(code_freeman, BorderLayout.WEST);
         
-        resultat_trouvee = new ZoneResultat();
-        this.add(resultat_trouvee, BorderLayout.EAST);
+        IgConstante.RESULTAT_TROUVEE = new ZoneResultat();
+        this.add(IgConstante.RESULTAT_TROUVEE, BorderLayout.EAST);
     }
     
 }

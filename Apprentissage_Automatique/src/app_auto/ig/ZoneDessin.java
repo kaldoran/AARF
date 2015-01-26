@@ -5,6 +5,7 @@
  */
 package app_auto.ig;
 
+import app_auto.utils.IgConstante;
 import java.awt.BorderLayout;
 import static javax.swing.BorderFactory.createEmptyBorder;
 import javax.swing.JPanel;
@@ -31,9 +32,9 @@ public class ZoneDessin extends JPanel {
 
         this.setBorder(new CompoundBorder(outset, inset));
 
-        dessin = new Dessin();
-        this.add(dessin);
+        IgConstante.DESSIN = new Dessin();
+        this.add(IgConstante.DESSIN);
 
     }
-    
+        
 }

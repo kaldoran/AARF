@@ -5,22 +5,20 @@
  */
 package app_auto.ig;
 
-import java.awt.Font;
+import java.awt.Color;
 import javax.swing.JTextField;
 
 /**
  *
  * @author kaldoran
  */
-public class TexteResultatTrouvee extends TexteResultat {
+public class TexteCodeFreeman extends JTextField {
 
-    public TexteResultatTrouvee() {
+    public TexteCodeFreeman() {
         super();
-
+        this.setEditable(false);
+        this.setBackground(Color.white);
         this.setHighlighter(null);
-        this.setFocusable(false);
-        this.setFont(new Font("Serif", Font.PLAIN, 18));
-        this.setHorizontalAlignment(JTextField.CENTER);
     }
 
 }

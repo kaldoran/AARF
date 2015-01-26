@@ -5,6 +5,7 @@
  */
 package app_auto.ig;
 
+import app_auto.utils.IgConstante;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JPanel;
@@ -18,7 +19,7 @@ import javax.swing.border.TitledBorder;
 public class ZoneCodeFreeman extends JPanel {
     
     private TitledBorder bordure;
-    private JTextField code_freeman;
+
     public ZoneCodeFreeman() {
         super();
         this.setLayout(new BorderLayout());
@@ -27,8 +28,8 @@ public class ZoneCodeFreeman extends JPanel {
         bordure = new TitledBorder("Code Freeman");
         this.setBorder(bordure);
         
-        code_freeman = new TexteResultat(); 
-        this.add(code_freeman);
+        IgConstante.CODE_FREEMAN = new TexteCodeFreeman(); 
+        this.add(IgConstante.CODE_FREEMAN);
         
     }
     
