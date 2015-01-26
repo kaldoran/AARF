@@ -18,6 +18,7 @@ import javax.swing.KeyStroke;
  *
  * @author kaldoran
  */
+
 public class BarreMenu extends JMenuBar implements ActionListener {
 
     private JMenu menu_fichier;
@@ -38,6 +39,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         mfich_nouveau = new JMenuItem("Nouveau");
         mfich_nouveau.setAccelerator(KeyStroke.getKeyStroke('N',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
+
         mfich_nouveau.addActionListener(this);
 
         quitter = new JMenuItem("Quitter");
@@ -57,6 +59,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         Object source = e.getSource();
         if (source.equals(mfich_nouveau)) {
             IgConstante.DESSIN.clean();
@@ -64,5 +67,4 @@ public class BarreMenu extends JMenuBar implements ActionListener {
             System.exit(0);
         }
     }
-
 }
