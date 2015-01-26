@@ -31,9 +31,9 @@ public class ZoneDessin extends JPanel {
 
         this.setBorder(new CompoundBorder(outset, inset));
 
-        dessin = new Dessin();
-        this.add(dessin);
+        IgConstante.dessin = new Dessin();
+        this.add(IgConstante.dessin);
 
     }
-    
+        
 }

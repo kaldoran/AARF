@@ -19,8 +19,7 @@ import javax.swing.KeyStroke;
  */
 public class BarreMenu extends JMenuBar{
     
-    private JMenu menu_fichier;
-    
+    private JMenu menu_fichier; 
     private JMenuItem mfich_nouveau;
 
 
@@ -38,7 +37,7 @@ public class BarreMenu extends JMenuBar{
         mfich_nouveau.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Clean dessin");
+                IgConstante.dessin.clean();
             }
         });
         

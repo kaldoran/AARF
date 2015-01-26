@@ -33,12 +33,15 @@ public class Dessin extends JPanel implements MouseListener, MouseMotionListener
         super();
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
-        
+
         clean();
     }
 
     public void clean() {
+        x1 = y1 = cx = cy = -1;
+
         image = newImage();
+        repaint();
     }
 
     public BufferedImage newImage() {
