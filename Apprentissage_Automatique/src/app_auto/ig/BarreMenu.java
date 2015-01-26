@@ -17,7 +17,7 @@ import javax.swing.KeyStroke;
  *
  * @author kaldoran
  */
-public class BarreMenu extends JMenuBar{
+public class BarreMenu extends JMenuBar implements ActionListener{
     
     private JMenu menu_fichier;
     
@@ -35,17 +35,19 @@ public class BarreMenu extends JMenuBar{
         mfich_nouveau.setAccelerator(KeyStroke.getKeyStroke('N',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
         
-        mfich_nouveau.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Clean dessin");
-            }
-        });
+        mfich_nouveau.addActionListener();
         
         /** Constructions */
         menu_fichier.add(mfich_nouveau);
 
         this.add(menu_fichier);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == mfich_nouveau){
+            
+        }
     }
     
     
