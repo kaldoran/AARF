@@ -57,6 +57,7 @@ public class BoutonRadio extends JPanel implements ItemListener {
             IgConstante.VALEUR_TROUVEE.setEditable(false);
         } else {
             IgConstante.RESULTAT_TROUVEE.setBorder(IgConstante.IN);
+            IgConstante.VALEUR_TROUVEE.requestFocus();
             IgConstante.VALEUR_TROUVEE.setEditable(true);
         }
     }
