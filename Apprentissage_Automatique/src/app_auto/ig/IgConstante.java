@@ -21,7 +21,7 @@ public class IgConstante {
     public final static TitledBorder OUT = new TitledBorder("Out");
     public final static TitledBorder IN = new TitledBorder("In");
 
-    public final static int HAUTEUR_IMAGE = 250;
-    public final static int LARGEUR_IMAGE = 250;
+    public final static int HAUTEUR_IMAGE = 245;
+    public final static int LARGEUR_IMAGE = 333;
 
 }

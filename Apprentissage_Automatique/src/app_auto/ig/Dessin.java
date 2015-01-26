@@ -49,7 +49,7 @@ public class Dessin extends JPanel implements MouseListener, MouseMotionListener
     }
 
     public BufferedImage newImage() {
-        image = new BufferedImage(333, 250,
+        image = new BufferedImage(IgConstante.LARGEUR_IMAGE, IgConstante.HAUTEUR_IMAGE,
                 BufferedImage.TYPE_INT_ARGB);
 
         g2 = image.createGraphics();
