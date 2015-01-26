@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app_auto.ig;
+package app_auto.utils;
 
+import app_auto.ig.Dessin;
+import app_auto.ig.TexteCodeFreeman;
+import app_auto.ig.TexteResultat;
+import app_auto.ig.ZoneResultat;
 import javax.swing.border.TitledBorder;
 
 /**

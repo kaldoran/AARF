@@ -5,7 +5,7 @@
  */
 package app_auto;
 
-import app_auto.ig.IgConstante;
+import app_auto.utils.IgConstante;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 

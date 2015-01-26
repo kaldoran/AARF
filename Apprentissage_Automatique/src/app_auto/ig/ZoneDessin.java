@@ -5,6 +5,7 @@
  */
 package app_auto.ig;
 
+import app_auto.utils.IgConstante;
 import java.awt.BorderLayout;
 import static javax.swing.BorderFactory.createEmptyBorder;
 import javax.swing.JPanel;

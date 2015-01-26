@@ -5,6 +5,7 @@
  */
 package app_auto.ig;
 
+import app_auto.utils.IgConstante;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
