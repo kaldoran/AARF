@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import javax.swing.JPanel;
 
 /**
@@ -32,7 +33,7 @@ public class Dessin extends JPanel implements MouseListener, MouseMotionListener
         super();
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
-
+        
         clean();
     }
 
@@ -41,7 +42,7 @@ public class Dessin extends JPanel implements MouseListener, MouseMotionListener
     }
 
     public BufferedImage newImage() {
-        image = new BufferedImage(320, 300,
+        image = new BufferedImage(333, 250,
                 BufferedImage.TYPE_INT_ARGB);
 
         g2 = image.createGraphics();

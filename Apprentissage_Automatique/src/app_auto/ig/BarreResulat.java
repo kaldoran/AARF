@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  */
 public class BarreResulat extends JPanel {
     
-    private ZoneCodeFreeman code_freeman;
+    ZoneCodeFreeman code_freeman;
     private ZoneResultat resultat_trouvee;
     
     public BarreResulat() {
@@ -24,11 +24,9 @@ public class BarreResulat extends JPanel {
         this.setPreferredSize(new Dimension(300, 60));
 
         code_freeman = new ZoneCodeFreeman();
-        code_freeman.setAlignmentX(Component.LEFT_ALIGNMENT);
         this.add(code_freeman, BorderLayout.WEST);
         
         resultat_trouvee = new ZoneResultat();
-        resultat_trouvee.setAlignmentX(Component.RIGHT_ALIGNMENT);
         this.add(resultat_trouvee, BorderLayout.EAST);
     }
     

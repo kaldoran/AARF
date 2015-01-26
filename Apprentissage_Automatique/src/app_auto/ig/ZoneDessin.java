@@ -24,7 +24,7 @@ public class ZoneDessin extends JPanel {
         super();
         this.setLayout(new BorderLayout());
 
-        Border outset = createEmptyBorder(0, 3, 3, 3);
+        Border outset = createEmptyBorder(0, 3, 0, 3);
         TitledBorder inset = new TitledBorder(null, "Dessin", TitledBorder.CENTER, TitledBorder.CENTER);
 
         inset.setTitleJustification(TitledBorder.CENTER);

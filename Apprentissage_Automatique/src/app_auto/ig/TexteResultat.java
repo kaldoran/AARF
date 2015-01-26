@@ -18,6 +18,7 @@ public class TexteResultat extends JTextField{
         super();
         this.setEditable(false);
         this.setBackground(Color.white);
+
     }
     
 }

@@ -13,6 +13,7 @@ public class PanneauPrincipal extends JPanel {
 
     private BarreResulat barre_resultat;
     private ZoneDessin zone_dessin;
+    private ZoneValidation zone_validation;
     
     public PanneauPrincipal() {
         super();
@@ -24,6 +25,10 @@ public class PanneauPrincipal extends JPanel {
         
         zone_dessin = new ZoneDessin();
         this.add(zone_dessin, BorderLayout.CENTER);
+        
+        zone_validation = new ZoneValidation();
+        this.add(zone_validation, BorderLayout.SOUTH);
+        
     }
 
 }
