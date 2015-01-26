@@ -46,6 +46,7 @@ public class BoutonValidation extends JPanel implements ActionListener {
 
         if (e.getSource().equals(validation)) {
             BufferedImageToMatrix bim = new BufferedImageToMatrix(IgConstante.DESSIN.getImage());
+            IgConstante.CODE_FREEMAN.setText("26451874545");
         }
 
     }
