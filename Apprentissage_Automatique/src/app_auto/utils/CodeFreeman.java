@@ -8,21 +8,25 @@ public class CodeFreeman {
     private String Code;
     private final Erreurs err = new Erreurs();
 
-    public String codeFreeman(int[][] matrice) throws Erreurs.MatriceVide {
+    public String codeFreeman(int[][] matrice) throws Erreurs.MatriceVide, Erreurs.MatriceNull {
+        if (matrice != null){
         String morgan = "";
         int vect = 2, vectSv;
         int i = 0,j = 0;
         int x0, y0;
         int x = 0, y = 0;
-        
-        while(matrice[j][i] == 0 && j < matrice.length){
-            if(i == matrice[j].length){
+            System.out.println("length j : "+ matrice.length + " length i (j=0): "+ matrice[0].length);
+        while(j < matrice.length && matrice[j][i] == 0){
+            
+            if(i == matrice[j].length - 1){
                 ++j;
+                i = 0;
             }
             else{
                 ++i;
             }
         }
+        System.out.println("debut (x,y) = ("+ i + "," + j + ")");
         if(matrice[j][i] == 1){
             x0 = i;
             y0 = j;
@@ -30,7 +34,7 @@ public class CodeFreeman {
         else{
             throw err.new MatriceVide();
         }
-                
+        
         do {
             vectSv = (vect + 5) % 8;
             
@@ -39,7 +43,7 @@ public class CodeFreeman {
                     x = prochainX(vectSv);
                     y = prochainY(vectSv);
                     vectSv = (vectSv + 1) % 8;
-                } while(matrice[i + x][j + y] != 1);
+                } while(matrice[j + y][i + x] != 1);
                     
                     
                 i += x;
@@ -54,11 +58,14 @@ public class CodeFreeman {
             }
             
             morgan += vectSv;
-            
+            System.out.println(morgan);
             vect = vectSv;
         } while(i != x0 && j != y0);
                 
         return morgan;
+        }
+        
+        throw err.new MatriceNull();
     }
     
     public int prochainX(int vect) throws Erreurs.VecteurFaux {

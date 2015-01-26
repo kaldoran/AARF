@@ -7,11 +7,12 @@ package app_auto.ig;
 
 import app_auto.utils.IgConstante;
 import app_auto.BufferedImageToMatrix;
+import app_auto.utils.CodeFreeman;
+import app_auto.utils.Erreurs;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -46,6 +47,16 @@ public class BoutonValidation extends JPanel implements ActionListener {
 
         if (e.getSource().equals(validation)) {
             BufferedImageToMatrix bim = new BufferedImageToMatrix(IgConstante.DESSIN.getImage());
+            CodeFreeman morgan = new CodeFreeman();
+            String rep;
+            try {
+                rep = morgan.codeFreeman(bim.getMatrix());
+            } catch (Erreurs.MatriceVide ex) {
+                rep = "0";
+            } catch (Erreurs.MatriceNull ex) {
+                rep = "null";
+            }
+            IgConstante.CODE_FREEMAN.setText(rep);
         }
 
     }
