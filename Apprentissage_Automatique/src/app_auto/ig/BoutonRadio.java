@@ -51,12 +51,12 @@ public class BoutonRadio extends JPanel implements ItemListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getItem().equals(mode_test)) {
-            IgConstante.valeur_trouvee.setText("");
-            IgConstante.resultat_trouvee.setBorder(IgConstante.out);
-            IgConstante.valeur_trouvee.setEditable(false);
+            IgConstante.VALEUR_TROUVEE.setText("");
+            IgConstante.RESULTAT_TROUVEE.setBorder(IgConstante.OUT);
+            IgConstante.VALEUR_TROUVEE.setEditable(false);
         } else {
-            IgConstante.resultat_trouvee.setBorder(IgConstante.in);
-            IgConstante.valeur_trouvee.setEditable(true);
+            IgConstante.RESULTAT_TROUVEE.setBorder(IgConstante.IN);
+            IgConstante.VALEUR_TROUVEE.setEditable(true);
         }
     }
 

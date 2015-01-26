@@ -12,11 +12,16 @@ import javax.swing.border.TitledBorder;
  * @author kaldoran
  */
 public class IgConstante {
-    public static Dessin dessin;
-    public static TexteResultat valeur_trouvee;
-    public static TexteCodeFreeman code_freeman;
-    public static ZoneResultat resultat_trouvee;
-    
-    public static TitledBorder out = new TitledBorder("Out");
-    public static TitledBorder in = new TitledBorder("In");
+
+    public static Dessin DESSIN;
+    public static TexteResultat VALEUR_TROUVEE;
+    public static TexteCodeFreeman CODE_FREEMAN;
+    public static ZoneResultat RESULTAT_TROUVEE;
+
+    public final static TitledBorder OUT = new TitledBorder("Out");
+    public final static TitledBorder IN = new TitledBorder("In");
+
+    public final static int HAUTEUR_IMAGE = 250;
+    public final static int LARGEUR_IMAGE = 250;
+
 }

@@ -6,6 +6,7 @@
 package app_auto;
 
 import app_auto.ig.FenetrePrincipale;
+import app_auto.ig.IgConstante;
 
 /**
  *
@@ -19,5 +20,5 @@ public class Apprentissage_Automatique {
     public static void main(String[] args) {
         new FenetrePrincipale();
     }
-    
+
 }

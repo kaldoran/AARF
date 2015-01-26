@@ -43,18 +43,23 @@ public class Dessin extends JPanel implements MouseListener, MouseMotionListener
         image = newImage();
         repaint();
     }
+    
+    public BufferedImage getImage() {
+        return image;
+    }
 
     public BufferedImage newImage() {
         image = new BufferedImage(333, 250,
                 BufferedImage.TYPE_INT_ARGB);
 
         g2 = image.createGraphics();
-        g2.setBackground(Color.WHITE); // I am setting the background colour here
+        g2.setBackground(Color.WHITE);
         g2.setColor(Color.BLACK);
         g2.setFont(new Font("Serif", Font.PLAIN, 30));
         g2.setStroke(new BasicStroke(8));
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
+        
         return image;
     }
 
@@ -86,18 +91,11 @@ public class Dessin extends JPanel implements MouseListener, MouseMotionListener
         cy = y1;
     }
 
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         cx = e.getX();
         cy = e.getY();
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
     }
 
     @Override
@@ -107,6 +105,11 @@ public class Dessin extends JPanel implements MouseListener, MouseMotionListener
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
-    }
+    public void mouseExited(MouseEvent e) { }
+
+    @Override
+    public void mouseEntered(MouseEvent e) { }
+
+    @Override
+    public void mouseMoved(MouseEvent e) { }
 }

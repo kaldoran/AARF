@@ -37,7 +37,7 @@ public class BarreMenu extends JMenuBar{
         mfich_nouveau.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                IgConstante.dessin.clean();
+                IgConstante.DESSIN.clean();
             }
         });
         

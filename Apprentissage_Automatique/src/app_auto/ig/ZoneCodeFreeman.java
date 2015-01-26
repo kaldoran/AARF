@@ -27,8 +27,8 @@ public class ZoneCodeFreeman extends JPanel {
         bordure = new TitledBorder("Code Freeman");
         this.setBorder(bordure);
         
-        IgConstante.code_freeman = new TexteCodeFreeman(); 
-        this.add(IgConstante.code_freeman);
+        IgConstante.CODE_FREEMAN = new TexteCodeFreeman(); 
+        this.add(IgConstante.CODE_FREEMAN);
         
     }
     

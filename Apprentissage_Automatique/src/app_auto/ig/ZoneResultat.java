@@ -22,10 +22,10 @@ public class ZoneResultat extends JPanel {
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(50, 50));
         
-        this.setBorder(IgConstante.out);
+        this.setBorder(IgConstante.OUT);
 
-        IgConstante.valeur_trouvee = new TexteResultat();
-        this.add(IgConstante.valeur_trouvee);
+        IgConstante.VALEUR_TROUVEE = new TexteResultat();
+        this.add(IgConstante.VALEUR_TROUVEE);
     }
 
 }
