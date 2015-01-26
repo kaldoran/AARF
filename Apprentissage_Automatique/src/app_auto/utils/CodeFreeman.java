@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package app_auto.utils;
+
 /**
  *
  * @author Kevin
@@ -12,12 +13,14 @@ public class CodeFreeman {
     private String Code;
     private final Erreurs err = new Erreurs();
 
-    public CodeFreeman(int[][] matrice) throws Erreurs.MatriceVide {
-        int vect = 2;
+    public String codeFreeman(int[][] matrice) throws Erreurs.MatriceVide {
+        String morgan = "";
+        int vect = 2, vectSv;
         int i = 0,j = 0;
+        int x0, y0;
         int x = 0, y = 0;
         
-        while(matrice[j][i] == 0){
+        while(matrice[j][i] == 0 && j < matrice.length){
             if(i == matrice[j].length){
                 ++j;
             }
@@ -26,48 +29,70 @@ public class CodeFreeman {
             }
         }
         if(matrice[j][i] == 1){
-            x = i;
-            y = j;
+            x0 = i;
+            y0 = j;
         }
         else{
             throw err.new MatriceVide();
         }
                 
-        
+        do {
+            vectSv = (vect + 5) % 8;
+            
+            try {
+                do {
+                    x = prochainX(vectSv);
+                    y = prochainY(vectSv);
+                    vectSv = (vectSv + 1) % 8;
+                } while(matrice[i + x][j + y] != 1);
+                    
+                    
+                i += x;
+                j += y;
+            } catch (Erreurs.VecteurFaux ex) {}
+            
+            if (vectSv == 0){
+                vectSv = 7;
+            }
+            else{
+                --vectSv;
+            }
+            
+            morgan += vectSv;
+            
+            vect = vectSv;
+        } while(i != x0 && j != y0);
+                
+        return morgan;
     }
     
+    public int prochainX(int vect) throws Erreurs.VecteurFaux {
+        if(vect == 0 || vect == 4) {
+            return 0;
+        }
+        else if(vect == 1 || vect == 2 || vect == 3) {
+            return 1;
+        }
+        else if(vect == 5 || vect == 6 || vect == 7) {
+            return -1;
+        }
+        
+        throw err.new VecteurFaux();
+    }
     
-    /*Entrée : A : Matrice n * m 
-      (x0, y0) : point de départ
-        d <- 2 
-        i <- x0
-        j <- y0
-        Faire
-            d <- (d+5) % 8 
-            Faire 
-                x <- prochainX(dcom)
-                y <- prochainY(dcom)
-                dcom <- (dcom + 1) % 6
-            Tant que A[i+x][j+y] != 1
-            i <- i + x
-            j <- j + y
-            si (dcom = 0)
-                dcom <- 7
-            sinon 
-                dcom <- dcom - 1
-            code <- code . dcom
-            d <- dcom
-        Tant que i != x0 et j != y0
-
-    prochainX(d) 
-        si d = 0 OU d = 4 
-            renvoyer 0
-        sinon si d = 1 OU d = 2 OU d = 3
-            renvoyer 1
-        sinon si d = 5 OU d = 6 OU d = -1
-            renvoyer -1
-        sinon
-           Erreur()*/
+     public int prochainY(int vect) throws Erreurs.VecteurFaux {
+        if(vect == 6 || vect == 2) {
+            return 0;
+        }
+        else if(vect == 5 || vect == 4 || vect == 3) {
+            return 1;
+        }
+        else if(vect == 0 || vect == 1 || vect == 7) {
+            return -1;
+        }
+        
+        throw err.new VecteurFaux();
+    }   
 
     public String getCode() {
         return Code;
