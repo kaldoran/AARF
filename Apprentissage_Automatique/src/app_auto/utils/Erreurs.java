@@ -16,4 +16,11 @@ public class Erreurs {
             System.out.println("La matrice à traduire en code de freeman est vide.");
         }
     }
+    
+    public class VecteurFaux extends Exception {
+        
+        public VecteurFaux() {
+            System.out.println("Erreur de vecteur de Freeman.");
+        }
+    }
 }
