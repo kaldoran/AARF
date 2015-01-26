@@ -18,7 +18,7 @@ import javax.swing.border.TitledBorder;
 public class ZoneCodeFreeman extends JPanel {
     
     private TitledBorder bordure;
-    private JTextField code_freeman;
+
     public ZoneCodeFreeman() {
         super();
         this.setLayout(new BorderLayout());
@@ -27,8 +27,8 @@ public class ZoneCodeFreeman extends JPanel {
         bordure = new TitledBorder("Code Freeman");
         this.setBorder(bordure);
         
-        code_freeman = new TexteResultat(); 
-        this.add(code_freeman);
+        IgConstante.code_freeman = new TexteCodeFreeman(); 
+        this.add(IgConstante.code_freeman);
         
     }
     

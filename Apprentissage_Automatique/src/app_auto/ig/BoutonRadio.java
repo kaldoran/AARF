@@ -6,16 +6,19 @@
 package app_auto.ig;
 
 import java.awt.Dimension;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 /**
  *
  * @author kaldoran
  */
-public class BoutonRadio extends JPanel {
+public class BoutonRadio extends JPanel implements ItemListener {
 
     private TitledBorder bordure;
     private JRadioButton mode_test;
@@ -31,8 +34,11 @@ public class BoutonRadio extends JPanel {
 
         choix = new ButtonGroup();
         mode_test = new JRadioButton("Mode Tests");
+        mode_test.addItemListener(this);
         mode_test.setSelected(true);
+
         mode_ajout = new JRadioButton("Mode Ajout");
+        mode_ajout.addItemListener(this);
 
         choix.add(mode_test);
         choix.add(mode_ajout);
@@ -40,6 +46,18 @@ public class BoutonRadio extends JPanel {
         this.add(mode_test);
         this.add(mode_ajout);
 
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        if (e.getItem().equals(mode_test)) {
+            IgConstante.valeur_trouvee.setText("");
+            IgConstante.resultat_trouvee.setBorder(IgConstante.out);
+            IgConstante.valeur_trouvee.setEditable(false);
+        } else {
+            IgConstante.resultat_trouvee.setBorder(IgConstante.in);
+            IgConstante.valeur_trouvee.setEditable(true);
+        }
     }
 
 }

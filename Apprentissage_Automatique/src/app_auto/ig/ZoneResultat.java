@@ -16,19 +16,16 @@ import javax.swing.border.TitledBorder;
  */
 public class ZoneResultat extends JPanel {
 
-    private TexteResultat valeur_trouvee;
-    private TitledBorder bordure;
-
     public ZoneResultat() {
         super();
+        
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(50, 50));
-        valeur_trouvee = new TexteResultatTrouvee();
+        
+        this.setBorder(IgConstante.out);
 
-        bordure = new TitledBorder("Out");
-
-        this.setBorder(bordure);
-        this.add(valeur_trouvee);
+        IgConstante.valeur_trouvee = new TexteResultat();
+        this.add(IgConstante.valeur_trouvee);
     }
 
 }
