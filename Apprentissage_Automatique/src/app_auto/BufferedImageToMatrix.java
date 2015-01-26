@@ -5,9 +5,7 @@
  */
 package app_auto;
 
-import app_auto.utils.IgConstante;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferInt;
 
 /**
  *
@@ -22,12 +20,12 @@ public class BufferedImageToMatrix {
     public BufferedImageToMatrix(BufferedImage image) {
         width = image.getWidth();
         height = image.getHeight();
-        int[][] matrix = new int[height][width];
+        int[][] matrix = new int[width][height];
 
-        for (int row = 0; row < height - 1; row++) {
-            for (int col = 0; col < width - 1; col++) {
-                matrix[row][col] = (image.getRGB(col, row) == 0 ? 0 : 1);
-                // System.out.print(matrix[row][col] + " ");
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                matrix[col][row] = (image.getRGB(col, row) == 0 ? 0 : 1);
+                // System.out.print(matrix[col][row] + " ");
             }
             // System.out.println("");
         }

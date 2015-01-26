@@ -5,24 +5,47 @@
  */
 package app_auto.ig;
 
+import com.sun.corba.se.impl.protocol.giopmsgheaders.KeyAddr;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JTextField;
 
 /**
  *
  * @author kaldoran
  */
-public class TexteResultat extends JTextField {
+public class TexteResultat extends JTextField implements KeyListener {
 
     public TexteResultat() {
         super();
-        
-        this.setEditable(false);
-        this.setBackground(Color.white);
+
+        this.addKeyListener(this);
         this.setHighlighter(null);
+        this.setBackground(Color.white);
         this.setFont(new Font("Serif", Font.PLAIN, 18));
         this.setHorizontalAlignment(JTextField.CENTER);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        if ( this.getText().length() >= 1
+                || ! Character.isDigit(c) ) {
+            e.consume();
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ke) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
     }
 
 }
