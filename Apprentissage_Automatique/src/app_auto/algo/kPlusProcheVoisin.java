@@ -7,8 +7,8 @@ package app_auto.algo;
 
 /**
  *
- * @author kevin
+ * @author kevin 
  */
 public class kPlusProcheVoisin {
-    
+
 }
