@@ -51,10 +51,8 @@ public class BoutonValidation extends JPanel implements ActionListener {
             String rep;
             try {
                 rep = morgan.codeFreeman(bim.getMatrix());
-            } catch (Erreurs.MatriceVide ex) {
-                rep = "0";
-            } catch (Erreurs.MatriceNull ex) {
-                rep = "null";
+            } catch (Erreurs.MatriceVide | Erreurs.MatriceNull ex) {
+                rep = "err";
             }
             IgConstante.CODE_FREEMAN.setText(rep);
         }
