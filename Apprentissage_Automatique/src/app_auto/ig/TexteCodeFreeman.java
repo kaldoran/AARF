@@ -18,7 +18,6 @@ public class TexteCodeFreeman extends JTextField {
         super();
         this.setEditable(false);
         this.setBackground(Color.white);
-        this.setHighlighter(null);
     }
 
 }
