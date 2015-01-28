@@ -6,7 +6,7 @@
 package app_auto.ig;
 
 import app_auto.utils.IgConstante;
-import app_auto.BufferedImageToMatrix;
+import app_auto.utils.BufferedImageToMatrix;
 import app_auto.utils.CodeFreeman;
 import app_auto.utils.Erreurs;
 import java.awt.BorderLayout;
@@ -43,20 +43,25 @@ public class BoutonValidation extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(reset)) {
             IgConstante.DESSIN.clean();
+            IgConstante.CODE_FREEMAN.setText("");
+            IgConstante.VALEUR_TROUVEE.setText("");
         }
 
         if (e.getSource().equals(validation)) {
-            BufferedImageToMatrix bim = new BufferedImageToMatrix(IgConstante.DESSIN.getImage());
             CodeFreeman morgan = new CodeFreeman();
-            String rep;
-            try {
-                rep = morgan.codeFreeman(bim.getMatrix());
-            } catch (Erreurs.MatriceVide | Erreurs.MatriceNull ex) {
-                rep = "err";
+            String rep= "";
+            if(IgConstante.RESULTAT_TROUVEE.getBorder().equals(IgConstante.OUT)){
+                BufferedImageToMatrix bim = new BufferedImageToMatrix(IgConstante.DESSIN.getImage());
+                try {
+                    rep = morgan.codeFreeman(bim.getMatrix());
+                } catch (Erreurs.MatriceVide | Erreurs.MatriceNull ex) {
+                    rep = "err";
+                }
+            }
+            else{
+                
             }
             IgConstante.CODE_FREEMAN.setText(rep);
         }
-
     }
-
 }

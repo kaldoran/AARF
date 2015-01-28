@@ -17,14 +17,16 @@ import javax.swing.border.TitledBorder;
  */
 public class IgConstante {
 
-    public static Dessin DESSIN;
-    public static TexteResultat VALEUR_TROUVEE;
-    public static TexteCodeFreeman CODE_FREEMAN;
-    public static ZoneResultat RESULTAT_TROUVEE;
+    public static Dessin DESSIN;  // Zone de dessin. 
+    public static TexteResultat VALEUR_TROUVEE;  // Champ texte du chiffre trouvé (ou à chercher).
+    public static ZoneResultat RESULTAT_TROUVEE;  // Label du champ texte du chiffre trouvé (ou à chercher).
+    public static TexteCodeFreeman CODE_FREEMAN;  // Champ texte du code de freeman.
 
+    // Constantes du titre du label.
     public final static TitledBorder OUT = new TitledBorder("Out");
     public final static TitledBorder IN = new TitledBorder("In");
-
+    
+    // Constantes de taille du dessin.
     public final static int HAUTEUR_IMAGE = 245;
     public final static int LARGEUR_IMAGE = 333;
 
