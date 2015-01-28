@@ -6,11 +6,11 @@
         i <- x0
         j <- y0
         Faire
-            d <- (d+5) % 8 
+            dcom <- (d+5) % 8 
             Faire 
                 x <- prochainX(dcom)
                 y <- prochainY(dcom)
-                dcom <- (dcom + 1) % 6
+                dcom <- (dcom + 1) % 8
             Tant que A[i+x][j+y] != 1
             i <- i + x
             j <- j + y
