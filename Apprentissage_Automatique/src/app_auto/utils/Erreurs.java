@@ -10,6 +10,13 @@ package app_auto.utils;
  * @author Kevin
  */
 public class Erreurs {
+    public class MatriceNull extends Exception {
+
+        public MatriceNull() {
+            System.out.println("La matrice à traduire en code de freeman est null.");
+        }
+    }
+        
     public class MatriceVide extends Exception {
 
         public MatriceVide() {

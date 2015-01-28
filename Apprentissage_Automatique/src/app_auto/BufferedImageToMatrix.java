@@ -20,14 +20,14 @@ public class BufferedImageToMatrix {
     public BufferedImageToMatrix(BufferedImage image) {
         width = image.getWidth();
         height = image.getHeight();
-        int[][] matrix = new int[width][height];
+        matrix = new int[height][width];
 
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                matrix[col][row] = (image.getRGB(col, row) == 0 ? 0 : 1);
-                // System.out.print(matrix[col][row] + " ");
+                matrix[row][col] = (image.getRGB(col, row) == 0 ? 0 : 1);
+                //System.out.print(matrix[row][col] + " ");
             }
-            // System.out.println("");
+            //System.out.println("");
         }
         
         System.out.println("Matrix done");
