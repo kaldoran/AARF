@@ -5,12 +5,13 @@
  */
 package app_auto.utils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,10 +20,11 @@ import java.util.logging.Logger;
  * @author Kevin
  */
 public class Writer {
-    private File listeBase;
+    private String repertoire;
 
-    public Writer(String repertoire) {
-        this.listeBase = new File(repertoire + "/Base");
+    public Writer() {
+        repertoire = new FichierConstante().REPERTOIRE_APPRENTISSAGE;
+        File listeBase = new File(repertoire);
         
         if(!listeBase.exists()){
             try {
@@ -35,13 +37,17 @@ public class Writer {
 
     
     public boolean enregistrer(String chiffre, int[][] matrice, String freeman){
-        try {
-            ObjectOutputStream redacteur = new ObjectOutputStream(new FileOutputStream(listeBase));
+        try {  
+            int id = dernierId(chiffre);
+            FileWriter redacBase = new FileWriter(repertoire + "Base", true);
+            FileWriter redacMatrice = new FileWriter(repertoire + chiffre + File.separator + id, true);
             
-            ChiffreMatriceFreeman obj = new ChiffreMatriceFreeman(chiffre, matrice, freeman);
-            redacteur.writeObject(obj);
+            ChiffreMatriceFreeman obj = new ChiffreMatriceFreeman(id, chiffre, matrice, freeman);
+            redacBase.write(obj.resume());
+            redacMatrice.write(obj.chaineMatrice());
             
-            redacteur.close();
+            redacBase.close();
+            redacMatrice.close();
             return true;
             
         } catch (FileNotFoundException ex) {
@@ -51,5 +57,10 @@ public class Writer {
         }
         
         return false;
+    }
+    
+    public int dernierId(String chiffre){
+        File rep = new File(repertoire + chiffre);
+        return rep.list().length;
     }
 }

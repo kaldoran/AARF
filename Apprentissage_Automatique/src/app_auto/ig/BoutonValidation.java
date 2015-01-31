@@ -9,6 +9,8 @@ import app_auto.utils.IgConstante;
 import app_auto.utils.BufferedImageToMatrix;
 import app_auto.utils.CodeFreeman;
 import app_auto.utils.Erreurs;
+import app_auto.utils.FichierConstante;
+import app_auto.utils.Writer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -48,20 +50,24 @@ public class BoutonValidation extends JPanel implements ActionListener {
         }
 
         if (e.getSource().equals(validation)) {
+            BufferedImageToMatrix bim = new BufferedImageToMatrix(IgConstante.DESSIN.getImage());
             CodeFreeman morgan = new CodeFreeman();
-            String rep= "";
-            if(IgConstante.RESULTAT_TROUVEE.getBorder().equals(IgConstante.OUT)){
-                BufferedImageToMatrix bim = new BufferedImageToMatrix(IgConstante.DESSIN.getImage());
-                try {
-                    rep = morgan.codeFreeman(bim.getMatrix());
-                } catch (Erreurs.MatriceVide | Erreurs.MatriceNull ex) {
-                    rep = "err";
-                }
+            
+            String resFree;
+            try {
+                resFree = morgan.codeFreeman(bim.getMatrix());
+            } catch (Erreurs.MatriceVide | Erreurs.MatriceNull ex) {
+                resFree = "err";
             }
-            else{
+            
+            IgConstante.CODE_FREEMAN.setText(resFree);
+            
+            if (IgConstante.RESULTAT_TROUVEE.getBorder().equals(IgConstante.OUT)) {
                 
+            } else {
+                Writer redac = new Writer();
+                redac.enregistrer(IgConstante.VALEUR_TROUVEE.getText(), bim.getMatrix(), resFree);
             }
-            IgConstante.CODE_FREEMAN.setText(rep);
         }
     }
 }
