@@ -20,7 +20,7 @@ public class kPlusProcheVoisin {
     public final int CHEBYSHEV = 2;
     
     /**
-     *
+     * Cette méthode determine la classe de x en utilisant les matrices
      * @param matrice_x
      * @param S
      * @param ALGO_DISTANCE
