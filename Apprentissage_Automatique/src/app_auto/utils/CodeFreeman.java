@@ -19,18 +19,14 @@ public class CodeFreeman {
         int x0, y0;
         int x = 0, y = 0;
         
-        System.out.println("length j : " + matrice.length + " length i (j=0): " + matrice[0].length);
-        
-        while (j < matrice.length-1 && matrice[j][i] == 0) {
-            if (i == matrice[j].length - 1) {
+        while (j < matrice.length && matrice[j][i] == 0) {
+            if (i == matrice[j].length) {
                 ++j;
                 i = 0;
             } else {
                 ++i;
             }
         }
-        
-        System.out.println("debut (x,y) = (" + i + "," + j + ")");
         
         if (matrice[j][i] == 1) {
             x0 = i;
@@ -41,18 +37,18 @@ public class CodeFreeman {
 
         do {
             vectSv = (vect + 5) % 8;
-            System.out.println("vectSv= " + vectSv);
 
             try {
                 do {
-                    x = prochainX(vectSv);
-                    y = prochainY(vectSv);
-                    vectSv = (vectSv + 1) % 8;
+                    do{
+                        x = prochainX(vectSv);
+                        y = prochainY(vectSv);
+                        vectSv = (vectSv + 1) % 8;
+                    }while((j + y) > matrice.length || (i + x) > matrice[j].length || (j + y) < 0 || (i + x) < 0);
                 } while (matrice[j + y][i + x] != 1);
 
                 i += x;
                 j += y;
-            System.out.println("i = " + i + " j = " + j + "vectSv = " + vectSv);    
             } catch (Erreurs.VecteurFaux ex) {
             }
 
@@ -61,11 +57,8 @@ public class CodeFreeman {
             } else {
                 --vectSv;
             }
-            System.out.println("vectSv-- = " + vectSv);  
 
             morgan += vectSv;
-            System.out.println(morgan);
-            System.out.println("i = " + i + " j = " + j + " x0 = " + x0 + " y0 = " + y0);
             vect = vectSv;
         } while (i != x0 || j != y0);
 

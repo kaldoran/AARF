@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app_auto.utils;
 
 import java.awt.image.BufferedImage;
@@ -34,7 +29,50 @@ public class BufferedImageToMatrix {
     }
 
     public int[][] getMatrix() {
-        return matrix;
+        return reductionMatrice(matrix);
     }
-
+    
+    public int[][] reductionMatrice(int[][] matrice){
+        int j=0, i=0, y, x;
+        int l = matrice[0].length-1;
+        int h = matrice.length-1;
+        while (j < h && matrice[j][i] == 0) {
+            if (i == l) {
+                ++j;
+                i = 0;
+            } else {
+                ++i;
+            }
+        }
+        y = j--;
+        
+        i = 0;
+        j = 0;
+        while (i < l && matrice[j][i] == 0) {
+            if (j == h) {
+                ++i;
+                j = 0;
+            } else {
+                ++j;
+            }
+        }
+        x = i--;       
+        
+        
+        int[][] matriceR = new int[h - y][l - x];
+        int m = 0, n = 0;
+        
+        System.out.println("haut : " + (h - y) + " larg : " + (l - x));
+        
+        for(j = y; j < h; ++j){
+            for(i = x; i < l; ++i){
+                matriceR[n][m] = matrice[j][i];
+                ++m;
+            }
+            ++n;
+            m = 0;
+        }
+        
+        return matriceR;
+    }
 }
