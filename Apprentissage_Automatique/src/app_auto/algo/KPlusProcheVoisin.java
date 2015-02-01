@@ -15,6 +15,7 @@ public class KPlusProcheVoisin {
      * @return Manhattan distance between matrix x and matrix y
      */
     public double manhattanDistance(int[][] matrix_x, int[][] matrix_y) {
+        //hello
         double s = 0;
         for (int i = 0; i < matrix_x.length; i++) {
             for (int j = 0; j < matrix_x[0].length; j++) {
