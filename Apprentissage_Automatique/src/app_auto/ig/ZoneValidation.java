@@ -25,11 +25,9 @@ public class ZoneValidation extends JPanel {
         this.setLayout(new BorderLayout());
         
         bouton_radio = new BoutonRadio();
-        bouton_radio.setAlignmentX(LEFT_ALIGNMENT);
         this.add(bouton_radio, BorderLayout.NORTH);
         
         bouton_validation = new BoutonValidation();
-        bouton_radio.setAlignmentX(LEFT_ALIGNMENT);
         this.add(bouton_validation, BorderLayout.CENTER);   
                         
         logo = new Logo();
