@@ -11,12 +11,13 @@ import java.io.Serializable;
  *
  * @author Kevin
  */
-public class ChiffreMatriceFreeman implements Serializable{
+public class ChiffreMatriceFreeman implements Serializable, Comparable<ChiffreMatriceFreeman>{
     
     private int id;
     private String chiffre;
     private int[][] matrice;
     private String freeman;
+    private double distance = 0;
 
     public ChiffreMatriceFreeman(int id, String chiffre, int[][] matrice, String freeman) {
         this.id = id;
@@ -49,6 +50,14 @@ public class ChiffreMatriceFreeman implements Serializable{
         this.freeman = freeman;
     }
 
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
     public String resume() {
         return chiffre + "#" + id + "#" + freeman + "\n";
     }
@@ -62,5 +71,18 @@ public class ChiffreMatriceFreeman implements Serializable{
             chaineMatrice += "\n";
         }
         return chaineMatrice;
+    }
+
+    @Override
+    public int compareTo(ChiffreMatriceFreeman cmf) {
+        if(this.distance < cmf.distance) {
+            return -1;
+        }
+        
+        if(this.distance == cmf.distance) {
+            return 0;
+        }
+        
+        return 1;
     }
 }
