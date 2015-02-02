@@ -5,6 +5,7 @@
  */
 package app_auto.ig;
 
+import app_auto.utils.IgConstante;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -30,18 +31,24 @@ public class TexteResultat extends JTextField implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
         char c = e.getKeyChar();
-        if ( this.getText().length() >= 1
-                || ! Character.isDigit(c) ) {
+
+        if (this.getText().length() >= 1
+                || !Character.isDigit(c)) {
             e.consume();
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
+        if (this.getText().length() == 0) {
+            IgConstante.BOUTON_VALIDATION.setEnabled(false);
+        } else {
+            IgConstante.BOUTON_VALIDATION.setEnabled(true);
+
         }
     }
 
     @Override
     public void keyPressed(KeyEvent ke) {
     }
-
-    @Override
-    public void keyReleased(KeyEvent ke) {
-    }
-
 }

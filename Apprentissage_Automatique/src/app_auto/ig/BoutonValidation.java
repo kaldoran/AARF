@@ -24,16 +24,15 @@ import javax.swing.JPanel;
  */
 public class BoutonValidation extends JPanel implements ActionListener {
 
-    private JButton validation;
     private JButton reset;
 
     public BoutonValidation() {
         super();
         this.setPreferredSize(new Dimension(50, 50));
 
-        validation = new JButton("Valider");
-        validation.addActionListener(this);
-        this.add(validation, BorderLayout.WEST);
+        IgConstante.BOUTON_VALIDATION = new JButton("Valider");
+        IgConstante.BOUTON_VALIDATION.addActionListener(this);
+        this.add(IgConstante.BOUTON_VALIDATION, BorderLayout.WEST);
 
         reset = new JButton("Reset");
         reset.addActionListener(this);
@@ -47,23 +46,25 @@ public class BoutonValidation extends JPanel implements ActionListener {
             IgConstante.DESSIN.clean();
             IgConstante.CODE_FREEMAN.setText("");
             IgConstante.VALEUR_TROUVEE.setText("");
+            IgConstante.BOUTON_VALIDATION.setEnabled(false);
+            IgConstante.VALEUR_TROUVEE.requestFocus();
         }
 
-        if (e.getSource().equals(validation)) {
+        if (e.getSource().equals(IgConstante.BOUTON_VALIDATION)) {
             BufferedImageToMatrix bim = new BufferedImageToMatrix(IgConstante.DESSIN.getImage());
             CodeFreeman morgan = new CodeFreeman();
-            
+
             String resFree;
             try {
                 resFree = morgan.codeFreeman(bim.getMatrix());
             } catch (Erreurs.MatriceVide | Erreurs.MatriceNull ex) {
                 resFree = "err";
             }
-            
+
             IgConstante.CODE_FREEMAN.setText(resFree);
-            
+
             if (IgConstante.RESULTAT_TROUVEE.getBorder().equals(IgConstante.OUT)) {
-                
+
             } else {
                 Writer redac = new Writer();
                 redac.enregistrer(IgConstante.VALEUR_TROUVEE.getText(), bim.getMatrix(), resFree);

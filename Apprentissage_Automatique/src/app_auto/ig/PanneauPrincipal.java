@@ -18,7 +18,7 @@ public class PanneauPrincipal extends JPanel {
     public PanneauPrincipal() {
         super();
         this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension(350, 400));
+        this.setPreferredSize(new Dimension(315, 285));
 
         barre_resultat = new BarreResulat();
         this.add(barre_resultat, BorderLayout.NORTH);
@@ -27,8 +27,7 @@ public class PanneauPrincipal extends JPanel {
         this.add(zone_dessin, BorderLayout.CENTER);
         
         zone_validation = new ZoneValidation();
-        this.add(zone_validation, BorderLayout.SOUTH);
-        
+        this.add(zone_validation, BorderLayout.EAST);        
     }
 
 }

@@ -9,6 +9,7 @@ import app_auto.ig.Dessin;
 import app_auto.ig.TexteCodeFreeman;
 import app_auto.ig.TexteResultat;
 import app_auto.ig.ZoneResultat;
+import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
 /**
@@ -21,13 +22,14 @@ public class IgConstante {
     public static TexteResultat VALEUR_TROUVEE;  // Champ texte du chiffre trouvé (ou à chercher).
     public static ZoneResultat RESULTAT_TROUVEE;  // Label du champ texte du chiffre trouvé (ou à chercher).
     public static TexteCodeFreeman CODE_FREEMAN;  // Champ texte du code de freeman.
+    public static JButton BOUTON_VALIDATION;
 
     // Constantes du titre du label.
     public final static TitledBorder OUT = new TitledBorder("Out");
     public final static TitledBorder IN = new TitledBorder("In");
     
     // Constantes de taille du dessin.
-    public final static int HAUTEUR_IMAGE = 245;
-    public final static int LARGEUR_IMAGE = 333;
+    public final static int HAUTEUR_IMAGE = 200;
+    public final static int LARGEUR_IMAGE = 150;
 
 }

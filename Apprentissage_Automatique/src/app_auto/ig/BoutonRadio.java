@@ -28,7 +28,7 @@ public class BoutonRadio extends JPanel implements ItemListener {
 
     public BoutonRadio() {
         super();
-        this.setPreferredSize(new Dimension(150, 70));
+        this.setPreferredSize(new Dimension(150, 80));
 
         bordure = new TitledBorder("Choix Mode");
         this.setBorder(bordure);
@@ -55,7 +55,11 @@ public class BoutonRadio extends JPanel implements ItemListener {
             IgConstante.VALEUR_TROUVEE.setText("");
             IgConstante.RESULTAT_TROUVEE.setBorder(IgConstante.OUT);
             IgConstante.VALEUR_TROUVEE.setEditable(false);
+            if (IgConstante.BOUTON_VALIDATION != null) {
+                IgConstante.BOUTON_VALIDATION.setEnabled(true);
+            }
         } else {
+            IgConstante.BOUTON_VALIDATION.setEnabled(false);
             IgConstante.RESULTAT_TROUVEE.setBorder(IgConstante.IN);
             IgConstante.VALEUR_TROUVEE.requestFocus();
             IgConstante.VALEUR_TROUVEE.setEditable(true);
