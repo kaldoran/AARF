@@ -34,7 +34,7 @@ public class Reader {
         }
     }
     
-    public ArrayList<ChiffreMatriceFreeman> recupTotale() {
+    public ArrayList<ChiffreMatriceFreeman> recupTotal() {
         
         ArrayList<ChiffreMatriceFreeman> liste = new ArrayList<>();
         try {

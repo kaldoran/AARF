@@ -2,3 +2,7 @@
 /Apprentissage_Automatique/build/
 /Apprentissage_Automatique/dist/
 /Apprentissage_Automatique/Base_Apprentissage
+*.aux
+*.log
+*.synctex.gz
+*.pdf
