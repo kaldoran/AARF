@@ -8,7 +8,7 @@ public class CodeFreeman {
     private String Code;
     private final Erreurs err = new Erreurs();
 
-    public String codeFreeman(int[][] matrice) throws Erreurs.MatriceVide, Erreurs.MatriceNull {
+    public String matriceToFreeman(int[][] matrice) throws Erreurs.MatriceVide, Erreurs.MatriceNull {
         if (matrice == null) {
             throw err.new MatriceNull();
         }
@@ -64,6 +64,12 @@ public class CodeFreeman {
 
         return morgan;
     }
+    
+    public int[][] freemanToMatrice(String morgan){
+        int[][] matrice = {{1,2},{2,1}};
+        
+        return matrice;
+    }
 
     public int prochainX(int vect) throws Erreurs.VecteurFaux {
         if(vect == 0 || vect == 4) {
@@ -91,7 +97,27 @@ public class CodeFreeman {
         }
         
         throw err.new VecteurFaux();
-    }   
+    }
+     
+    public int sensChiffre(String morgan) throws Erreurs.VecteurFaux{
+        int sens = 0;
+        int i, l = morgan.length();
+        char vect;
+        
+        for(i = 0; i < l; ++i) {
+            vect = morgan.charAt(i);
+            if (vect == '1' || vect == '2' || vect == '3') {
+                sens++;
+            } else if (vect == '5' || vect == '6' || vect == '7') {
+                sens--;
+            } else if(vect != '0' && vect !='4') {
+                throw err.new VecteurFaux();
+            }
+        }
+        
+        return sens;
+    }
+
 
     public String getCode() {
         return Code;

@@ -59,14 +59,28 @@ public class BufferedImageToMatrix {
         x = i--;       
         
         
-        int[][] matriceR = new int[h - y][l - x];
+        int[][] matriceR = new int[h][l];
         int m = 0, n = 0;
-        
-        System.out.println("haut : " + (h - y) + " larg : " + (l - x));
         
         for(j = y; j < h; ++j){
             for(i = x; i < l; ++i){
                 matriceR[n][m] = matrice[j][i];
+                System.out.println("M - m: " + m + " n: " + n);
+                ++m;
+            }
+            for(i = 0; i < x; ++i){
+                matrice[n][m] = 0;
+                System.out.println("0 - m: " + m + " n: " + n);
+                ++m;
+            }
+            ++n;
+            m = 0;
+        }
+        System.out.println("2nd boucles - m: " + m + " n: " + n);
+        for(j = 0; j < y; ++j){
+            for(i = 0; i < l; ++i){
+                matrice[n][m] = 0;
+                System.out.println("20 - m: " + m + " n: " + n);
                 ++m;
             }
             ++n;
