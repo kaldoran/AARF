@@ -23,7 +23,7 @@ public class ZoneCodeFreeman extends JPanel {
     public ZoneCodeFreeman() {
         super();
         this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension(290, 50));
+        this.setPreferredSize(new Dimension(255, 50));
         
         bordure = new TitledBorder("Code Freeman");
         this.setBorder(bordure);

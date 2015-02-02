@@ -18,6 +18,7 @@ public class ZoneValidation extends JPanel {
 
     private BoutonRadio bouton_radio;
     private BoutonValidation bouton_validation;
+    private Logo logo;
     
     public ZoneValidation() {
         super();
@@ -25,11 +26,14 @@ public class ZoneValidation extends JPanel {
         
         bouton_radio = new BoutonRadio();
         bouton_radio.setAlignmentX(LEFT_ALIGNMENT);
-        this.add(bouton_radio, BorderLayout.WEST);
+        this.add(bouton_radio, BorderLayout.NORTH);
         
         bouton_validation = new BoutonValidation();
         bouton_radio.setAlignmentX(LEFT_ALIGNMENT);
-        this.add(bouton_validation, BorderLayout.CENTER);         
+        this.add(bouton_validation, BorderLayout.CENTER);   
+                        
+        logo = new Logo();
+        this.add(logo, BorderLayout.SOUTH);
         
     }
     

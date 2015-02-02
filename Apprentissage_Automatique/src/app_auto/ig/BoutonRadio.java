@@ -28,7 +28,7 @@ public class BoutonRadio extends JPanel implements ItemListener {
 
     public BoutonRadio() {
         super();
-        this.setPreferredSize(new Dimension(150, 70));
+        this.setPreferredSize(new Dimension(150, 80));
 
         bordure = new TitledBorder("Choix Mode");
         this.setBorder(bordure);

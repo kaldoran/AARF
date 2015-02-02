@@ -27,7 +27,7 @@ public class IgConstante {
     public final static TitledBorder IN = new TitledBorder("In");
     
     // Constantes de taille du dessin.
-    public final static int HAUTEUR_IMAGE = 245;
-    public final static int LARGEUR_IMAGE = 333;
+    public final static int HAUTEUR_IMAGE = 200;
+    public final static int LARGEUR_IMAGE = 150;
 
 }

@@ -7,6 +7,7 @@ package app_auto.ig;
 
 import app_auto.utils.IgConstante;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import static javax.swing.BorderFactory.createEmptyBorder;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -25,7 +26,7 @@ public class ZoneDessin extends JPanel {
         super();
         this.setLayout(new BorderLayout());
 
-        Border outset = createEmptyBorder(0, 3, 0, 3);
+        Border outset = createEmptyBorder(0, 3, 3, 3);
         TitledBorder inset = new TitledBorder(null, "Dessin", TitledBorder.CENTER, TitledBorder.CENTER);
 
         inset.setTitleJustification(TitledBorder.CENTER);
