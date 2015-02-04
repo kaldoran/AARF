@@ -5,8 +5,10 @@
  */
 package app_auto.algo;
 
+import app_auto.utils.ChiffreMatriceFreeman;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Iterator;
 
 public class KPlusProcheVoisin {
 
@@ -18,47 +20,55 @@ public class KPlusProcheVoisin {
     /**
      * Cette méthode determine la classe de x en utilisant les matrices
      * @param matrice_x
-     * @param S
+     * @param s
      * @param ALGO_DISTANCE
      * @return
      */
-    public int kppv(int[][] matrice_x, HashMap<Integer, ArrayList<ArrayList>> S, int ALGO_DISTANCE) {
+    public int kppv(int[][] matrice_x, ArrayList<ChiffreMatriceFreeman> s, int ALGO_DISTANCE) {
         int classe_y = 0;
-        int taille_matrice = 0;
+        Iterator<ChiffreMatriceFreeman> it_s = null;
+        ArrayList<ChiffreMatriceFreeman> liste_classementPoints = null;
         
-        //Récuperation de la taille de la matrice
+        //Verification matrice n'est pas vide
         if(matrice_x.length == 0) {
             System.out.println("ERREUR : matrice vide !");
             return -1;
-        } else {
-            taille_matrice = matrice_x.length;
+        } 
+        
+        //Verification que la base de connnaissance n'est pas vide
+        if(s.isEmpty()) {
+            System.out.println("ERREUR : Base de connaissance vide");
+            return -1;
         }
         
-        //On utilise la taille de la matrice comme clé pour rechercher les exemples
+        it_s = s.iterator();
+        liste_classementPoints = new ArrayList<ChiffreMatriceFreeman>();
         
-        if ( S.containsKey(taille_matrice)) {
+        while(it_s.hasNext()) {
+            ChiffreMatriceFreeman cmf = it_s.next();
             
-            for (ArrayList liste_exemple : S.get(taille_matrice) ) {
+            switch(ALGO_DISTANCE) {
                 
-                for (Object o : liste_exemple) {
-                    int[][] matrice_exemple = (int[][]) o;
+                case MANHATTAN : 
+                    cmf.setDistance(manhattanDistance(matrice_x, cmf.getMatrice()));
+                    break;
                     
-                    switch(ALGO_DISTANCE) {
-                        case MANHATTAN :
-                            break;
-                            
-                        case EUCLIDIENNE :
-                            break;
-                            
-                        case CHEBYSHEV : 
-                            break;
-                            
-                        default: System.out.println("Algorithme non existant");
-                            break;
-                    }
-                }
+                case EUCLIDIENNE : 
+                    cmf.setDistance(euclideanDistance(matrice_x, cmf.getMatrice()));
+                    break;
+                    
+                case CHEBYSHEV :
+                    cmf.setDistance(chebyshevDistance(matrice_x, cmf.getMatrice()));
+                    break;
+                    
+                default :
+                    System.out.println("ERREUR : Algorithme de calcule de distance non existant");
+                    return -1;
             }
         }
+        
+        //Trie par ordre croissant selon la distance (voir methode compareTo de ChiffreMatriceFreeman)
+        Collections.sort(s);
         
         return classe_y;
     }

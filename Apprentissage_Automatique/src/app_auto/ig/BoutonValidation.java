@@ -53,11 +53,12 @@ public class BoutonValidation extends JPanel implements ActionListener {
 
         if (e.getSource().equals(IgConstante.BOUTON_VALIDATION)) {
             BufferedImageToMatrix bim = new BufferedImageToMatrix(IgConstante.DESSIN.getImage());
+            int[][] matrice = bim.getMatrix();
             CodeFreeman morgan = new CodeFreeman();
 
             String resFree;
             try {
-                resFree = morgan.codeFreeman(bim.getMatrix());
+                resFree = morgan.matriceToFreeman(matrice);
             } catch (Erreurs.MatriceVide | Erreurs.MatriceNull ex) {
                 resFree = "err";
             }
@@ -70,7 +71,7 @@ public class BoutonValidation extends JPanel implements ActionListener {
 
             } else {
                 Writer redac = new Writer();
-                redac.enregistrer(IgConstante.VALEUR_TROUVEE.getText(), bim.getMatrix(), resFree);
+                redac.enregistrer(IgConstante.VALEUR_TROUVEE.getText(), matrice, resFree);
             }
         }
     }

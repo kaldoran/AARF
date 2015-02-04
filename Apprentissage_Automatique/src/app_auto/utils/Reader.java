@@ -43,9 +43,9 @@ public class Reader {
             while((resume = lectResume.readLine()) != null) {
                 String[] champs = resume.split("#");
                 
-                int[][] matrice = lectureMatrice(champs[0], champs[1]);
+                int[][] matrice = lectureMatrice(champs[1]);
                 
-                ChiffreMatriceFreeman cmf = new ChiffreMatriceFreeman(Integer.parseInt(champs[1]), champs[0], matrice, champs[2]);
+                ChiffreMatriceFreeman cmf = new ChiffreMatriceFreeman(champs[0], matrice, champs[2]);
                 liste.add(cmf);
                 
                 return liste;
@@ -59,38 +59,20 @@ public class Reader {
         return null;
     }
     
-    public int[][] lectureMatrice(String chiffre, String id){
-        try {
-            File ficMatrice = new File(repertoire + chiffre + File.separator + id);
-            BufferedReader lectMatrice = new BufferedReader(new FileReader(ficMatrice));
-            
-            long tailleTot = ficMatrice.length();
-            
-            int i, l, h, j;
-            String ligne;
-            
-            try {
-                ligne = lectMatrice.readLine();
-                l = ligne.length();
-                h = (int) tailleTot/l;
-                
-                int[][] matrice = new int[h][l];
+    public int[][] lectureMatrice(String matriceChaine){
+        String[] lignes = matriceChaine.split("@");
+        int i, l, h, j;
+        
+        l = lignes[0].length();
+        h = lignes.length;
+        int[][] matrice = new int[h][l];
 
-                for (j = 0; j < h; ++j) {
-                    for (i = 0; i < l; ++i) {
-                        matrice[j][i] = Character.getNumericValue(ligne.charAt(i));
-                    }
-                    ligne = lectMatrice.readLine();
-                }
-                
-                return matrice;
-            } catch (IOException ex) {
-                Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
+        for (j = 0; j < h; ++j) {
+            for (i = 0; i < l; ++i) {
+                matrice[j][i] = Character.getNumericValue(lignes[j].charAt(i));
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return null;
+        return matrice;
     } 
 }

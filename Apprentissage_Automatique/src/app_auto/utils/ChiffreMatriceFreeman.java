@@ -5,21 +5,21 @@
  */
 package app_auto.utils;
 
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 /**
  *
  * @author Kevin
  */
-public class ChiffreMatriceFreeman implements Serializable{
-    
-    private int id;
+public class ChiffreMatriceFreeman implements Serializable, Comparable<ChiffreMatriceFreeman>{
+
     private String chiffre;
     private int[][] matrice;
     private String freeman;
+    private double distance = 0;
 
-    public ChiffreMatriceFreeman(int id, String chiffre, int[][] matrice, String freeman) {
-        this.id = id;
+    public ChiffreMatriceFreeman(String chiffre, int[][] matrice, String freeman) {
         this.chiffre = chiffre;
         this.matrice = matrice;
         this.freeman = freeman;
@@ -49,18 +49,60 @@ public class ChiffreMatriceFreeman implements Serializable{
         this.freeman = freeman;
     }
 
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
     public String resume() {
-        return chiffre + "#" + id + "#" + freeman + "\n";
+        return chiffre + "#" + chaineMatrice() + "#" + freeman + "\n";
     }
     
     public String chaineMatrice() {
         String chaineMatrice = "";
-        for(int j = 0; j < matrice.length; ++j){
-            for(int i = 0; i < matrice[j].length; ++i){
+        int j,i;
+        for(j = 0; j < matrice.length-1; ++j){
+            for(i = 0; i < matrice[j].length; ++i){
                 chaineMatrice += matrice[j][i];
             }
-            chaineMatrice += "\n";
+            chaineMatrice += "@";
         }
+        
+        for(i = 0; i < matrice[j].length; ++i){
+            chaineMatrice += matrice[j][i];
+        }
+        
         return chaineMatrice;
+    }
+    
+    public BufferedImage matriceToImage(int[][] matrice){
+        int l = matrice[0].length;
+        int h = matrice.length;
+        
+        BufferedImage image = new BufferedImage(l, h, BufferedImage.TYPE_BYTE_BINARY);
+        
+        for (int j = 0; j < h; j++) {
+            for (int i = 0; i < l; i++) {
+                 image.setRGB(i, j, matrice[j][i]);
+            }
+        }
+        
+        return image;
+    }
+
+    @Override
+    public int compareTo(ChiffreMatriceFreeman cmf) {
+        if(this.distance < cmf.distance) {
+            return -1;
+        }
+        
+        if(this.distance == cmf.distance) {
+            return 0;
+        }
+        
+        return 1;
     }
 }
