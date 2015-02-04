@@ -32,10 +32,12 @@ public class BoutonValidation extends JPanel implements ActionListener {
 
         IgConstante.BOUTON_VALIDATION = new JButton("Valider");
         IgConstante.BOUTON_VALIDATION.addActionListener(this);
+        IgConstante.BOUTON_VALIDATION.setPreferredSize(new Dimension(85, 24));
         this.add(IgConstante.BOUTON_VALIDATION, BorderLayout.WEST);
 
         reset = new JButton("Reset");
         reset.addActionListener(this);
+        reset.setPreferredSize(new Dimension(85, 24));
         this.add(reset, BorderLayout.EAST);
 
     }
