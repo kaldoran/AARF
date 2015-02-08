@@ -74,7 +74,8 @@ public class BoutonValidation extends JPanel implements ActionListener {
 
             if (IgConstante.RESULTAT_TROUVEE.getBorder().equals(IgConstante.OUT)) {
                 KPlusProcheVoisin kppv = new KPlusProcheVoisin();
-                IgConstante.VALEUR_TROUVEE.setText(String.valueOf(kppv.kppv(matrice, base, kppv.EUCLIDIENNE)));
+                String s = String.valueOf(kppv.kppv(matrice, base, kppv.EUCLIDIENNE));
+                IgConstante.VALEUR_TROUVEE.setText(s);
             } else {
                 Writer redac = new Writer();
                 redac.enregistrer(IgConstante.VALEUR_TROUVEE.getText(), matrice, resFree);
@@ -82,7 +83,7 @@ public class BoutonValidation extends JPanel implements ActionListener {
         }
 
         /* Dans le cas de reset ou valider, on reset le champs */
-        IgConstante.VALEUR_TROUVEE.setText("");
+        //IgConstante.VALEUR_TROUVEE.setText("");
         IgConstante.VALEUR_TROUVEE.requestFocus();
         IgConstante.DESSIN.clean();
 

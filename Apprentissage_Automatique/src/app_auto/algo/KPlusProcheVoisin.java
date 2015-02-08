@@ -6,7 +6,6 @@
 package app_auto.algo;
 
 import app_auto.utils.ChiffreMatriceFreeman;
-import app_auto.utils.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -32,9 +31,9 @@ public class KPlusProcheVoisin {
     
     
     public int kppv(int[][] matrice_x, ArrayList<ChiffreMatriceFreeman> s, int ALGO_DISTANCE) {
-        int classe_y = 0;
+        int classe_y = -1;
         Iterator<ChiffreMatriceFreeman> it_s = null;
-        int tab_kppv[] = {0,0,0,0,0,0,0,0,0};
+        int tab_kppv[] = {0,0,0,0,0,0,0,0,0,0};
         
         //Verification matrice n'est pas vide
         if(matrice_x.length == 0) {
@@ -76,28 +75,27 @@ public class KPlusProcheVoisin {
         //Trie par ordre croissant selon la distance (voir methode compareTo de ChiffreMatriceFreeman)
         for(ChiffreMatriceFreeman cmf : s) {
             System.out.println("chiffre : " + cmf.getChiffre());
+            
         }
         Collections.sort(s);
         
+        tab_kppv[Integer.valueOf(s.get(0).getChiffre())]++;
+        tab_kppv[Integer.valueOf(s.get(1).getChiffre())]++;
+        tab_kppv[Integer.valueOf(s.get(2).getChiffre())]++;
         
-        /*tab_kppv[Integer.parseInt(s.get(0).getChiffre())]++;
-        tab_kppv[Integer.parseInt(s.get(1).getChiffre())]++;
-        tab_kppv[Integer.parseInt(s.get(2).getChiffre())]++;*/
-        
-
+        System.out.println("voisin 0 : " + s.get(0).getChiffre());
+        System.out.println("voisin 1 : " + s.get(1).getChiffre());
+        System.out.println("voisin 2 : " + s.get(2).getChiffre());
         
         int max = tab_kppv[0];
-        for(int i = 1 ; i < tab_kppv.length-1; i++) {
-            System.out.println("max : " + max + " tab_kppv : " + tab_kppv[i]);
+        for(int i = 1 ; i < tab_kppv.length; i++) {
             if(max < tab_kppv[i]) {
-                System.out.println("max < tab_kppv");
                 classe_y = i;
                 max = tab_kppv[i];
             }
-            
-            System.out.println("classe_ y : " + classe_y);
+ 
         }
-        
+        System.out.println("classe_ y : " + classe_y);
         return classe_y;
     }
     
