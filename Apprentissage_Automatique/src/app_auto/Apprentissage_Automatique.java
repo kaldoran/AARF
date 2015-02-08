@@ -6,7 +6,6 @@
 package app_auto;
 
 import app_auto.ig.FenetrePrincipale;
-import app_auto.utils.IgConstante;
 
 /**
  *

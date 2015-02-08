@@ -6,6 +6,7 @@
 package app_auto.algo;
 
 import app_auto.utils.ChiffreMatriceFreeman;
+import app_auto.utils.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -16,6 +17,10 @@ public class KPlusProcheVoisin {
     public final int MANHATTAN = 0;
     public final int EUCLIDIENNE = 1;
     public final int CHEBYSHEV = 2;
+
+    public KPlusProcheVoisin() {
+        
+    }
     
     /**
      * Cette méthode determine la classe de x en utilisant les matrices
@@ -24,10 +29,12 @@ public class KPlusProcheVoisin {
      * @param ALGO_DISTANCE
      * @return
      */
+    
+    
     public int kppv(int[][] matrice_x, ArrayList<ChiffreMatriceFreeman> s, int ALGO_DISTANCE) {
         int classe_y = 0;
         Iterator<ChiffreMatriceFreeman> it_s = null;
-        ArrayList<ChiffreMatriceFreeman> liste_classementPoints = null;
+        int tab_kppv[] = {0,0,0,0,0,0,0,0,0};
         
         //Verification matrice n'est pas vide
         if(matrice_x.length == 0) {
@@ -42,7 +49,6 @@ public class KPlusProcheVoisin {
         }
         
         it_s = s.iterator();
-        liste_classementPoints = new ArrayList<ChiffreMatriceFreeman>();
         
         while(it_s.hasNext()) {
             ChiffreMatriceFreeman cmf = it_s.next();
@@ -68,9 +74,28 @@ public class KPlusProcheVoisin {
         }
         
         //Trie par ordre croissant selon la distance (voir methode compareTo de ChiffreMatriceFreeman)
+        for(ChiffreMatriceFreeman cmf : s) {
+            System.out.println("chiffre : " + cmf.getChiffre());
+        }
         Collections.sort(s);
-        for(int i = 0 ; i < 3; i++ ) {
-           
+        
+        
+        /*tab_kppv[Integer.parseInt(s.get(0).getChiffre())]++;
+        tab_kppv[Integer.parseInt(s.get(1).getChiffre())]++;
+        tab_kppv[Integer.parseInt(s.get(2).getChiffre())]++;*/
+        
+
+        
+        int max = tab_kppv[0];
+        for(int i = 1 ; i < tab_kppv.length-1; i++) {
+            System.out.println("max : " + max + " tab_kppv : " + tab_kppv[i]);
+            if(max < tab_kppv[i]) {
+                System.out.println("max < tab_kppv");
+                classe_y = i;
+                max = tab_kppv[i];
+            }
+            
+            System.out.println("classe_ y : " + classe_y);
         }
         
         return classe_y;
