@@ -47,9 +47,8 @@ public class Reader {
                 
                 ChiffreMatriceFreeman cmf = new ChiffreMatriceFreeman(champs[0], matrice, champs[2]);
                 liste.add(cmf);
-                
-                return liste;
             }
+            return liste;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
