@@ -44,13 +44,11 @@ public class BoutonValidation extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(reset)) {
-            IgConstante.DESSIN.clean();
-            IgConstante.CODE_FREEMAN.setText("");
-            IgConstante.VALEUR_TROUVEE.setText("");
-            IgConstante.VALEUR_TROUVEE.requestFocus();
-        }
 
+        if ( e.getSource().equals(reset)) {
+            IgConstante.CODE_FREEMAN.setText("");
+        }
+        
         if (e.getSource().equals(IgConstante.BOUTON_VALIDATION)) {
             BufferedImageToMatrix bim = new BufferedImageToMatrix(IgConstante.DESSIN.getImage());
             int[][] matrice = bim.getMatrix();
@@ -66,13 +64,21 @@ public class BoutonValidation extends JPanel implements ActionListener {
             IgConstante.CODE_FREEMAN.setText(resFree);
             IgConstante.CODE_FREEMAN.setToolTipText(resFree);
 
-
             if (IgConstante.RESULTAT_TROUVEE.getBorder().equals(IgConstante.OUT)) {
 
             } else {
                 Writer redac = new Writer();
                 redac.enregistrer(IgConstante.VALEUR_TROUVEE.getText(), matrice, resFree);
             }
+        }
+
+        /* Dans le cas de reset ou valider, on reset le champs */
+        IgConstante.VALEUR_TROUVEE.setText("");
+        IgConstante.VALEUR_TROUVEE.requestFocus();
+        IgConstante.DESSIN.clean();
+
+        if (IgConstante.BOUTON_RADIO.getState() == false ) {
+            IgConstante.BOUTON_VALIDATION.setEnabled(false);
         }
     }
 }

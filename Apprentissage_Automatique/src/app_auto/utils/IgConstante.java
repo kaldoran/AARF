@@ -5,6 +5,7 @@
  */
 package app_auto.utils;
 
+import app_auto.ig.BoutonRadio;
 import app_auto.ig.Dessin;
 import app_auto.ig.TexteCodeFreeman;
 import app_auto.ig.TexteResultat;
@@ -23,7 +24,8 @@ public class IgConstante {
     public static ZoneResultat RESULTAT_TROUVEE;  // Label du champ texte du chiffre trouvé (ou à chercher).
     public static TexteCodeFreeman CODE_FREEMAN;  // Champ texte du code de freeman.
     public static JButton BOUTON_VALIDATION;
-
+    public static BoutonRadio BOUTON_RADIO;
+    
     // Constantes du titre du label.
     public final static TitledBorder OUT = new TitledBorder("Out");
     public final static TitledBorder IN = new TitledBorder("In");

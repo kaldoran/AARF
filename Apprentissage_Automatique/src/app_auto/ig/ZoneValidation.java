@@ -5,6 +5,7 @@
  */
 package app_auto.ig;
 
+import app_auto.utils.IgConstante;
 import java.awt.BorderLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
@@ -16,7 +17,6 @@ import javax.swing.JRadioButton;
  */
 public class ZoneValidation extends JPanel {
 
-    private BoutonRadio bouton_radio;
     private BoutonValidation bouton_validation;
     private Logo logo;
     
@@ -24,8 +24,8 @@ public class ZoneValidation extends JPanel {
         super();
         this.setLayout(new BorderLayout());
         
-        bouton_radio = new BoutonRadio();
-        this.add(bouton_radio, BorderLayout.NORTH);
+        IgConstante.BOUTON_RADIO = new BoutonRadio();
+        this.add(IgConstante.BOUTON_RADIO, BorderLayout.NORTH);
         
         bouton_validation = new BoutonValidation();
         this.add(bouton_validation, BorderLayout.CENTER);   
