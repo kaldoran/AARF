@@ -74,7 +74,7 @@ public class BoutonValidation extends JPanel implements ActionListener {
 
             if (IgConstante.RESULTAT_TROUVEE.getBorder().equals(IgConstante.OUT)) {
                 KPlusProcheVoisin kppv = new KPlusProcheVoisin();
-                String s = String.valueOf(kppv.kppv(matrice, base, kppv.EUCLIDIENNE));
+                String s = String.valueOf(kppv.kppv(resFree, base));
                 IgConstante.VALEUR_TROUVEE.setText(s);
             } else {
                 Writer redac = new Writer();

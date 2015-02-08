@@ -237,7 +237,7 @@ public class KPlusProcheVoisin {
         Collections.sort(liste);
         
         for (int i = 0; i < 10; i++) {
-            mesPlusProcheVoisins[i] = liste.indexOf(i);
+            mesPlusProcheVoisins[i] = Integer.valueOf(liste.get(i).getChiffre());
         }
         int k = 3 ;
         classe_y = maClasse(mesPlusProcheVoisins,k);
@@ -256,7 +256,7 @@ public class KPlusProcheVoisin {
                 }
             }
             if(redandance > maxRedandance){
-                classeY = i;
+                classeY = Tableau[i];
                 maxRedandance = redandance;
             }
         }
