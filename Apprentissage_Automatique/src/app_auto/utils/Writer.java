@@ -34,15 +34,19 @@ public class Writer {
     }
 
     
-    public boolean enregistrer(String chiffre, int[][] matrice, String freeman){
+    public ChiffreMatriceFreeman enregistrer(String chiffre, int[][] matrice, String freeman){
+        return enregistrerSous("Base", chiffre, matrice, freeman);
+    }
+    
+    public ChiffreMatriceFreeman enregistrerSous(String nomF, String chiffre, int[][] matrice, String freeman){
         try {
-            FileWriter redacBase = new FileWriter(repertoire + "Base", true);
+            FileWriter redac = new FileWriter(repertoire + nomF, true);
             
             ChiffreMatriceFreeman obj = new ChiffreMatriceFreeman(chiffre, matrice, freeman);
-            redacBase.write(obj.resume());
+            redac.write(obj.resume());
             
-            redacBase.close();
-            return true;
+            redac.close();
+            return obj;
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Writer.class.getName()).log(Level.SEVERE, null, ex);
@@ -50,6 +54,7 @@ public class Writer {
             Logger.getLogger(Writer.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return false;
+        return null;
+        
     }
 }

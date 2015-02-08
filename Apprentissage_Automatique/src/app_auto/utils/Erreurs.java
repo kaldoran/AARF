@@ -30,4 +30,18 @@ public class Erreurs {
             System.out.println("Erreur de vecteur de Freeman.");
         }
     }
+    
+    public class FreemanFaux extends Exception {
+        
+        public FreemanFaux(){
+            System.out.println("Erreur de code de freeman.");
+        }
+    }
+    
+    public class LigneNonPresente extends Exception {
+        
+        public LigneNonPresente(){
+            System.out.println("Erreur ligne vide.");
+        }
+    }
 }

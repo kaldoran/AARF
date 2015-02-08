@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  */
 public class Reader {
     private String repertoire;
+    private final Erreurs err = new Erreurs();
 
     public Reader() {
         repertoire = new FichierConstante().REPERTOIRE_APPRENTISSAGE;
@@ -32,11 +33,12 @@ public class Reader {
                 Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
     }
     
-    public ArrayList<ChiffreMatriceFreeman> recupTotal() {
-        
+    public ArrayList<ChiffreMatriceFreeman> recupTotal() {       
         ArrayList<ChiffreMatriceFreeman> liste = new ArrayList<>();
+        
         try {
             BufferedReader lectResume = new BufferedReader(new FileReader(repertoire + "Base"));
             String resume;
@@ -58,6 +60,39 @@ public class Reader {
         return null;
     }
     
+    public ChiffreMatriceFreeman recupLigne(int ligne) {
+        try {
+            BufferedReader lectResume = new BufferedReader(new FileReader(repertoire + "Base"));
+            
+            if (ligne < 0) {
+                throw err.new LigneNonPresente();
+            }
+
+            for (int i = 0; i < ligne; ++i) {
+
+                if (lectResume.readLine() == null) {
+                    throw err.new LigneNonPresente();
+                }
+            }
+      
+            String resume;
+            if ((resume = lectResume.readLine()) == null) {
+                throw err.new LigneNonPresente();
+            }
+            String[] champs = resume.split("#");
+
+            int[][] matrice = lectureMatrice(champs[1]);
+
+            ChiffreMatriceFreeman cmf = new ChiffreMatriceFreeman(champs[0], matrice, champs[2]);
+
+            return cmf;
+        } catch (IOException | Erreurs.LigneNonPresente ex) {
+            Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
+    
     public int[][] lectureMatrice(String matriceChaine){
         String[] lignes = matriceChaine.split("@");
         int i, l, h, j;
@@ -73,5 +108,5 @@ public class Reader {
         }
         
         return matrice;
-    } 
+    }
 }
