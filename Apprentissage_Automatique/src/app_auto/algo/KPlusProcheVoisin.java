@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app_auto.algo;
 
 import app_auto.utils.ChiffreMatriceFreeman;
@@ -226,5 +221,43 @@ public class KPlusProcheVoisin {
         } else {
             return costReplace;
         }
+    }
+
+    public int kppv(String FreemanIn, ArrayList<ChiffreMatriceFreeman> liste) {
+        int[] mesPlusProcheVoisins = new int[10];
+        
+        int classe_y;
+
+        for (ChiffreMatriceFreeman element : liste) {
+            int distanse = levenshteinDistance(FreemanIn, element.getFreeman());
+            element.setDistance(distanse);
+        }
+        Collections.sort(liste);
+        
+        for (int i = 0; i < 10; i++) {
+            mesPlusProcheVoisins[i] = liste.indexOf(i);
+        }
+        int k = 3 ;
+        classe_y = maClasse(mesPlusProcheVoisins,k);
+        return classe_y;
+    }
+    
+    public int maClasse(int[] Tableau, int k){
+        int redandance;
+        int maxRedandance = 0;
+        int classeY = -1;
+        for (int i = 0; i < k; i++) {
+            redandance = 0;
+            for (int j = i; j < k; j++) {
+                if(Tableau[i] == Tableau[j]){
+                    redandance++;
+                }
+            }
+            if(redandance > maxRedandance){
+                classeY = i;
+                maxRedandance = redandance;
+            }
+        }
+        return classeY;
     }
 }
