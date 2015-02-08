@@ -32,10 +32,12 @@ public class BoutonValidation extends JPanel implements ActionListener {
 
         IgConstante.BOUTON_VALIDATION = new JButton("Valider");
         IgConstante.BOUTON_VALIDATION.addActionListener(this);
+        IgConstante.BOUTON_VALIDATION.setPreferredSize(new Dimension(85, 24));
         this.add(IgConstante.BOUTON_VALIDATION, BorderLayout.WEST);
 
         reset = new JButton("Reset");
         reset.addActionListener(this);
+        reset.setPreferredSize(new Dimension(85, 24));
         this.add(reset, BorderLayout.EAST);
 
     }
@@ -46,7 +48,6 @@ public class BoutonValidation extends JPanel implements ActionListener {
             IgConstante.DESSIN.clean();
             IgConstante.CODE_FREEMAN.setText("");
             IgConstante.VALEUR_TROUVEE.setText("");
-            IgConstante.BOUTON_VALIDATION.setEnabled(false);
             IgConstante.VALEUR_TROUVEE.requestFocus();
         }
 
@@ -63,6 +64,8 @@ public class BoutonValidation extends JPanel implements ActionListener {
             }
 
             IgConstante.CODE_FREEMAN.setText(resFree);
+            IgConstante.CODE_FREEMAN.setToolTipText(resFree);
+
 
             if (IgConstante.RESULTAT_TROUVEE.getBorder().equals(IgConstante.OUT)) {
 
