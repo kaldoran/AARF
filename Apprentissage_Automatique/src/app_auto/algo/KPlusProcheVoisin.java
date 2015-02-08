@@ -69,6 +69,9 @@ public class KPlusProcheVoisin {
         
         //Trie par ordre croissant selon la distance (voir methode compareTo de ChiffreMatriceFreeman)
         Collections.sort(s);
+        for(int i = 0 ; i < 3; i++ ) {
+           
+        }
         
         return classe_y;
     }
