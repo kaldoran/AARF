@@ -8,6 +8,7 @@ package app_auto.utils;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import app_auto.utils.IgConstante;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -103,20 +104,34 @@ public class ChiffreMatriceFreeman implements Serializable, Comparable<ChiffreMa
         return IgConstante.BLACK;
     }
 
-    public static void testerFreeman(String morgan) {
+    public static void testerFreeman(String morgan, String ligne) {
         Writer redac = new Writer();
         CodeFreeman free = new CodeFreeman();
 
         try {
             int[][] mat = free.freemanToMatrice(morgan);
             
-            ChiffreMatriceFreeman cmf = redac.enregistrerSous("testFreeman", "X", mat, morgan);
+            String nomF = "imageTestFreeman_";
+            String suff;
+            if(ligne.equals("X")){
+                File rep = new File(redac.getRepertoire());
+                int nbT = rep.list().length;
+                if(nbT > 1){
+                    nbT--;
+                }
+                suff =  "T" + nbT;
+            }
+            else{
+                suff = "L" + ligne;
+            }
+            
+            ChiffreMatriceFreeman cmf = redac.enregistrerSous("testFreeman", suff, mat, morgan);
             
             BufferedImage imgMatrice = cmf.matriceToImage();
             
             //BufferedImageToMatrix.printMatrice(matrice);
             
-            BufferedImageToMatrix.enregister(imgMatrice, "testFreeman");
+            BufferedImageToMatrix.enregister(imgMatrice, nomF + suff);
         } catch (Erreurs.FreemanFaux ex) {
             Logger.getLogger(ChiffreMatriceFreeman.class.getName()).log(Level.SEVERE, null, ex);
         }

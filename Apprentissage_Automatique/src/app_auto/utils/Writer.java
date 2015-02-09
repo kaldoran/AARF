@@ -55,6 +55,9 @@ public class Writer {
         }
         
         return null;
-        
+    }
+
+    public String getRepertoire() {
+        return repertoire;
     }
 }

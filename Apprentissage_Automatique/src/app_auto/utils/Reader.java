@@ -64,11 +64,11 @@ public class Reader {
         try {
             BufferedReader lectResume = new BufferedReader(new FileReader(repertoire + "Base"));
             
-            if (ligne < 0) {
+            if (ligne < 1) {
                 throw err.new LigneNonPresente();
             }
 
-            for (int i = 0; i < ligne; ++i) {
+            for (int i = 1; i < ligne; ++i) {
 
                 if (lectResume.readLine() == null) {
                     throw err.new LigneNonPresente();

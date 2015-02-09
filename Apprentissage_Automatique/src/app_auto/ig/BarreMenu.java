@@ -101,13 +101,13 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         } else if (source.equals(test_freeman)){
             String morgan = JOptionPane.showInputDialog(null, "Code de freeman", "Tester un code de freeman", JOptionPane.QUESTION_MESSAGE);
             
-            ChiffreMatriceFreeman.testerFreeman(morgan);
+            ChiffreMatriceFreeman.testerFreeman(morgan, "X");
         } else if (source.equals(test_freeman_ligne)){
-            int ligne = Integer.parseInt(JOptionPane.showInputDialog(null, "Ligne du code de freeman", "Tester un code de freeman dans la base", JOptionPane.QUESTION_MESSAGE));
+            Integer ligne = Integer.parseInt(JOptionPane.showInputDialog(null, "Ligne du code de freeman", "Tester un code de freeman dans la base", JOptionPane.QUESTION_MESSAGE));
             
             Reader lecteur = new Reader();
             
-            ChiffreMatriceFreeman.testerFreeman(lecteur.recupLigne(ligne).getFreeman());
+            ChiffreMatriceFreeman.testerFreeman(lecteur.recupLigne(ligne).getFreeman(), ligne.toString());
         }
     }
 }
