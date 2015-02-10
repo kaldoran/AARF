@@ -25,7 +25,7 @@ public class FenetrePrincipale {
     }
 
     private void setBaseConf() {
-        cadre = new javax.swing.JFrame("Apprentissage Automatique");
+        cadre = new javax.swing.JFrame("Mini-François");
 
         panneau_principal = new PanneauPrincipal();
         barre_menu = new BarreMenu();
