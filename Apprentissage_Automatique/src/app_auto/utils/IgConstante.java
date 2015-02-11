@@ -10,6 +10,7 @@ import app_auto.ig.Dessin;
 import app_auto.ig.TexteCodeFreeman;
 import app_auto.ig.TexteResultat;
 import app_auto.ig.ZoneResultat;
+import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
@@ -33,5 +34,8 @@ public class IgConstante {
     // Constantes de taille du dessin.
     public final static int HAUTEUR_IMAGE = 200;
     public final static int LARGEUR_IMAGE = 150;
-
+    
+    // RGB blanc et noir.
+    public final static int BLACK = new Color(0,0,0).getRGB();
+    public final static int WHITE = new Color(255,255,255).getRGB();
 }

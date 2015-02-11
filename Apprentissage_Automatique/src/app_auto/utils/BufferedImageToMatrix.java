@@ -1,6 +1,11 @@
 package app_auto.utils;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -86,4 +91,29 @@ public class BufferedImageToMatrix {
         
         return matriceR;
     }
+    
+    public static void printMatrice(int[][] matrice){
+        
+        for (int row = 0; row < matrice.length; row++) {
+            for (int col = 0; col < matrice[row].length; col++) {
+                System.out.print(matrice[row][col] + " ");
+            }
+            System.out.println("");
+        }
+    }
+    
+    public static void enregister(BufferedImage image, String nomF){
+        FichierConstante rep = new FichierConstante();
+        File outputfile = new File(rep.REPERTOIRE_APPRENTISSAGE + nomF + ".png");
+        
+        try {
+            ImageIO.write(image, "png", outputfile);
+        } catch (IOException ex) {
+            Logger.getLogger(BufferedImageToMatrix.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
+
+
 }

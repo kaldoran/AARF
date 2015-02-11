@@ -5,16 +5,20 @@
  */
 package app_auto.ig;
 
+import app_auto.algo.KPlusProcheVoisin;
 import app_auto.utils.IgConstante;
 import app_auto.utils.BufferedImageToMatrix;
+import app_auto.utils.ChiffreMatriceFreeman;
 import app_auto.utils.CodeFreeman;
 import app_auto.utils.Erreurs;
 import app_auto.utils.FichierConstante;
+import app_auto.utils.Reader;
 import app_auto.utils.Writer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -25,11 +29,15 @@ import javax.swing.JPanel;
 public class BoutonValidation extends JPanel implements ActionListener {
 
     private JButton reset;
+    private ArrayList<ChiffreMatriceFreeman> base;
 
     public BoutonValidation() {
         super();
         this.setPreferredSize(new Dimension(50, 50));
-
+        
+        Reader reader = new Reader();
+        base = reader.recupTotal();
+        
         IgConstante.BOUTON_VALIDATION = new JButton("Valider");
         IgConstante.BOUTON_VALIDATION.addActionListener(this);
         IgConstante.BOUTON_VALIDATION.setPreferredSize(new Dimension(85, 24));
@@ -65,7 +73,9 @@ public class BoutonValidation extends JPanel implements ActionListener {
             IgConstante.CODE_FREEMAN.setToolTipText(resFree);
 
             if (IgConstante.RESULTAT_TROUVEE.getBorder().equals(IgConstante.OUT)) {
-
+                KPlusProcheVoisin kppv = new KPlusProcheVoisin();
+                String s = String.valueOf(kppv.kppv(resFree, base));
+                IgConstante.VALEUR_TROUVEE.setText(s);
             } else {
                 Writer redac = new Writer();
                 redac.enregistrer(IgConstante.VALEUR_TROUVEE.getText(), matrice, resFree);
@@ -73,7 +83,7 @@ public class BoutonValidation extends JPanel implements ActionListener {
         }
 
         /* Dans le cas de reset ou valider, on reset le champs */
-        IgConstante.VALEUR_TROUVEE.setText("");
+        //IgConstante.VALEUR_TROUVEE.setText("");
         IgConstante.VALEUR_TROUVEE.requestFocus();
         IgConstante.DESSIN.clean();
 

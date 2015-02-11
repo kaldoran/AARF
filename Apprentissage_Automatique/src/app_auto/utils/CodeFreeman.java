@@ -1,5 +1,8 @@
 package app_auto.utils;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Kevin
@@ -44,7 +47,7 @@ public class CodeFreeman {
                         x = prochainX(vectSv);
                         y = prochainY(vectSv);
                         vectSv = (vectSv + 1) % 8;
-                    }while((j + y) > matrice.length || (i + x) > matrice[j].length || (j + y) < 0 || (i + x) < 0);
+                    }while((j + y) >= matrice.length || (i + x) >= matrice[j].length || (j + y) < 0 || (i + x) < 0);
                 } while (matrice[j + y][i + x] != 1);
 
                 i += x;
@@ -65,8 +68,36 @@ public class CodeFreeman {
         return morgan;
     }
     
-    public int[][] freemanToMatrice(String morgan){
-        int[][] matrice = {{1,2},{2,1}};
+    public int[][] freemanToMatrice(String morgan) throws Erreurs.FreemanFaux{
+        int l = IgConstante.LARGEUR_IMAGE*2, h = IgConstante.HAUTEUR_IMAGE;
+        int x = IgConstante.LARGEUR_IMAGE, y = 0;
+        int i, j;
+        int[][] matrice = new int[h][l];
+        int stringL = morgan.length();
+        int vect;
+        
+        for(j = 0; j < h; ++j){
+            for(i = 0; i < l; ++i){
+                matrice[j][i] = 0;
+            }
+        }
+        
+        for(i = 0; i < stringL; ++i){
+            vect = Character.getNumericValue(morgan.charAt(i));
+            
+            try {
+                x = x + prochainX(vect);
+                y = y + prochainY(vect);
+                
+                if(x < 0 || x >= l || y < 0 || y >= h){
+                    throw err.new FreemanFaux();
+                }
+                
+                matrice[y][x] = 1;
+            } catch (Erreurs.VecteurFaux ex) {
+                Logger.getLogger(CodeFreeman.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
         return matrice;
     }

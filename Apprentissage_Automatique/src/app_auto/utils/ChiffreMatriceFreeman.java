@@ -7,6 +7,10 @@ package app_auto.utils;
 
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
+import app_auto.utils.IgConstante;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -78,7 +82,7 @@ public class ChiffreMatriceFreeman implements Serializable, Comparable<ChiffreMa
         return chaineMatrice;
     }
     
-    public BufferedImage matriceToImage(int[][] matrice){
+    public BufferedImage matriceToImage(){
         int l = matrice[0].length;
         int h = matrice.length;
         
@@ -86,11 +90,51 @@ public class ChiffreMatriceFreeman implements Serializable, Comparable<ChiffreMa
         
         for (int j = 0; j < h; j++) {
             for (int i = 0; i < l; i++) {
-                 image.setRGB(i, j, matrice[j][i]);
+                 image.setRGB(i, j, pixel(matrice[j][i]));
             }
         }
         
         return image;
+    }
+    
+    public int pixel(int caseM){
+        if(caseM == 1){
+            return IgConstante.WHITE;
+        }
+        return IgConstante.BLACK;
+    }
+
+    public static void testerFreeman(String morgan, String ligne) {
+        Writer redac = new Writer();
+        CodeFreeman free = new CodeFreeman();
+
+        try {
+            int[][] mat = free.freemanToMatrice(morgan);
+            
+            String nomF = "imageTestFreeman_";
+            String suff;
+            if(ligne.equals("X")){
+                File rep = new File(redac.getRepertoire());
+                int nbT = rep.list().length;
+                if(nbT > 1){
+                    nbT--;
+                }
+                suff =  "T" + nbT;
+            }
+            else{
+                suff = "L" + ligne;
+            }
+            
+            ChiffreMatriceFreeman cmf = redac.enregistrerSous("testFreeman", suff, mat, morgan);
+            
+            BufferedImage imgMatrice = cmf.matriceToImage();
+            
+            //BufferedImageToMatrix.printMatrice(matrice);
+            
+            BufferedImageToMatrix.enregister(imgMatrice, nomF + suff);
+        } catch (Erreurs.FreemanFaux ex) {
+            Logger.getLogger(ChiffreMatriceFreeman.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
