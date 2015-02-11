@@ -18,7 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
-import static javax.swing.text.html.HTML.Tag.HEAD;
+
 
 /**
  *
@@ -40,6 +40,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
     private JCheckBoxMenuItem three;
     private JCheckBoxMenuItem five;
     private JCheckBoxMenuItem seven;
+
     
     private JMenu menu_tests;
     private JMenuItem test_freeman;
