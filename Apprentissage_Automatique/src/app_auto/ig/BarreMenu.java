@@ -18,6 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import static javax.swing.text.html.HTML.Tag.HEAD;
 
 /**
  *
@@ -28,7 +29,6 @@ public class BarreMenu extends JMenuBar implements ActionListener {
     private JMenu menu_fichier;
     private JMenuItem mfich_nouveau;
     private JMenuItem quitter;
-
 
     private JMenu kpp;
     private ButtonGroup distance;
@@ -126,6 +126,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
 
         this.add(menu_tests);
 
+        this.add(menu_tests);
     }
 
     @Override
