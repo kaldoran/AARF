@@ -6,6 +6,7 @@
 package app_auto.ig;
 
 import app_auto.algo.KPlusProcheVoisin;
+import app_auto.graph.TraceurGraphique;
 import app_auto.utils.IgConstante;
 import app_auto.utils.BufferedImageToMatrix;
 import app_auto.utils.ChiffreMatriceFreeman;
@@ -36,6 +37,9 @@ public class BoutonValidation extends JPanel implements ActionListener {
         
         Reader reader = new Reader();
         base = reader.recupTotal();
+        TraceurGraphique traceur = new TraceurGraphique();
+        traceur.creerDonneeApprentissage(base);
+        traceur.afficherReprensationGraphiqueBase();
         
         IgConstante.BOUTON_VALIDATION = new JButton("Valider");
         IgConstante.BOUTON_VALIDATION.addActionListener(this);
@@ -74,6 +78,7 @@ public class BoutonValidation extends JPanel implements ActionListener {
             if (IgConstante.RESULTAT_TROUVEE.getBorder().equals(IgConstante.OUT)) {
                 // on calcul les k-plus proche voisin 
                 KPlusProcheVoisin kppv = new KPlusProcheVoisin();
+                
                 String s = String.valueOf(kppv.kppv(matrice, base, KPlusProcheVoisin._5_VOISINS, KPlusProcheVoisin.EUCLIDIENNE));
                 IgConstante.VALEUR_TROUVEE.setText(s);
             } else {

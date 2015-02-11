@@ -34,6 +34,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
     private ButtonGroup distance;
     private JCheckBoxMenuItem manhattan;
     private JCheckBoxMenuItem euclidienne;
+    private JCheckBoxMenuItem codeFreeman;
     private JMenu kpp_value;
 
     private ButtonGroup number;
@@ -96,14 +97,17 @@ public class BarreMenu extends JMenuBar implements ActionListener {
 
         kpp = new JMenu("KPP Configuration");
         euclidienne = new JCheckBoxMenuItem("Euclidienne");
-        manhattan = new JCheckBoxMenuItem("manhattan");
+        manhattan = new JCheckBoxMenuItem("Manhattan");
+        codeFreeman = new JCheckBoxMenuItem("Code Freeman");
 
         kpp.add(euclidienne);
         kpp.add(manhattan);
+        kpp.add(codeFreeman);
 
         distance = new ButtonGroup();
         distance.add(euclidienne);
         distance.add(manhattan);
+        distance.add(codeFreeman);
 
         kpp_value = new JMenu("Kpp Value");
         three = new JCheckBoxMenuItem("3");
