@@ -7,9 +7,12 @@ import java.util.Iterator;
 
 public class KPlusProcheVoisin {
 
-    public final int MANHATTAN = 0;
-    public final int EUCLIDIENNE = 1;
-    public final int CHEBYSHEV = 2;
+    public static final int MANHATTAN = 0;
+    public static final int EUCLIDIENNE = 1;
+    public static final int CHEBYSHEV = 2;
+    public static final int _3_VOISINS = 3;
+    public static final int _5_VOISINS = 5;
+    public static final int _7_VOISINS = 7;
 
     public KPlusProcheVoisin() {
 
@@ -23,25 +26,25 @@ public class KPlusProcheVoisin {
      * @param ALGO_DISTANCE
      * @return
      */
-    public int kppv(int[][] matrice_x, ArrayList<ChiffreMatriceFreeman> s, int ALGO_DISTANCE) {
+    public int kppv(int[][] matrice_x, ArrayList<ChiffreMatriceFreeman> s, int nombre_voisin, int ALGO_DISTANCE) {
         int classe_y = -1;
         Iterator<ChiffreMatriceFreeman> it_s = null;
         int tab_kppv[] = {0,0,0,0,0,0,0,0,0,0};
         
-        //Verification matrice n'est pas vide
+        //Si matrice est vide
         if (matrice_x.length == 0) {
             System.out.println("ERREUR : matrice vide !");
             return -1;
         }
 
-        //Verification que la base de connnaissance n'est pas vide
+        //Si la base de connnaissance est vide
         if (s.isEmpty()) {
             System.out.println("ERREUR : Base de connaissance vide");
             return -1;
         }
 
         it_s = s.iterator();
-
+        //Calcul des distances par rapport à x pour chaque point de la base
         while (it_s.hasNext()) {
             ChiffreMatriceFreeman cmf = it_s.next();
 
@@ -72,21 +75,23 @@ public class KPlusProcheVoisin {
         }
         Collections.sort(s);
         
-        tab_kppv[Integer.valueOf(s.get(0).getChiffre())]++;
-        tab_kppv[Integer.valueOf(s.get(1).getChiffre())]++;
-        tab_kppv[Integer.valueOf(s.get(2).getChiffre())]++;
+        if(nombre_voisin != _3_VOISINS && nombre_voisin != _5_VOISINS && nombre_voisin != _7_VOISINS) {
+            // par défaut on choisit les 3-ppv
+            nombre_voisin = _3_VOISINS;
+        }
         
-        System.out.println("voisin 0 : " + s.get(0).getChiffre());
-        System.out.println("voisin 1 : " + s.get(1).getChiffre());
-        System.out.println("voisin 2 : " + s.get(2).getChiffre());
+        for( int i = 0; i < nombre_voisin; i++) {
+            tab_kppv[Integer.valueOf(s.get(i).getChiffre())]++;
+            System.out.println("voisin " + i + " : " + s.get(i).getChiffre());
+        }
         
         int max = tab_kppv[0];
+        classe_y = 0;
         for(int i = 1 ; i < tab_kppv.length; i++) {
             if(max < tab_kppv[i]) {
                 classe_y = i;
                 max = tab_kppv[i];
             }
- 
         }
         System.out.println("classe_ y : " + classe_y);
         return classe_y;
