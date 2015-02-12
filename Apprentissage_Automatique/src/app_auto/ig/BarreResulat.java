@@ -7,7 +7,6 @@ package app_auto.ig;
 
 import app_auto.utils.IgConstante;
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 

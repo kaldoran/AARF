@@ -7,7 +7,6 @@ package app_auto.graph;
 
 import app_auto.utils.ChiffreMatriceFreeman;
 import java.awt.Color;
-import java.awt.GradientPaint;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JFrame;

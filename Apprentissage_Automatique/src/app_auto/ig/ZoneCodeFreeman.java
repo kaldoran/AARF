@@ -9,7 +9,6 @@ import app_auto.utils.IgConstante;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 /**

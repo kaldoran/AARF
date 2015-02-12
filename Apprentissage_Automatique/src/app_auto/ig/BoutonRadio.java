@@ -12,7 +12,6 @@ import java.awt.event.ItemListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 /**

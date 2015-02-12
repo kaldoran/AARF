@@ -6,7 +6,6 @@
 package app_auto.ig;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import static javax.swing.BorderFactory.createEmptyBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

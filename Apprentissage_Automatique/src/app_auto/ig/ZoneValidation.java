@@ -7,9 +7,7 @@ package app_auto.ig;
 
 import app_auto.utils.IgConstante;
 import java.awt.BorderLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 
 /**
  *
