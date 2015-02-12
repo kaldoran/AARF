@@ -38,4 +38,6 @@ public class IgConstante {
     // RGB blanc et noir.
     public final static int BLACK = new Color(0,0,0).getRGB();
     public final static int WHITE = new Color(255,255,255).getRGB();
+    
+    public final static String APROPOS = "Projet Apprentissage Automatique \n - Mini-François - \n v.1.0";
 }

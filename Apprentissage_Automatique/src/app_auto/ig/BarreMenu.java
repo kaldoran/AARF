@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -41,11 +42,12 @@ public class BarreMenu extends JMenuBar implements ActionListener {
     private JCheckBoxMenuItem three;
     private JCheckBoxMenuItem five;
     private JCheckBoxMenuItem seven;
-
     
-    private JMenu menu_tests;
+    
+    private JMenu divers;
     private JMenuItem test_freeman;
     private JMenuItem test_freeman_ligne;
+    private JMenuItem apropos;
 
     public BarreMenu() {
         super();
@@ -54,7 +56,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
          * allocations JMenu
          */
         menu_fichier = new JMenu("Fichier");
-        menu_tests = new JMenu("Test");
+        divers = new JMenu("Divers");
 
         /**
          * allocations JMenuItem
@@ -84,14 +86,23 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         test_freeman_ligne.setToolTipText("Tester le code de freeman se trouvant à une ligne donnée dand le fichier de base d'apprentissage.");
         
         
+        
+        apropos = new JMenuItem("A propos");
+        apropos.setAccelerator(KeyStroke.getKeyStroke('A',
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
+        apropos.addActionListener(this);
+        apropos.setToolTipText("En savoir plus sur notre projet.");
+        
+        
         /**
          * Constructions
          */
         menu_fichier.add(mfich_nouveau);
         menu_fichier.add(quitter);
         
-        menu_tests.add(test_freeman);
-        menu_tests.add(test_freeman_ligne);
+        divers.add(test_freeman);
+        divers.add(test_freeman_ligne);
+        divers.add(apropos);
         
         this.add(menu_fichier);
 
@@ -129,9 +140,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         kpp.add(kpp_value);
         this.add(kpp);
 
-        this.add(menu_tests);
-
-        this.add(menu_tests);
+        this.add(divers);
     }
 
     @Override
@@ -142,16 +151,18 @@ public class BarreMenu extends JMenuBar implements ActionListener {
             IgConstante.DESSIN.clean();
         } else if (source.equals(quitter)) {
             System.exit(0);
-        } else if (source.equals(test_freeman)){
+        } else if (source.equals(test_freeman)) {
             String morgan = JOptionPane.showInputDialog(null, "Code de freeman", "Tester un code de freeman", JOptionPane.QUESTION_MESSAGE);
             
             ChiffreMatriceFreeman.testerFreeman(morgan, "X");
-        } else if (source.equals(test_freeman_ligne)){
+        } else if (source.equals(test_freeman_ligne)) {
             Integer ligne = Integer.parseInt(JOptionPane.showInputDialog(null, "Ligne du code de freeman", "Tester un code de freeman dans la base", JOptionPane.QUESTION_MESSAGE));
             
             Reader lecteur = new Reader();
             
             ChiffreMatriceFreeman.testerFreeman(lecteur.recupLigne(ligne).getFreeman(), ligne.toString());
+        } else if (source.equals(apropos)) {
+            BoiteDialogueImage bdi = new BoiteDialogueImage(null, "A propos", true, IgConstante.APROPOS,"/Ressources/jacquenetForever.png");   
         }
     }
 }

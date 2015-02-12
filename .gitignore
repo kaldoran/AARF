@@ -1,4 +1,4 @@
-/Apprentissage_Automatique/nbproject/private/
+/Apprentissage_Automatique/nbproject
 /Apprentissage_Automatique/build/
 /Apprentissage_Automatique/dist/
 /Apprentissage_Automatique/Base_Apprentissage
@@ -6,3 +6,4 @@
 *.log
 *.synctex.gz
 *.pdf
+*.db
