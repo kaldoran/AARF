@@ -169,7 +169,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
 
             ChiffreMatriceFreeman.testerFreeman(lecteur.recupLigne(ligne).getFreeman(), ligne.toString());
         } else if (source.equals(apropos)) {
-            BoiteDialogueImage bdi = new BoiteDialogueImage(null, "A propos", true, IgConstante.APROPOS, "/Ressources/jacquenetForever.png");
+            BoiteDialogueImage bdi = new BoiteDialogueImage(null, "A propos", true, "Apprentissage Automatique", IgConstante.APROPOS, "/Ressources/jacquenetForever.png");
         } else if (source.equals(euclidienne)) {
             IgConstante.ALGO_NUMBER = KPlusProcheVoisin.EUCLIDIENNE;
         } else if (source.equals(manhattan)) {
