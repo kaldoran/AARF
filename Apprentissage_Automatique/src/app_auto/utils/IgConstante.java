@@ -42,6 +42,6 @@ public class IgConstante {
     public final static int BLACK = new Color(0,0,0).getRGB();
     public final static int WHITE = new Color(255,255,255).getRGB();
     
-    public final static String APROPOS = "Projet Apprentissage Automatique \n - Mini-François - \n v.1.0";
+    public final static String APROPOS = "Projet - Mini-François - \n v.1.0 \n\n Réalisé par BKNK\n     Bachir BOUACHERIA\n     Kevin LAOUSSING\n     Nicolas REYNAUD\n     Kevin BASCOL\n\n UJM 2014-2015";
 
 }
