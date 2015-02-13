@@ -65,13 +65,13 @@ public class BarreMenu extends JMenuBar implements ActionListener {
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
 
         mfich_nouveau.addActionListener(this);
-        
+
         validate = new JMenuItem("Valider");
         validate.setAccelerator(KeyStroke.getKeyStroke('S',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
 
         validate.addActionListener(this);
-        
+
         quitter = new JMenuItem("Quitter");
         quitter.setAccelerator(KeyStroke.getKeyStroke('Q',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
@@ -148,12 +148,13 @@ public class BarreMenu extends JMenuBar implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
         Object source = e.getSource();
-        
-        if ( source.equals(validate))
+
+        if (source.equals(validate)) {
             IgConstante.BOUTON_VALIDATION.doClick();
-        if (source.equals(mfich_nouveau)) {
+        }
+        else if (source.equals(mfich_nouveau)) {
             IgConstante.DESSIN.clean();
         } else if (source.equals(quitter)) {
             System.exit(0);
