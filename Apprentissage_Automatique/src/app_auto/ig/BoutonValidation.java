@@ -65,6 +65,7 @@ public class BoutonValidation extends JPanel implements ActionListener {
         if (e.getSource().equals(reset)) {
             IgConstante.CODE_FREEMAN.setText("");
             IgConstante.VALEUR_TROUVEE.setText("");
+            IgConstante.BOUTON_VALIDATION.setEnabled(false);
         }
 
         if (e.getSource().equals(IgConstante.BOUTON_VALIDATION)) {
@@ -98,9 +99,5 @@ public class BoutonValidation extends JPanel implements ActionListener {
         IgConstante.VALEUR_TROUVEE.requestFocus();
         IgConstante.DESSIN.clean();
 
-        if (IgConstante.BOUTON_RADIO.getState() == false) {
-            IgConstante.VALEUR_TROUVEE.setText("");
-            IgConstante.BOUTON_VALIDATION.setEnabled(false);
-        }
     }
 }
