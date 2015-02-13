@@ -52,7 +52,7 @@ public class BoutonValidation extends JPanel implements ActionListener {
         reset.addActionListener(this);
         reset.setPreferredSize(new Dimension(85, 24));
         this.add(reset, BorderLayout.EAST);
-        
+
     }
 
     @Override
@@ -60,6 +60,7 @@ public class BoutonValidation extends JPanel implements ActionListener {
 
         if (e.getSource().equals(reset)) {
             IgConstante.CODE_FREEMAN.setText("");
+            IgConstante.VALEUR_TROUVEE.setText("");
         }
 
         if (e.getSource().equals(IgConstante.BOUTON_VALIDATION)) {
@@ -90,11 +91,11 @@ public class BoutonValidation extends JPanel implements ActionListener {
         }
 
         /* Dans le cas de reset ou valider, on reset le champs */
-        IgConstante.VALEUR_TROUVEE.setText("");
         IgConstante.VALEUR_TROUVEE.requestFocus();
         IgConstante.DESSIN.clean();
 
         if (IgConstante.BOUTON_RADIO.getState() == false) {
+            IgConstante.VALEUR_TROUVEE.setText("");
             IgConstante.BOUTON_VALIDATION.setEnabled(false);
         }
     }
