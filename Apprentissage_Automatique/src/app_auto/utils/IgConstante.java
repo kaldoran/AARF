@@ -5,6 +5,7 @@
  */
 package app_auto.utils;
 
+import app_auto.algo.KPlusProcheVoisin;
 import app_auto.ig.BoutonRadio;
 import app_auto.ig.Dessin;
 import app_auto.ig.TexteCodeFreeman;
@@ -26,6 +27,8 @@ public class IgConstante {
     public static TexteCodeFreeman CODE_FREEMAN;  // Champ texte du code de freeman.
     public static JButton BOUTON_VALIDATION;
     public static BoutonRadio BOUTON_RADIO;
+    public static int NUMBER_KPPV = KPlusProcheVoisin._3_VOISINS;
+    public static int ALGO_NUMBER = KPlusProcheVoisin.MANHATTAN;
     
     // Constantes du titre du label.
     public final static TitledBorder OUT = new TitledBorder("Out");
@@ -40,4 +43,5 @@ public class IgConstante {
     public final static int WHITE = new Color(255,255,255).getRGB();
     
     public final static String APROPOS = "Projet Apprentissage Automatique \n - Mini-François - \n v.1.0";
+
 }

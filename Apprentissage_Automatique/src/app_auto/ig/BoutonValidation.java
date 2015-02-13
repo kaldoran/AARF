@@ -21,6 +21,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -34,13 +36,13 @@ public class BoutonValidation extends JPanel implements ActionListener {
     public BoutonValidation() {
         super();
         this.setPreferredSize(new Dimension(50, 50));
-        
+
         Reader reader = new Reader();
         base = reader.recupTotal();
         TraceurGraphique traceur = new TraceurGraphique();
         traceur.creerDonneeApprentissage(base);
         traceur.afficherReprensationGraphiqueBase();
-        
+
         IgConstante.BOUTON_VALIDATION = new JButton("Valider");
         IgConstante.BOUTON_VALIDATION.addActionListener(this);
         IgConstante.BOUTON_VALIDATION.setPreferredSize(new Dimension(85, 24));
@@ -50,16 +52,16 @@ public class BoutonValidation extends JPanel implements ActionListener {
         reset.addActionListener(this);
         reset.setPreferredSize(new Dimension(85, 24));
         this.add(reset, BorderLayout.EAST);
-
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if ( e.getSource().equals(reset)) {
+        if (e.getSource().equals(reset)) {
             IgConstante.CODE_FREEMAN.setText("");
         }
-        
+
         if (e.getSource().equals(IgConstante.BOUTON_VALIDATION)) {
             BufferedImageToMatrix bim = new BufferedImageToMatrix(IgConstante.DESSIN.getImage());
             int[][] matrice = bim.getMatrix();
@@ -78,8 +80,8 @@ public class BoutonValidation extends JPanel implements ActionListener {
             if (IgConstante.RESULTAT_TROUVEE.getBorder().equals(IgConstante.OUT)) {
                 // on calcul les k-plus proche voisin 
                 KPlusProcheVoisin kppv = new KPlusProcheVoisin();
-                
-                String s = String.valueOf(kppv.kppv(matrice, base, KPlusProcheVoisin._5_VOISINS, KPlusProcheVoisin.EUCLIDIENNE));
+
+                String s = String.valueOf(kppv.kppv(matrice, base, IgConstante.NUMBER_KPPV, IgConstante.ALGO_NUMBER));
                 IgConstante.VALEUR_TROUVEE.setText(s);
             } else {
                 Writer redac = new Writer();
@@ -88,11 +90,11 @@ public class BoutonValidation extends JPanel implements ActionListener {
         }
 
         /* Dans le cas de reset ou valider, on reset le champs */
-        //IgConstante.VALEUR_TROUVEE.setText("");
+        IgConstante.VALEUR_TROUVEE.setText("");
         IgConstante.VALEUR_TROUVEE.requestFocus();
         IgConstante.DESSIN.clean();
 
-        if (IgConstante.BOUTON_RADIO.getState() == false ) {
+        if (IgConstante.BOUTON_RADIO.getState() == false) {
             IgConstante.BOUTON_VALIDATION.setEnabled(false);
         }
     }
