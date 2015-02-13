@@ -16,13 +16,18 @@ import app_auto.utils.Reader;
 import app_auto.utils.Writer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
-import javax.swing.SwingUtilities;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -52,7 +57,6 @@ public class BoutonValidation extends JPanel implements ActionListener {
         reset.addActionListener(this);
         reset.setPreferredSize(new Dimension(85, 24));
         this.add(reset, BorderLayout.EAST);
-
     }
 
     @Override
