@@ -85,9 +85,14 @@ public class BoutonValidation extends JPanel implements ActionListener {
 
             if (IgConstante.RESULTAT_TROUVEE.getBorder().equals(IgConstante.OUT)) {
                 // on calcul les k-plus proche voisin 
+                String s;
                 KPlusProcheVoisin kppv = new KPlusProcheVoisin();
-
-                String s = String.valueOf(kppv.kppv(matrice, base, IgConstante.NUMBER_KPPV, IgConstante.ALGO_NUMBER));
+                if(IgConstante.ALGO_NUMBER == KPlusProcheVoisin.CODEFREEMAN) {
+                    s = String.valueOf(kppv.kppv(resFree, base,IgConstante.NUMBER_KPPV ));
+                } else {
+                    s = String.valueOf(kppv.kppv(matrice, base, IgConstante.NUMBER_KPPV, IgConstante.ALGO_NUMBER));
+                }
+                
                 IgConstante.VALEUR_TROUVEE.setText(s);
             } else {
                 Writer redac = new Writer();

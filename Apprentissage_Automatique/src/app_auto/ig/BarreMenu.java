@@ -183,7 +183,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         } else if (source.equals(manhattan)) {
             IgConstante.ALGO_NUMBER = KPlusProcheVoisin.MANHATTAN;
         } else if (source.equals(codeFreeman)) {
-            IgConstante.ALGO_NUMBER = KPlusProcheVoisin.CHEBYSHEV;
+            IgConstante.ALGO_NUMBER = KPlusProcheVoisin.CODEFREEMAN;
         } else if (source.equals(three)) {
             IgConstante.NUMBER_KPPV = KPlusProcheVoisin._3_VOISINS;
         } else if (source.equals(five)) {

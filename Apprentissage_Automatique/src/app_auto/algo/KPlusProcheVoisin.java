@@ -10,6 +10,8 @@ public class KPlusProcheVoisin {
     public static final int MANHATTAN = 0;
     public static final int EUCLIDIENNE = 1;
     public static final int CHEBYSHEV = 2;
+    public static final int CODEFREEMAN = 3;
+    
     public static final int _3_VOISINS = 3;
     public static final int _5_VOISINS = 5;
     public static final int _7_VOISINS = 7;
