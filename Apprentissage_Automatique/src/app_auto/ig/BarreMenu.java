@@ -117,6 +117,10 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         kpp.add(euclidienne);
         kpp.add(manhattan);
         kpp.add(codeFreeman);
+        
+        euclidienne.addActionListener(this);
+        manhattan.addActionListener(this);
+        codeFreeman.addActionListener(this);
 
         distance = new ButtonGroup();
         distance.add(euclidienne);
@@ -131,6 +135,10 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         kpp_value.add(three);
         kpp_value.add(five);
         kpp_value.add(seven);
+        
+        three.addActionListener(this);
+        five.addActionListener(this);
+        seven.addActionListener(this);
 
         number = new ButtonGroup();
         number.add(three);

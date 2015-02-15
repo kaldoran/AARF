@@ -28,7 +28,7 @@ public class BoiteDialogueImage extends JDialog {
     public BoiteDialogueImage(Frame owner, String title, boolean modal, String titre, String texte, String image) {
         super(owner, title, modal);
         
-        this.setSize(313, 200);
+        this.setSize(390, 200);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -41,7 +41,8 @@ public class BoiteDialogueImage extends JDialog {
         //Icône
         icon = new JLabel(new ImageIcon(this.getClass().getResource(image)));
         JPanel panIcone = new JPanel();
-        panIcone.setSize(100,150);
+        panIcone.setSize(120,150);
+        panIcone.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panIcone.setBackground(Color.WHITE);
         panIcone.setLayout(new BorderLayout());
         panIcone.add(icon, BorderLayout.CENTER);
@@ -50,10 +51,11 @@ public class BoiteDialogueImage extends JDialog {
         JPanel panTexte = new JPanel();
         panTexte.setBackground(Color.WHITE);
         panTexte.setBorder(BorderFactory.createTitledBorder(titre));
-        panTexte.setPreferredSize(new Dimension(200, 150));
+        panTexte.setPreferredSize(new Dimension(250, 150));
         texte = new JTextArea(txt);
-        texte.setSize(200, 150);
+        texte.setPreferredSize(new Dimension(222, 150));
         texte.setFont(new Font("Arial", Font.PLAIN, 11));
+        texte.setEditable(false);
         panTexte.add(texte, BorderLayout.WEST);
         
         this.getContentPane().setBackground(Color.WHITE);
