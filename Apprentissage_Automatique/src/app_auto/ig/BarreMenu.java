@@ -6,6 +6,7 @@
 package app_auto.ig;
 
 import app_auto.algo.KPlusProcheVoisin;
+import app_auto.ig.graph.FenetreGraphe;
 import app_auto.utils.ChiffreMatriceFreeman;
 import app_auto.utils.IgConstante;
 import app_auto.utils.Reader;
@@ -46,6 +47,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
     private JMenu divers;
     private JMenuItem test_freeman;
     private JMenuItem test_freeman_ligne;
+    private JMenuItem afficher_graphes;
     private JMenuItem apropos;
 
     public BarreMenu() {
@@ -89,7 +91,13 @@ public class BarreMenu extends JMenuBar implements ActionListener {
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
         test_freeman_ligne.addActionListener(this);
         test_freeman_ligne.setToolTipText("Tester le code de freeman se trouvant à une ligne donnée dand le fichier de base d'apprentissage.");
-
+        
+        afficher_graphes = new JMenuItem("afficher graphiques");
+        afficher_graphes.setAccelerator(KeyStroke.getKeyStroke('G',
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        afficher_graphes.addActionListener(this);
+        afficher_graphes.setToolTipText("Afficher les représentations graphique de l'apprentissage de Mini-François");
+        
         apropos = new JMenuItem("A propos");
         apropos.setAccelerator(KeyStroke.getKeyStroke('A',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
@@ -105,6 +113,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
 
         divers.add(test_freeman);
         divers.add(test_freeman_ligne);
+        divers.add(afficher_graphes);
         divers.add(apropos);
 
         this.add(menu_fichier);
@@ -190,6 +199,8 @@ public class BarreMenu extends JMenuBar implements ActionListener {
             IgConstante.NUMBER_KPPV = KPlusProcheVoisin._5_VOISINS;
         } else if (source.equals(seven)) {
             IgConstante.NUMBER_KPPV = KPlusProcheVoisin._7_VOISINS;
+        } else if (source.equals(afficher_graphes)) {
+            new FenetreGraphe();
         }
     }
 }

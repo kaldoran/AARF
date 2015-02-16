@@ -45,7 +45,7 @@ public class BoutonValidation extends JPanel implements ActionListener {
         Reader reader = new Reader();
         base = reader.recupTotal();
         TraceurGraphique traceur = new TraceurGraphique();
-        traceur.creerDonneeApprentissage(base);
+        traceur.creerRepresentationDonneeApprentissage(base);
         traceur.afficherReprensationGraphiqueBase();
 
         IgConstante.BOUTON_VALIDATION = new JButton("Valider");

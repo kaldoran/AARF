@@ -32,7 +32,12 @@ public class TraceurGraphique {
     public TraceurGraphique() {
     }
     
-    public ChartPanel creerDonneeApprentissage ( ArrayList<ChiffreMatriceFreeman> base ) {
+    /**
+     * Prend la base de connaissance et la représente sous forme d'histogramme
+     * @param base
+     * @return 
+     */
+    public ChartPanel creerRepresentationDonneeApprentissage ( ArrayList<ChiffreMatriceFreeman> base ) {
         
         if(base.isEmpty()) {
             return null;
@@ -49,8 +54,6 @@ public class TraceurGraphique {
         String series_7 = "7";
         String series_8 = "8";
         String series_9 = "9";
-        
-        
 
         // column keys...
         String categorie = "Chiffres appris ";
@@ -107,23 +110,6 @@ public class TraceurGraphique {
         // disable bar outlines...
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
         renderer.setDrawBarOutline(false);
-
-        // set up gradient paints for series...
-        /*GradientPaint gp0 = new GradientPaint(
-                0.0f, 0.0f, Color.blue,
-                0.0f, 0.0f, new Color(0, 0, 64)
-        );
-        GradientPaint gp1 = new GradientPaint(
-                0.0f, 0.0f, Color.green,
-                0.0f, 0.0f, new Color(0, 64, 0)
-        );
-        GradientPaint gp2 = new GradientPaint(
-                0.0f, 0.0f, Color.red,
-                0.0f, 0.0f, new Color(64, 0, 0)
-        );
-        renderer.setSeriesPaint(0, gp0);
-        renderer.setSeriesPaint(1, gp1);
-        renderer.setSeriesPaint(2, gp2);*/
 
         CategoryAxis domainAxis = plot.getDomainAxis();
         domainAxis.setCategoryLabelPositions(
