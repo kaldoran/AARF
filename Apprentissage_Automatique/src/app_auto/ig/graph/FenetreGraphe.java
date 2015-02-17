@@ -13,7 +13,7 @@ import org.jfree.chart.ChartPanel;
  *
  * @author kevin
  */
-public class FenetreGraphe extends JFrame implements ObservateurModele{
+public class FenetreGraphe extends JFrame {
     
     private PanneauGraphes panneauGraphes;
     
