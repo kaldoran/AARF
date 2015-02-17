@@ -6,6 +6,7 @@
 package app_auto.ig;
 
 import app_auto.algo.KPlusProcheVoisin;
+import app_auto.graph.TraceurGraphique;
 import app_auto.ig.graph.FenetreGraphe;
 import app_auto.utils.ChiffreMatriceFreeman;
 import app_auto.utils.IgConstante;
@@ -49,6 +50,8 @@ public class BarreMenu extends JMenuBar implements ActionListener {
     private JMenuItem test_freeman_ligne;
     private JMenuItem afficher_graphes;
     private JMenuItem apropos;
+    
+    private FenetreGraphe fenetre_graphe;
 
     public BarreMenu() {
         super();
@@ -161,6 +164,8 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         this.add(kpp);
 
         this.add(divers);
+        
+        fenetre_graphe = new FenetreGraphe();
     }
 
     @Override
@@ -200,7 +205,9 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         } else if (source.equals(seven)) {
             IgConstante.NUMBER_KPPV = KPlusProcheVoisin._7_VOISINS;
         } else if (source.equals(afficher_graphes)) {
-            new FenetreGraphe();
+            fenetre_graphe.getPanneauGraphes().setChartRepresentationDonneeApprentissage(
+                    TraceurGraphique.creerRepresentationDonneeApprentissage(IgConstante.BASE_APPRENTISSAGE));
+            fenetre_graphe.setVisible(true);
         }
     }
 }

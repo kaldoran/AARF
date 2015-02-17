@@ -1,12 +1,13 @@
 package app_auto.algo;
 
+import app_auto.graph.TraceurGraphique;
 import app_auto.utils.ChiffreMatriceFreeman;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
 public class KPlusProcheVoisin {
-
+    
     public static final int MANHATTAN = 0;
     public static final int EUCLIDIENNE = 1;
     public static final int CHEBYSHEV = 2;

@@ -6,6 +6,8 @@
 package app_auto;
 
 import app_auto.ig.FenetrePrincipale;
+import app_auto.utils.IgConstante;
+import app_auto.utils.Reader;
 
 /**
  *
@@ -17,6 +19,8 @@ public class Apprentissage_Automatique {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Reader reader = new Reader();
+        IgConstante.BASE_APPRENTISSAGE = reader.recupTotal();
         new FenetrePrincipale();
     }
 

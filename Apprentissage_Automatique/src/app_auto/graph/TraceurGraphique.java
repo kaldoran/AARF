@@ -27,17 +27,13 @@ import org.jfree.data.category.DefaultCategoryDataset;
  */
 public class TraceurGraphique {
     
-    private ChartPanel chartPanel_RepresentationBase = null;
-
-    public TraceurGraphique() {
-    }
     
     /**
      * Prend la base de connaissance et la représente sous forme d'histogramme
      * @param base
      * @return 
      */
-    public ChartPanel creerRepresentationDonneeApprentissage ( ArrayList<ChiffreMatriceFreeman> base ) {
+    public static JFreeChart creerRepresentationDonneeApprentissage ( ArrayList<ChiffreMatriceFreeman> base ) {
         
         if(base.isEmpty()) {
             return null;
@@ -116,17 +112,15 @@ public class TraceurGraphique {
                 CategoryLabelPositions.createUpRotationLabelPositions(Math.PI / 6.0)
         );
         
-        chartPanel_RepresentationBase = new ChartPanel(chart);
-        
-        return chartPanel_RepresentationBase;
+        return chart;
     }
     
-    public void afficherReprensationGraphiqueBase() {
+    /*public void afficherReprensationGraphiqueBase() {
         if(chartPanel_RepresentationBase != null) {
             JFrame f = new JFrame();
             f.setContentPane(chartPanel_RepresentationBase);
             f.pack();
             f.setVisible(true);
         }
-    }
+    }*/
 }

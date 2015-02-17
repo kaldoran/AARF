@@ -7,12 +7,13 @@ package app_auto.ig.graph;
 
 import java.awt.HeadlessException;
 import javax.swing.JFrame;
+import org.jfree.chart.ChartPanel;
 
 /**
  *
  * @author kevin
  */
-public class FenetreGraphe extends JFrame {
+public class FenetreGraphe extends JFrame implements ObservateurModele{
     
     private PanneauGraphes panneauGraphes;
     
@@ -23,10 +24,12 @@ public class FenetreGraphe extends JFrame {
         this.setLocation(200, 100);
         this.setContentPane(panneauGraphes);
         this.pack();
-        this.setVisible(true);
+        this.setVisible(false);
         this.setResizable(false);
     }
     
-    
+    public PanneauGraphes getPanneauGraphes() {
+        return panneauGraphes;
+    }
     
 }

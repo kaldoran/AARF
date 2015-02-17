@@ -36,17 +36,11 @@ import javax.swing.KeyStroke;
 public class BoutonValidation extends JPanel implements ActionListener {
 
     private JButton reset;
-    private ArrayList<ChiffreMatriceFreeman> base;
+    private KPlusProcheVoisin kppv = new KPlusProcheVoisin();
 
     public BoutonValidation() {
         super();
         this.setPreferredSize(new Dimension(50, 50));
-
-        Reader reader = new Reader();
-        base = reader.recupTotal();
-        TraceurGraphique traceur = new TraceurGraphique();
-        traceur.creerRepresentationDonneeApprentissage(base);
-        traceur.afficherReprensationGraphiqueBase();
 
         IgConstante.BOUTON_VALIDATION = new JButton("Valider");
         IgConstante.BOUTON_VALIDATION.addActionListener(this);
@@ -86,11 +80,10 @@ public class BoutonValidation extends JPanel implements ActionListener {
             if (IgConstante.RESULTAT_TROUVEE.getBorder().equals(IgConstante.OUT)) {
                 // on calcul les k-plus proche voisin 
                 String s;
-                KPlusProcheVoisin kppv = new KPlusProcheVoisin();
                 if(IgConstante.ALGO_NUMBER == KPlusProcheVoisin.CODEFREEMAN) {
-                    s = String.valueOf(kppv.kppv(resFree, base,IgConstante.NUMBER_KPPV ));
+                    s = String.valueOf(kppv.kppv(resFree, IgConstante.BASE_APPRENTISSAGE, IgConstante.NUMBER_KPPV ));
                 } else {
-                    s = String.valueOf(kppv.kppv(matrice, base, IgConstante.NUMBER_KPPV, IgConstante.ALGO_NUMBER));
+                    s = String.valueOf(kppv.kppv(matrice, IgConstante.BASE_APPRENTISSAGE, IgConstante.NUMBER_KPPV, IgConstante.ALGO_NUMBER));
                 }
                 
                 IgConstante.VALEUR_TROUVEE.setText(s);

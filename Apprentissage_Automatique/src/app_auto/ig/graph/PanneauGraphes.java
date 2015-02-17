@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
 
 /**
  *
@@ -16,12 +18,17 @@ import javax.swing.JPanel;
  */
 public class PanneauGraphes extends JPanel {
 
+    private Dimension dimension;
+    private ChartPanel  chart_representationDonneeApprentissage,
+                        chart_evaluationRF;
     
     public PanneauGraphes() {
         super();
         this.setLayout(new GridLayout(2, 2));
-        Dimension d = new Dimension(200, 200);
-        JPanel p1 = new JPanel();
+        dimension = new Dimension(200, 200);
+        chart_representationDonneeApprentissage = new ChartPanel(null);
+        chart_evaluationRF = new ChartPanel(null);
+        /*JPanel p1 = new JPanel();
         JPanel p2 = new JPanel();
         JPanel p3 = new JPanel();
         JPanel p4 = new JPanel();
@@ -32,14 +39,17 @@ public class PanneauGraphes extends JPanel {
         p3.setPreferredSize(d);
         p3.setBackground(Color.GREEN);
         p4.setPreferredSize(d);
-        
-        this.add(p1);
-        this.add(p2);
-        this.add(p3);
-        this.add(p4);
-        
+        */
+        this.add(chart_representationDonneeApprentissage);
+        this.add(chart_evaluationRF);
     }
     
+    public void setChartRepresentationDonneeApprentissage(JFreeChart c) {
+        this.chart_representationDonneeApprentissage.setChart(c);
+//        this.repaint();
+    }
     
-    
+    public void setChartEvaluationRF (JFreeChart c) {
+        this.chart_evaluationRF.setChart(c);
+    }
 }
