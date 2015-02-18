@@ -6,7 +6,6 @@
 package app_auto.utils;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,28 +18,13 @@ import java.util.logging.Logger;
  * @author Kevin
  */
 public class Reader {
-    private String repertoire;
     private final Erreurs err = new Erreurs();
-
-    public Reader() {
-        repertoire = new FichierConstante().REPERTOIRE_APPRENTISSAGE;
-        File listeBase = new File(repertoire);
-        
-        if(!listeBase.exists()) {
-            try {
-                listeBase.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
-    }
     
     public ArrayList<ChiffreMatriceFreeman> recupTotal() {       
         ArrayList<ChiffreMatriceFreeman> liste = new ArrayList<>();
         
         try {
-            BufferedReader lectResume = new BufferedReader(new FileReader(repertoire + "Base"));
+            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.REPERTOIRE_APPRENTISSAGE + "Base")));
             String resume;
             while((resume = lectResume.readLine()) != null) {
                 String[] champs = resume.split("#");
@@ -65,7 +49,7 @@ public class Reader {
     
     public ChiffreMatriceFreeman recupLigne(int ligne) {
         try {
-            BufferedReader lectResume = new BufferedReader(new FileReader(repertoire + "Base"));
+            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.REPERTOIRE_APPRENTISSAGE + "Base")));
             
             if (ligne < 1) {
                 throw err.new LigneNonPresente();

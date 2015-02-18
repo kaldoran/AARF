@@ -103,8 +103,8 @@ public class BufferedImageToMatrix {
     }
     
     public static void enregister(BufferedImage image, String nomF){
-        FichierConstante rep = new FichierConstante();
-        File outputfile = new File(rep.REPERTOIRE_APPRENTISSAGE + nomF + ".png");
+        Writer.verifDossier(FichierConstante.REPERTOIRE_APPRENTISSAGE);
+        File outputfile = new File(FichierConstante.REPERTOIRE_APPRENTISSAGE + nomF + ".png");
         
         try {
             ImageIO.write(image, "png", outputfile);

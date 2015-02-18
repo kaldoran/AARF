@@ -12,24 +12,5 @@ import java.io.File;
  * @author kaldoran
  */
 public class FichierConstante {
-    public String REPERTOIRE_APPRENTISSAGE;
-
-    public FichierConstante() {
-        String os = System.getProperties().getProperty("os.name").toLowerCase();
-        File verif;
-        
-        if(os.contains("win")){
-            REPERTOIRE_APPRENTISSAGE = System.getProperties().getProperty("user.dir") + "\\Base_Apprentissage\\";
-        }
-        else{
-            REPERTOIRE_APPRENTISSAGE = System.getProperties().getProperty("user.dir") + "/Base_Apprentissage/";
-            
-        }
-        
-        verif = new File(REPERTOIRE_APPRENTISSAGE);
-        
-        if(!verif.exists() || !verif.isDirectory()){
-            verif.mkdirs();
-        }
-    }
+    public final static String REPERTOIRE_APPRENTISSAGE = System.getProperties().getProperty("user.dir") + File.separator + "Base_Apprentissage" + File.separator;
 }

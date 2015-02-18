@@ -18,29 +18,13 @@ import java.util.logging.Logger;
  * @author Kevin
  */
 public class Writer {
-    private String repertoire;
-
-    public Writer() {
-        repertoire = new FichierConstante().REPERTOIRE_APPRENTISSAGE;
-        File listeBase = new File(repertoire);
-        
-        if(!listeBase.exists()){
-            try {
-                listeBase.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(Writer.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
-    
-    public ChiffreMatriceFreeman enregistrer(String chiffre, int[][] matrice, String freeman){
-        return enregistrerSous("Base", chiffre, matrice, freeman);
+    public final static ChiffreMatriceFreeman enregistrer(String chiffre, int[][] matrice, String freeman){
+        return enregistrerSous(FichierConstante.REPERTOIRE_APPRENTISSAGE + "Base", chiffre, matrice, freeman);
     }
     
-    public ChiffreMatriceFreeman enregistrerSous(String nomF, String chiffre, int[][] matrice, String freeman){
+    public final static ChiffreMatriceFreeman enregistrerSous(String file, String chiffre, int[][] matrice, String freeman){
         try {
-            FileWriter redac = new FileWriter(repertoire + nomF, true);
+            FileWriter redac = new FileWriter(verifFichier(file) , true);
             
             ChiffreMatriceFreeman obj = new ChiffreMatriceFreeman(chiffre, matrice, freeman);
             redac.write(obj.resume());
@@ -56,8 +40,27 @@ public class Writer {
         
         return null;
     }
-
-    public String getRepertoire() {
-        return repertoire;
+    
+    public final static File verifFichier(String path){
+        File fic = new File(path);
+        
+        if(!fic.isFile()){
+            try {
+                fic.getParentFile().mkdirs();
+                fic.createNewFile();
+            } catch (IOException ex) {
+                Logger.getLogger(Writer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return fic;
     }
+    
+    public final static File verifDossier(String path){
+        File fic = new File(path);
+        
+        if(!fic.isDirectory()){
+            fic.mkdirs();
+        }
+        return fic;
+    }    
 }

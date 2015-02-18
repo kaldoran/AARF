@@ -36,11 +36,16 @@ public class KPlusProcheVoisin {
         
         //Si matrice est vide
         if (matrice_x.length == 0) {
-            System.out.println("ERREUR : matrice vide !");
+            System.out.println("ERREUR : Matrice vide !");
             return -1;
         }
 
         //Si la base de connnaissance est vide
+        if (s == null) {
+            System.out.println("ERREUR : Probleme à la lecture de la base de connaissance");
+            return -1;
+        }
+        
         if (s.isEmpty()) {
             System.out.println("ERREUR : Base de connaissance vide");
             return -1;

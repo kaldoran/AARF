@@ -65,7 +65,11 @@ public class BoutonRadio extends JPanel implements ItemListener {
         }
     }
 
-    public boolean getState() {
+    public boolean testSelect() {
         return mode_test.isSelected();
     }
+    
+     public boolean ajoutSelect() {
+        return mode_ajout.isSelected();
+    }   
 }
