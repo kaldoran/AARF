@@ -13,4 +13,6 @@ import java.io.File;
  */
 public class FichierConstante {
     public final static String REPERTOIRE_APPRENTISSAGE = System.getProperties().getProperty("user.dir") + File.separator + "Base_Apprentissage" + File.separator;
+    public final static String FICHIER_BASE = REPERTOIRE_APPRENTISSAGE + "Base";
+    public final static String FICHIER_STATS = REPERTOIRE_APPRENTISSAGE + "Stats";
 }

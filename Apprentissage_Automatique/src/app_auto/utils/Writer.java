@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class Writer {
     public final static ChiffreMatriceFreeman enregistrer(String chiffre, int[][] matrice, String freeman){
-        return enregistrerSous(FichierConstante.REPERTOIRE_APPRENTISSAGE + "Base", chiffre, matrice, freeman);
+        return enregistrerSous(FichierConstante.FICHIER_BASE, chiffre, matrice, freeman);
     }
     
     public final static ChiffreMatriceFreeman enregistrerSous(String file, String chiffre, int[][] matrice, String freeman){
@@ -39,6 +39,35 @@ public class Writer {
         }
         
         return null;
+    }
+    
+    public final static void majStat(int chiffre, Boolean resultat){
+        try {
+            Stats stats = Reader.recupStats();
+            
+            if(stats != null){
+                stats.setNbTests(stats.getNbTests() + 1);
+
+                int[][] tmp = stats.getChiffreBonsMauvais();
+
+                if(resultat) {
+                    stats.setNbBons(stats.getNbBons() + 1);
+                    tmp[chiffre][0] += 1;
+                } else {
+                    stats.setNbMauvais(stats.getNbMauvais() + 1);
+                    tmp[chiffre][1] += 1;
+                }
+                stats.setChiffreBonsMauvais(tmp);
+                
+                
+                FileWriter redac = new FileWriter(verifFichier(FichierConstante.FICHIER_STATS));
+                
+                String chaineStats = stats.toString();
+                redac.write(chaineStats, 0, chaineStats.length());
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Writer.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public final static File verifFichier(String path){

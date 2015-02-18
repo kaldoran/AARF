@@ -24,7 +24,7 @@ public class Reader {
         ArrayList<ChiffreMatriceFreeman> liste = new ArrayList<>();
         
         try {
-            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.REPERTOIRE_APPRENTISSAGE + "Base")));
+            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_BASE)));
             String resume;
             while((resume = lectResume.readLine()) != null) {
                 String[] champs = resume.split("#");
@@ -49,7 +49,7 @@ public class Reader {
     
     public ChiffreMatriceFreeman recupLigne(int ligne) {
         try {
-            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.REPERTOIRE_APPRENTISSAGE + "Base")));
+            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_BASE)));
             
             if (ligne < 1) {
                 throw err.new LigneNonPresente();
@@ -95,5 +95,48 @@ public class Reader {
         }
         
         return matrice;
+    }
+    
+    public final static Stats recupStats(){
+        Stats stats;
+        int i = 0;
+        BufferedReader lectResume;
+        
+        String ligne;
+        String[] champs;
+        int[] tbm = new int[3];
+        int[][] cbm = new int[10][2];
+        
+        try {
+            lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_STATS)));
+            
+            ligne = lectResume.readLine();
+            champs = ligne.split("|");
+            
+            tbm[0] = Integer.parseInt(champs[0]);
+            tbm[1] = Integer.parseInt(champs[1]);
+            tbm[2] = Integer.parseInt(champs[2]);
+            
+            while((ligne = lectResume.readLine()) != null) {
+                champs = ligne.split("|");
+                cbm[i][0] = Integer.parseInt(champs[1]);
+                cbm[i][1] = Integer.parseInt(champs[2]);
+                ++i;
+            }
+            
+            if(i != 10){
+                return null;
+            }
+            
+            stats = new Stats(tbm[0], tbm[1], tbm[2], cbm);
+            
+            return stats;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
 }
