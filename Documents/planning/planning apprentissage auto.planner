@@ -86,10 +86,10 @@
     </task>
   </tasks>
   <resource-groups>
-    <group id="1" name="R.N" admin-name="REYNAUD" admin-phone="" admin-email=""/>
-    <group id="2" name="B.B" admin-name="BOUACHERIA" admin-phone="" admin-email=""/>
-    <group id="3" name="L.K" admin-name="LAOUSSING" admin-phone="" admin-email=""/>
-    <group id="4" name="B.K" admin-name="BASCOL" admin-phone="" admin-email=""/>
+    <group id="1" name="B.K" admin-name="BASCOL" admin-phone="" admin-email=""/>
+    <group id="2" name="L.K" admin-name="LAOUSSING" admin-phone="" admin-email=""/>
+    <group id="3" name="B.B" admin-name="BOUACHERIA" admin-phone="" admin-email=""/>
+    <group id="4" name="R.N" admin-name="REYNAUD" admin-phone="" admin-email=""/>
   </resource-groups>
   <resources>
     <resource id="1" name="L.K" short-name="LAOUSSING" type="1" units="0" email="" note="" std-rate="0"/>
@@ -99,7 +99,6 @@
   </resources>
   <allocations>
     <allocation task-id="9" resource-id="1" units="100"/>
-    <allocation task-id="13" resource-id="1" units="3"/>
     <allocation task-id="12" resource-id="1" units="3"/>
     <allocation task-id="24" resource-id="1" units="100"/>
     <allocation task-id="20" resource-id="1" units="100"/>
@@ -116,6 +115,7 @@
     <allocation task-id="7" resource-id="2" units="6"/>
     <allocation task-id="5" resource-id="2" units="1"/>
     <allocation task-id="4" resource-id="2" units="7"/>
+    <allocation task-id="13" resource-id="3" units="3"/>
     <allocation task-id="14" resource-id="3" units="2"/>
     <allocation task-id="24" resource-id="3" units="100"/>
     <allocation task-id="20" resource-id="3" units="100"/>
