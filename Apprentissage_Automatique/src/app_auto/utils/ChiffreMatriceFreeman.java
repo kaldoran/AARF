@@ -104,7 +104,6 @@ public class ChiffreMatriceFreeman implements Serializable, Comparable<ChiffreMa
     }
 
     public static void testerFreeman(String morgan, String ligne) {
-        Writer redac = new Writer();
         CodeFreeman free = new CodeFreeman();
 
         try {
@@ -113,8 +112,7 @@ public class ChiffreMatriceFreeman implements Serializable, Comparable<ChiffreMa
             String nomF = "imageTestFreeman_";
             String suff;
             if(ligne.equals("X")){
-                File rep = new File(redac.getRepertoire());
-                int nbT = rep.list().length;
+                int nbT = Writer.verifDossier(FichierConstante.REPERTOIRE_APPRENTISSAGE).list().length;
                 if(nbT > 1){
                     nbT--;
                 }
@@ -124,7 +122,7 @@ public class ChiffreMatriceFreeman implements Serializable, Comparable<ChiffreMa
                 suff = "L" + ligne;
             }
             
-            ChiffreMatriceFreeman cmf = redac.enregistrerSous("testFreeman", suff, mat, morgan);
+            ChiffreMatriceFreeman cmf = Writer.enregistrerSous(FichierConstante.REPERTOIRE_APPRENTISSAGE + "testFreeman", suff, mat, morgan);
             
             BufferedImage imgMatrice = cmf.matriceToImage();
             

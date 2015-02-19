@@ -12,6 +12,7 @@ import app_auto.ig.TexteCodeFreeman;
 import app_auto.ig.TexteResultat;
 import app_auto.ig.ZoneResultat;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
@@ -42,6 +43,10 @@ public class IgConstante {
     public final static int BLACK = new Color(0,0,0).getRGB();
     public final static int WHITE = new Color(255,255,255).getRGB();
     
-    public final static String APROPOS = "Projet - Mini-François  \n v.1.0 \n\n Réalisé par BKNK\n     Bachir BOUACHERIA\n     Kevin LAOUSSING\n     Nicolas REYNAUD\n     Kevin BASCOL\n\n UJM 2014-2015";
+    public final static String APROPOS = "Projet - Mini-François - \n v.1.0 \n\n Réalisé par BKNK\n     Bachir BOUACHERIA\n     Kevin LAOUSSING\n     Nicolas REYNAUD\n     Kevin BASCOL\n\n UJM 2014-2015";
+    
+    // reference de la base d'apprentissage (beurk!)
+    public static ArrayList<ChiffreMatriceFreeman> BASE_APPRENTISSAGE;
+    public static int[] EVALUATION;
 
 }

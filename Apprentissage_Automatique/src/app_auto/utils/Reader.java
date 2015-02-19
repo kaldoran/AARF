@@ -6,7 +6,6 @@
 package app_auto.utils;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,28 +18,13 @@ import java.util.logging.Logger;
  * @author Kevin
  */
 public class Reader {
-    private String repertoire;
     private final Erreurs err = new Erreurs();
-
-    public Reader() {
-        repertoire = new FichierConstante().REPERTOIRE_APPRENTISSAGE;
-        File listeBase = new File(repertoire);
-        
-        if(!listeBase.exists()) {
-            try {
-                listeBase.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
-    }
     
     public ArrayList<ChiffreMatriceFreeman> recupTotal() {       
         ArrayList<ChiffreMatriceFreeman> liste = new ArrayList<>();
         
         try {
-            BufferedReader lectResume = new BufferedReader(new FileReader(repertoire + "Base"));
+            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_BASE)));
             String resume;
             while((resume = lectResume.readLine()) != null) {
                 String[] champs = resume.split("#");
@@ -50,19 +34,22 @@ public class Reader {
                 ChiffreMatriceFreeman cmf = new ChiffreMatriceFreeman(champs[0], matrice, champs[2]);
                 liste.add(cmf);
             }
-            return liste;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (!liste.isEmpty()) {
+                return liste;
+            }
+            return null;
         }
         
-        return null;
     }
     
     public ChiffreMatriceFreeman recupLigne(int ligne) {
         try {
-            BufferedReader lectResume = new BufferedReader(new FileReader(repertoire + "Base"));
+            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_BASE)));
             
             if (ligne < 1) {
                 throw err.new LigneNonPresente();
@@ -108,5 +95,48 @@ public class Reader {
         }
         
         return matrice;
+    }
+    
+    public final static Stats recupStats(){
+        Stats stats;
+        int i = 0;
+        BufferedReader lectResume;
+        
+        String ligne;
+        String[] champs;
+        int[] tbm = new int[3];
+        int[][] cbm = new int[10][2];
+        
+        try {
+            lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_STATS)));
+            
+            ligne = lectResume.readLine();
+            champs = ligne.split("|");
+            
+            tbm[0] = Integer.parseInt(champs[0]);
+            tbm[1] = Integer.parseInt(champs[1]);
+            tbm[2] = Integer.parseInt(champs[2]);
+            
+            while((ligne = lectResume.readLine()) != null) {
+                champs = ligne.split("|");
+                cbm[i][0] = Integer.parseInt(champs[1]);
+                cbm[i][1] = Integer.parseInt(champs[2]);
+                ++i;
+            }
+            
+            if(i != 10){
+                return null;
+            }
+            
+            stats = new Stats(tbm[0], tbm[1], tbm[2], cbm);
+            
+            return stats;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
 }

@@ -1,15 +1,18 @@
 package app_auto.algo;
 
+import app_auto.graph.TraceurGraphique;
 import app_auto.utils.ChiffreMatriceFreeman;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
 public class KPlusProcheVoisin {
-
+    
     public static final int MANHATTAN = 0;
     public static final int EUCLIDIENNE = 1;
     public static final int CHEBYSHEV = 2;
+    public static final int CODEFREEMAN = 3;
+    
     public static final int _3_VOISINS = 3;
     public static final int _5_VOISINS = 5;
     public static final int _7_VOISINS = 7;
@@ -33,11 +36,16 @@ public class KPlusProcheVoisin {
         
         //Si matrice est vide
         if (matrice_x.length == 0) {
-            System.out.println("ERREUR : matrice vide !");
+            System.out.println("ERREUR : Matrice vide !");
             return -1;
         }
 
         //Si la base de connnaissance est vide
+        if (s == null) {
+            System.out.println("ERREUR : Probleme à la lecture de la base de connaissance");
+            return -1;
+        }
+        
         if (s.isEmpty()) {
             System.out.println("ERREUR : Base de connaissance vide");
             return -1;
@@ -69,10 +77,6 @@ public class KPlusProcheVoisin {
         }
 
         //Trie par ordre croissant selon la distance (voir methode compareTo de ChiffreMatriceFreeman)
-        for (ChiffreMatriceFreeman cmf : s) {
-            System.out.println("chiffre : " + cmf.getChiffre());
-            
-        }
         Collections.sort(s);
         
         if(nombre_voisin != _3_VOISINS && nombre_voisin != _5_VOISINS && nombre_voisin != _7_VOISINS) {
@@ -82,7 +86,7 @@ public class KPlusProcheVoisin {
         
         for( int i = 0; i < nombre_voisin; i++) {
             tab_kppv[Integer.valueOf(s.get(i).getChiffre())]++;
-            System.out.println("voisin " + i + " : " + s.get(i).getChiffre());
+            System.out.println("voisin : " + s.get(i).getChiffre());
         }
         
         int max = tab_kppv[0];
@@ -230,7 +234,7 @@ public class KPlusProcheVoisin {
         }
     }
 
-    public int kppv(String FreemanIn, ArrayList<ChiffreMatriceFreeman> liste) {
+    public int kppv(String FreemanIn, ArrayList<ChiffreMatriceFreeman> liste, int nombre_voisin) {
         int[] mesPlusProcheVoisins = new int[10];
         
         int classe_y;
@@ -244,8 +248,12 @@ public class KPlusProcheVoisin {
         for (int i = 0; i < 10; i++) {
             mesPlusProcheVoisins[i] = Integer.valueOf(liste.get(i).getChiffre());
         }
-        int k = 3 ;
-        classe_y = maClasse(mesPlusProcheVoisins,k);
+        
+        if(nombre_voisin != _3_VOISINS && nombre_voisin != _5_VOISINS && nombre_voisin != _7_VOISINS) {
+            // par défaut on choisit les 3-ppv
+            nombre_voisin = _3_VOISINS;
+        }
+        classe_y = maClasse(mesPlusProcheVoisins,nombre_voisin);
         return classe_y;
     }
     
