@@ -5,11 +5,6 @@
  */
 package app_auto.utils;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Map;
-
 /**
  *
  * @author Kevin
@@ -20,11 +15,16 @@ public class Stats {
     int nbMauvais;
     int[][] chiffreBonsMauvais;
 
-    public Stats(int nbTests, int nbBons, int nbMauvais, int[][] chiffreBonsMauvais) {
-        this.nbTests = nbTests;
-        this.nbBons = nbBons;
-        this.nbMauvais = nbMauvais;
-        this.chiffreBonsMauvais = chiffreBonsMauvais;
+    public Stats() {
+        this.nbTests = 0;
+        this.nbBons = 0;
+        this.nbMauvais = 0;
+        this.chiffreBonsMauvais = new int[10][2];
+        
+        for(int i = 0; i < 10; ++i){
+            chiffreBonsMauvais[i][0] = 0;
+            chiffreBonsMauvais[i][1] = 0;
+        }
     }
     
     public int getNbTests() {
@@ -61,10 +61,10 @@ public class Stats {
     
     @Override
     public String toString(){
-        String chaine = nbTests + "|" + nbBons + "|" + nbMauvais + "\n";
+        String chaine = nbTests + "s" + nbBons + "s" + nbMauvais + "\n";
         
         for(int i = 0; i < 10; ++i){
-            chaine += i + "|" + chiffreBonsMauvais[i][0] + "|" + chiffreBonsMauvais[i][1] + "\n";
+            chaine += i + "s" + chiffreBonsMauvais[i][0] + "s" + chiffreBonsMauvais[i][1] + "\n";
         }
         
         return chaine;

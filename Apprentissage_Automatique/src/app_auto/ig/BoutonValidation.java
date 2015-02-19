@@ -15,7 +15,11 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -26,6 +30,7 @@ public class BoutonValidation extends JPanel implements ActionListener {
 
     private JButton reset;
     private KPlusProcheVoisin kppv = new KPlusProcheVoisin();
+    private int resultat;
 
     public BoutonValidation() {
         super();
@@ -40,6 +45,8 @@ public class BoutonValidation extends JPanel implements ActionListener {
         reset.addActionListener(this);
         reset.setPreferredSize(new Dimension(85, 24));
         this.add(reset, BorderLayout.EAST);
+        
+        resultat = 0;
     }
 
     @Override
@@ -76,6 +83,15 @@ public class BoutonValidation extends JPanel implements ActionListener {
                 }
                 
                 IgConstante.VALEUR_TROUVEE.setText(s);
+                
+                try {
+                    sleep(100);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(BoutonValidation.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                resultat = JOptionPane.showConfirmDialog(null, "Le bon chiffre a-t-il été trouvé ?", "Resultat", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                
+                Writer.majStat(Integer.parseInt(s), resultat);
             } else {
                 Writer.enregistrer(IgConstante.VALEUR_TROUVEE.getText(), matrice, resFree);
             }

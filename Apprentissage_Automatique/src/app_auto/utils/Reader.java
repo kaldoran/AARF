@@ -111,14 +111,14 @@ public class Reader {
             lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_STATS)));
             
             ligne = lectResume.readLine();
-            champs = ligne.split("|");
+            champs = ligne.split("s");
             
             tbm[0] = Integer.parseInt(champs[0]);
             tbm[1] = Integer.parseInt(champs[1]);
             tbm[2] = Integer.parseInt(champs[2]);
             
             while((ligne = lectResume.readLine()) != null) {
-                champs = ligne.split("|");
+                champs = ligne.split("s");
                 cbm[i][0] = Integer.parseInt(champs[1]);
                 cbm[i][1] = Integer.parseInt(champs[2]);
                 ++i;
@@ -128,7 +128,12 @@ public class Reader {
                 return null;
             }
             
-            stats = new Stats(tbm[0], tbm[1], tbm[2], cbm);
+            stats = new Stats();
+            
+            stats.setNbTests(tbm[0]);
+            stats.setNbBons(tbm[1]);
+            stats.setNbMauvais(tbm[2]);
+            stats.setChiffreBonsMauvais(cbm);
             
             return stats;
         } catch (FileNotFoundException ex) {

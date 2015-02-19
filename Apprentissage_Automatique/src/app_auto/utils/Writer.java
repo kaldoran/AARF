@@ -24,7 +24,7 @@ public class Writer {
     
     public final static ChiffreMatriceFreeman enregistrerSous(String file, String chiffre, int[][] matrice, String freeman){
         try {
-            FileWriter redac = new FileWriter(verifFichier(file) , true);
+            FileWriter redac = new FileWriter(Writer.verifFichier(file) , true);
             
             ChiffreMatriceFreeman obj = new ChiffreMatriceFreeman(chiffre, matrice, freeman);
             redac.write(obj.resume());
@@ -41,30 +41,36 @@ public class Writer {
         return null;
     }
     
-    public final static void majStat(int chiffre, Boolean resultat){
-        try {
-            Stats stats = Reader.recupStats();
-            
-            if(stats != null){
-                stats.setNbTests(stats.getNbTests() + 1);
+    public final static void majStat(int chiffre, int resultat) {
 
-                int[][] tmp = stats.getChiffreBonsMauvais();
+        Stats stats = Reader.recupStats();
 
-                if(resultat) {
-                    stats.setNbBons(stats.getNbBons() + 1);
-                    tmp[chiffre][0] += 1;
-                } else {
-                    stats.setNbMauvais(stats.getNbMauvais() + 1);
-                    tmp[chiffre][1] += 1;
-                }
-                stats.setChiffreBonsMauvais(tmp);
-                
-                
-                FileWriter redac = new FileWriter(verifFichier(FichierConstante.FICHIER_STATS));
-                
-                String chaineStats = stats.toString();
-                redac.write(chaineStats, 0, chaineStats.length());
+        if (stats != null) {
+            stats.setNbTests(stats.getNbTests() + 1);
+
+            int[][] tmp = stats.getChiffreBonsMauvais();
+
+            if (resultat == 0) {
+                stats.setNbBons(stats.getNbBons() + 1);
+                tmp[chiffre][0] += 1;
+            } else {
+                stats.setNbMauvais(stats.getNbMauvais() + 1);
+                tmp[chiffre][1] += 1;
             }
+            stats.setChiffreBonsMauvais(tmp);
+            
+            Writer.remplacerStats(stats);
+        }
+    }
+    
+    public static final void remplacerStats(Stats stats){
+        try {
+            FileWriter redac = new FileWriter(Writer.verifFichier(FichierConstante.FICHIER_STATS));
+       
+            String chaineStats = stats.toString();
+            redac.write(chaineStats, 0, chaineStats.length());
+            
+            redac.close();
         } catch (IOException ex) {
             Logger.getLogger(Writer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,10 +83,17 @@ public class Writer {
             try {
                 fic.getParentFile().mkdirs();
                 fic.createNewFile();
+                
+                if(path.equals(FichierConstante.FICHIER_STATS)){
+                    Stats initStats = new Stats();
+                    
+                    Writer.remplacerStats(initStats);
+                }
             } catch (IOException ex) {
                 Logger.getLogger(Writer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
         return fic;
     }
     
