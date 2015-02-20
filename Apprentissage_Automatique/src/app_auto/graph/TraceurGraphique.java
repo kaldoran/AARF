@@ -10,9 +10,7 @@ import app_auto.utils.Stats;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.JFrame;
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
@@ -21,6 +19,7 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -79,8 +78,8 @@ public class TraceurGraphique {
         
         // create the chart...
         JFreeChart chart = ChartFactory.createBarChart(
-                "BASE D'APPRENTISSAGE DE MINI-FRANCOIS", // chart title
-                "Chiffre appris", // domain axis label
+                "Nombre d'exemple en fonction de chaque chiffre", // chart title
+                "Chiffre", // domain axis label
                 "Nombre d'exemples", // range axis label
                 donnees_apprentissage, // data
                 PlotOrientation.VERTICAL, // orientation
@@ -115,29 +114,26 @@ public class TraceurGraphique {
         
         return chart;
     }
-    
-    
-        public static JFreeChart creerRepresentationStats (Stats stats) {
-        
-        long[] tab_occ_chiffre = {0,0,0,0,0,0,0,0,0,0};
+ 
+    public static JFreeChart creerRepresentationStats(Stats stats) {
         // row keys...
-        String[] series = {"0","1","2","3","4","5","6","7","8","9"};
+        String[] series = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
         // column keys...
         String bon = "Résultats justes";
         String mauvais = "Résultats faux";
-        
+
         // create the dataset...
         DefaultCategoryDataset donnees_stats = new DefaultCategoryDataset();
         int[][] cbm = stats.getChiffreBonsMauvais();
-        for(int i = 0; i < 10; ++i){
+        for (int i = 0; i < 10; ++i) {
             donnees_stats.addValue(cbm[i][0], bon, series[i]);
             donnees_stats.addValue(cbm[i][1], mauvais, series[i]);
         }
-        
+
         // create the chart...
         JFreeChart chart = ChartFactory.createBarChart(
-                "RESULTATS DE MINI-FRANCOIS", // chart title
+                "Résultats en fonction de chaque chiffre", // chart title
                 "Chiffre", // domain axis label
                 "Nombre de tests", // range axis label
                 donnees_stats, // data
@@ -170,11 +166,25 @@ public class TraceurGraphique {
         domainAxis.setCategoryLabelPositions(
                 CategoryLabelPositions.createUpRotationLabelPositions(Math.PI / 6.0)
         );
+
+        return chart;
+    }
+    
+    public static JFreeChart creerRepresentationStatsGenerales(Stats stats) {      
+        DefaultPieDataset donnees_stats = new DefaultPieDataset();
+        
+        float nbBons = stats.getNbBons();
+        float nbMauvais = stats.getNbMauvais();
+        
+        float nbTot = stats.getNbTests();
+        
+        donnees_stats.setValue("Résultats justes " + Math.round((nbBons/nbTot)*100) + "%" , nbBons);
+        donnees_stats.setValue("Résultats faux " + Math.round((nbMauvais/nbTot)*100) + "%" , nbMauvais);
+
+        JFreeChart chart = ChartFactory.createPieChart("Pourcentage de réussite", donnees_stats, false, true, false);
         
         return chart;
     }
-        
-        
     /*public void afficherReprensationGraphiqueBase() {
         if(chartPanel_RepresentationBase != null) {
             JFrame f = new JFrame();

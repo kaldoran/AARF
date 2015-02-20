@@ -11,6 +11,7 @@ import app_auto.ig.graph.FenetreGraphe;
 import app_auto.utils.ChiffreMatriceFreeman;
 import app_auto.utils.IgConstante;
 import app_auto.utils.Reader;
+import app_auto.utils.Stats;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -95,7 +96,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         test_freeman_ligne.addActionListener(this);
         test_freeman_ligne.setToolTipText("Tester le code de freeman se trouvant à une ligne donnée dand le fichier de base d'apprentissage.");
         
-        afficher_graphes = new JMenuItem("afficher graphiques");
+        afficher_graphes = new JMenuItem("Afficher graphiques");
         afficher_graphes.setAccelerator(KeyStroke.getKeyStroke('G',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         afficher_graphes.addActionListener(this);
@@ -207,8 +208,11 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         } else if (source.equals(afficher_graphes)) {
             fenetre_graphe.getPanneauGraphes().setChartRepresentationDonneeApprentissage(
                     TraceurGraphique.creerRepresentationDonneeApprentissage(IgConstante.BASE_APPRENTISSAGE));
+            Stats stats = Reader.recupStats();
             fenetre_graphe.getPanneauGraphes().setChartEvaluationRF(
-                    TraceurGraphique.creerRepresentationStats(Reader.recupStats()));
+                    TraceurGraphique.creerRepresentationStats(stats));
+            fenetre_graphe.getPanneauGraphes().setChartStatsGenerales(
+                    TraceurGraphique.creerRepresentationStatsGenerales(stats));
             
             fenetre_graphe.setVisible(true);
         }

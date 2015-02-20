@@ -5,8 +5,10 @@
  */
 package app_auto.ig.graph;
 
+import java.awt.Dimension;
 import java.awt.HeadlessException;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import org.jfree.chart.ChartPanel;
 
 /**
@@ -19,10 +21,12 @@ public class FenetreGraphe extends JFrame {
     
     public FenetreGraphe() throws HeadlessException {
         
-        super("Représentation graphique");
+        super("Statistiques de Mini-François");
         panneauGraphes = new PanneauGraphes();
-        this.setLocation(200, 100);
-        this.setContentPane(panneauGraphes);
+        JScrollPane scroll = new JScrollPane(panneauGraphes);
+        this.setLocation(400, 50);
+        this.setPreferredSize(new Dimension(600,350));
+        this.setContentPane(scroll);
         this.pack();
         this.setVisible(false);
         this.setResizable(false);

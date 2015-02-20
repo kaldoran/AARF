@@ -5,7 +5,6 @@
  */
 package app_auto.ig.graph;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
@@ -20,14 +19,21 @@ public class PanneauGraphes extends JPanel {
 
     private Dimension dimension;
     private ChartPanel  chart_representationDonneeApprentissage,
-                        chart_evaluationRF;
+                        chart_evaluationRF,
+                        chart_statsGenerales;
     
     public PanneauGraphes() {
         super();
-        this.setLayout(new GridLayout(2, 2));
+        this.setLayout(new GridLayout(3, 1));
         dimension = new Dimension(200, 200);
         chart_representationDonneeApprentissage = new ChartPanel(null);
+        chart_representationDonneeApprentissage.setPreferredSize(new Dimension(500, 300));
+        
         chart_evaluationRF = new ChartPanel(null);
+        chart_evaluationRF.setPreferredSize(new Dimension(500, 300));
+        
+        chart_statsGenerales = new ChartPanel(null);
+        chart_statsGenerales.setPreferredSize(new Dimension(500, 300));
         /*JPanel p1 = new JPanel();
         JPanel p2 = new JPanel();
         JPanel p3 = new JPanel();
@@ -42,6 +48,7 @@ public class PanneauGraphes extends JPanel {
         */
         this.add(chart_representationDonneeApprentissage);
         this.add(chart_evaluationRF);
+        this.add(chart_statsGenerales);
     }
     
     public void setChartRepresentationDonneeApprentissage(JFreeChart c) {
@@ -52,4 +59,8 @@ public class PanneauGraphes extends JPanel {
     public void setChartEvaluationRF (JFreeChart c) {
         this.chart_evaluationRF.setChart(c);
     }
+    
+     public void setChartStatsGenerales (JFreeChart c) {
+        this.chart_statsGenerales.setChart(c);
+    }   
 }
