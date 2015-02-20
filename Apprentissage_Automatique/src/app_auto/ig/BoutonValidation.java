@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -55,7 +56,6 @@ public class BoutonValidation extends JPanel implements ActionListener {
         if (e.getSource().equals(reset)) {
             IgConstante.CODE_FREEMAN.setText("");
             IgConstante.VALEUR_TROUVEE.setText("");
-            IgConstante.BOUTON_VALIDATION.setEnabled(false);
         }
 
         if (e.getSource().equals(IgConstante.BOUTON_VALIDATION)) {
@@ -89,7 +89,9 @@ public class BoutonValidation extends JPanel implements ActionListener {
                 } catch (InterruptedException ex) {
                     Logger.getLogger(BoutonValidation.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                resultat = JOptionPane.showConfirmDialog(null, "Le bon chiffre a-t-il été trouvé ?", "Resultat", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                
+                ImageIcon icone = new ImageIcon(getClass().getResource("/Ressources/iconeQuestion.png"));
+                resultat = JOptionPane.showConfirmDialog(null, "Le bon chiffre a-t-il été trouvé ?", "Resultat", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icone);
                 
                 Writer.majStat(Integer.parseInt(s), resultat);
             } else {
