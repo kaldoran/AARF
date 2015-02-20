@@ -207,6 +207,9 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         } else if (source.equals(afficher_graphes)) {
             fenetre_graphe.getPanneauGraphes().setChartRepresentationDonneeApprentissage(
                     TraceurGraphique.creerRepresentationDonneeApprentissage(IgConstante.BASE_APPRENTISSAGE));
+            fenetre_graphe.getPanneauGraphes().setChartEvaluationRF(
+                    TraceurGraphique.creerRepresentationStats(Reader.recupStats()));
+            
             fenetre_graphe.setVisible(true);
         }
     }
