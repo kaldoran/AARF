@@ -23,10 +23,8 @@ public class FenetreGraphe extends JFrame {
         
         super("Statistiques de Mini-François");
         panneauGraphes = new PanneauGraphes();
-        JScrollPane scroll = new JScrollPane(panneauGraphes);
         this.setLocation(400, 50);
-        this.setPreferredSize(new Dimension(600,350));
-        this.setContentPane(scroll);
+        this.setContentPane(panneauGraphes);
         this.pack();
         this.setVisible(false);
         this.setResizable(false);

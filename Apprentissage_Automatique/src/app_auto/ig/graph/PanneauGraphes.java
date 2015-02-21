@@ -24,7 +24,7 @@ public class PanneauGraphes extends JPanel {
     
     public PanneauGraphes() {
         super();
-        this.setLayout(new GridLayout(3, 1));
+        this.setLayout(new GridLayout(2, 2));
         dimension = new Dimension(200, 200);
         chart_representationDonneeApprentissage = new ChartPanel(null);
         chart_representationDonneeApprentissage.setPreferredSize(new Dimension(500, 300));
@@ -34,6 +34,8 @@ public class PanneauGraphes extends JPanel {
         
         chart_statsGenerales = new ChartPanel(null);
         chart_statsGenerales.setPreferredSize(new Dimension(500, 300));
+        chart_representationDonneeApprentissage = new ChartPanel(null);
+        chart_representationDonneeApprentissage.setPreferredSize(new Dimension(500, 300));
         /*JPanel p1 = new JPanel();
         JPanel p2 = new JPanel();
         JPanel p3 = new JPanel();
@@ -46,9 +48,9 @@ public class PanneauGraphes extends JPanel {
         p3.setBackground(Color.GREEN);
         p4.setPreferredSize(d);
         */
-        this.add(chart_representationDonneeApprentissage);
         this.add(chart_evaluationRF);
         this.add(chart_statsGenerales);
+        this.add(chart_representationDonneeApprentissage);
     }
     
     public void setChartRepresentationDonneeApprentissage(JFreeChart c) {
