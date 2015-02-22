@@ -34,6 +34,8 @@ public class Reader {
                 ChiffreMatriceFreeman cmf = new ChiffreMatriceFreeman(champs[0], matrice, champs[2]);
                 liste.add(cmf);
             }
+            
+            lectResume.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -47,7 +49,7 @@ public class Reader {
         
     }
     
-    public ChiffreMatriceFreeman recupLigne(int ligne) {
+    public ChiffreMatriceFreeman recupLigne(int ligne) {       
         try {
             BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_BASE)));
             
@@ -71,7 +73,9 @@ public class Reader {
             int[][] matrice = lectureMatrice(champs[1]);
 
             ChiffreMatriceFreeman cmf = new ChiffreMatriceFreeman(champs[0], matrice, champs[2]);
-
+            
+            lectResume.close();
+            
             return cmf;
         } catch (IOException | Erreurs.LigneNonPresente ex) {
             Logger.getLogger(Reader.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,6 +129,7 @@ public class Reader {
             }
             
             if(i != 10){
+                lectResume.close();
                 return null;
             }
             
@@ -134,6 +139,8 @@ public class Reader {
             stats.setNbBons(tbm[1]);
             stats.setNbMauvais(tbm[2]);
             stats.setChiffreBonsMauvais(cbm);
+            
+            lectResume.close();
             
             return stats;
         } catch (FileNotFoundException ex) {
