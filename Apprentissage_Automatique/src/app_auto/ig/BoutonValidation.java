@@ -110,8 +110,13 @@ public class BoutonValidation extends JPanel implements ActionListener {
         } else if (e.getSource().equals(annule)) {
                         
             try {
-                RandomAccessFile raf = new RandomAccessFile(FichierConstante.FICHIER_BASE, "rw");                
-                raf.setLength(raf.length() - IgConstante.DERNIERE_LIGNE);
+                if ( IgConstante.DERNIERE_LIGNE == 0 ) {
+                    RandomAccessFile raf = new RandomAccessFile(FichierConstante.FICHIER_BASE, "rw");
+                    raf.setLength(raf.length() - IgConstante.DERNIERE_LIGNE);
+                    IgConstante.DERNIERE_LIGNE = 0;
+
+                    raf.close();
+                }
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(BoutonValidation.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
