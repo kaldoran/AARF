@@ -108,15 +108,14 @@ public class BoutonValidation extends JPanel implements ActionListener {
                 Writer.enregistrer(IgConstante.VALEUR_TROUVEE.getText(), matrice, resFree);
             }
         } else if (e.getSource().equals(annule)) {
-                        
-            try {
-                if ( IgConstante.DERNIERE_LIGNE == 0 ) {
-                    RandomAccessFile raf = new RandomAccessFile(FichierConstante.FICHIER_BASE, "rw");
-                    raf.setLength(raf.length() - IgConstante.DERNIERE_LIGNE);
-                    IgConstante.DERNIERE_LIGNE = 0;
 
-                    raf.close();
-                }
+            try {
+                System.out.println("Derniere ligne : " + IgConstante.DERNIERE_LIGNE);
+                RandomAccessFile raf = new RandomAccessFile(FichierConstante.FICHIER_BASE, "rw");
+                raf.setLength(raf.length() - IgConstante.DERNIERE_LIGNE);
+                IgConstante.DERNIERE_LIGNE = 0;
+
+                raf.close();
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(BoutonValidation.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
