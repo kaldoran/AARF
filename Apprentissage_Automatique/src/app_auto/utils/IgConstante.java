@@ -48,5 +48,7 @@ public class IgConstante {
     // reference de la base d'apprentissage (beurk!)
     public static ArrayList<ChiffreMatriceFreeman> BASE_APPRENTISSAGE;
     public static int[] EVALUATION;
+    
+    public static long DERNIERE_LIGNE = 0;
 
 }

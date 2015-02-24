@@ -22,7 +22,7 @@ public class Logo extends JPanel {
         super();
         this.setLayout(new BorderLayout());
 
-        Border outset = createEmptyBorder(0, 0, 25, 0);
+        Border outset = createEmptyBorder(0, 0, 15, 0);
         this.setBorder(outset);
         JLabel picLabel = new JLabel(new ImageIcon(this.getClass().getResource("/Ressources/bknk.png")));
         this.add(picLabel);
