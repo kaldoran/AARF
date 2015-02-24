@@ -33,7 +33,6 @@ import javax.swing.JPanel;
  */
 public class BoutonValidation extends JPanel implements ActionListener {
 
-    private JButton annule;
     private JButton reset;
     private KPlusProcheVoisin kppv = new KPlusProcheVoisin();
     private int resultat;
@@ -54,10 +53,11 @@ public class BoutonValidation extends JPanel implements ActionListener {
         reset.setPreferredSize(d);
         this.add(reset, BorderLayout.CENTER);
 
-        annule = new JButton("Revert");
-        annule.addActionListener(this);
-        annule.setPreferredSize(d);
-        this.add(annule, BorderLayout.SOUTH);
+        IgConstante.BOUTON_ANNULER = new JButton("Revert");
+        IgConstante.BOUTON_ANNULER.addActionListener(this);
+        IgConstante.BOUTON_ANNULER.setPreferredSize(d);
+        IgConstante.BOUTON_ANNULER.setVisible(false);
+        this.add(IgConstante.BOUTON_ANNULER, BorderLayout.SOUTH);
 
         resultat = 0;
     }
@@ -68,6 +68,7 @@ public class BoutonValidation extends JPanel implements ActionListener {
         if (e.getSource().equals(reset)) {
             IgConstante.CODE_FREEMAN.setText("");
             IgConstante.VALEUR_TROUVEE.setText("");
+            IgConstante.BOUTON_VALIDATION.setEnabled(false);
         } else if (e.getSource().equals(IgConstante.BOUTON_VALIDATION)) {
             BufferedImageToMatrix bim = new BufferedImageToMatrix(IgConstante.DESSIN.getImage());
             int[][] matrice = bim.getMatrix();
@@ -107,7 +108,7 @@ public class BoutonValidation extends JPanel implements ActionListener {
             } else {
                 Writer.enregistrer(IgConstante.VALEUR_TROUVEE.getText(), matrice, resFree);
             }
-        } else if (e.getSource().equals(annule)) {
+        } else if (e.getSource().equals(IgConstante.BOUTON_ANNULER)) {
 
             try {
                 System.out.println("Derniere ligne : " + IgConstante.DERNIERE_LIGNE);
