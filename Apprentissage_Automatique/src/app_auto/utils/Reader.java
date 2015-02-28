@@ -11,7 +11,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -145,11 +144,6 @@ public class Reader {
             for(i = 0; i < valeurs.length; ++i){
                 sousValeurs = valeurs[i].split("#");
                 int[] tmpVal = new int[2];
-                
-                System.out.println(valeurs[i]);
-                System.out.println(sousValeurs[0]);
-                System.out.println(sousValeurs[1]);
-                System.out.println(sousValeurs[2]);
                 
                 tmpVal[0] = Integer.parseInt(sousValeurs[1]);
                 tmpVal[1] = Integer.parseInt(sousValeurs[2]);

@@ -94,8 +94,6 @@ public class Stats {
             chiffreBonsMauvais[chiffre][1]++;
             tmpLR[1]++;
         }
-        System.out.println("man" + resultsAlgos.get(AlgosConstantes.LABEL_MANH)[0] + " " + resultsAlgos.get(AlgosConstantes.LABEL_MANH)[1]);
-        System.out.println("free" + resultsAlgos.get(AlgosConstantes.LABEL_FREE)[0] + " " + resultsAlgos.get(AlgosConstantes.LABEL_FREE)[1]);
         
         resultsAlgos.put(label, tmpLR);
         

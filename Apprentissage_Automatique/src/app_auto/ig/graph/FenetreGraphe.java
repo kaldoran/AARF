@@ -5,11 +5,8 @@
  */
 package app_auto.ig.graph;
 
-import java.awt.Dimension;
 import java.awt.HeadlessException;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import org.jfree.chart.ChartPanel;
 
 /**
  *

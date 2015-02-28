@@ -7,7 +7,6 @@ package app_auto.utils;
 
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
-import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
