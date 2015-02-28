@@ -27,6 +27,7 @@ public class Writer {
             FileWriter redac = new FileWriter(Writer.verifFichier(file) , true);
             
             ChiffreMatriceFreeman obj = new ChiffreMatriceFreeman(chiffre, matrice, freeman);
+            IgConstante.DERNIERE_LIGNE = obj.resume().length();
             redac.write(obj.resume());
             
             redac.close();

@@ -27,6 +27,7 @@ public class IgConstante {
     public static ZoneResultat RESULTAT_TROUVEE;  // Label du champ texte du chiffre trouvé (ou à chercher).
     public static TexteCodeFreeman CODE_FREEMAN;  // Champ texte du code de freeman.
     public static JButton BOUTON_VALIDATION;
+    public static JButton BOUTON_ANNULER;
     public static BoutonRadio BOUTON_RADIO;
     public static int NUMBER_KPPV = KPlusProcheVoisin._3_VOISINS;
     public static int ALGO_NUMBER = AlgosConstantes.MANHATTAN;
@@ -48,5 +49,7 @@ public class IgConstante {
     // reference de la base d'apprentissage (beurk!)
     public static ArrayList<ChiffreMatriceFreeman> BASE_APPRENTISSAGE;
     public static int[] EVALUATION;
+    
+    public static long DERNIERE_LIGNE = 0;
 
 }
