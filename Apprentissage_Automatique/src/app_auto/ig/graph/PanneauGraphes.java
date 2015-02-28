@@ -19,38 +19,31 @@ public class PanneauGraphes extends JPanel {
 
     private Dimension dimension;
     private ChartPanel  chart_representationDonneeApprentissage,
-                        chart_evaluationRF,
+                        chart_evaluationChiffres,
+                        chart_evaluationAlgos,
                         chart_statsGenerales;
     
     public PanneauGraphes() {
         super();
         this.setLayout(new GridLayout(2, 2));
         dimension = new Dimension(200, 200);
-        chart_representationDonneeApprentissage = new ChartPanel(null);
-        chart_representationDonneeApprentissage.setPreferredSize(new Dimension(500, 300));
         
-        chart_evaluationRF = new ChartPanel(null);
-        chart_evaluationRF.setPreferredSize(new Dimension(500, 300));
+        chart_evaluationChiffres = new ChartPanel(null);
+        chart_evaluationChiffres.setPreferredSize(new Dimension(500, 300));
         
         chart_statsGenerales = new ChartPanel(null);
         chart_statsGenerales.setPreferredSize(new Dimension(500, 300));
+        
         chart_representationDonneeApprentissage = new ChartPanel(null);
         chart_representationDonneeApprentissage.setPreferredSize(new Dimension(500, 300));
-        /*JPanel p1 = new JPanel();
-        JPanel p2 = new JPanel();
-        JPanel p3 = new JPanel();
-        JPanel p4 = new JPanel();
-        p1.setPreferredSize(d);
-        p1.setBackground(Color.yellow);
-        p2.setPreferredSize(d);
-        p2.setBackground(Color.BLUE);
-        p3.setPreferredSize(d);
-        p3.setBackground(Color.GREEN);
-        p4.setPreferredSize(d);
-        */
-        this.add(chart_evaluationRF);
-        this.add(chart_statsGenerales);
+        
+        chart_evaluationAlgos = new ChartPanel(null);
+        chart_evaluationAlgos.setPreferredSize(new Dimension(500, 300));
+
         this.add(chart_representationDonneeApprentissage);
+        this.add(chart_statsGenerales);
+        this.add(chart_evaluationChiffres);
+        this.add(chart_evaluationAlgos);
     }
     
     public void setChartRepresentationDonneeApprentissage(JFreeChart c) {
@@ -58,11 +51,15 @@ public class PanneauGraphes extends JPanel {
 //        this.repaint();
     }
     
-    public void setChartEvaluationRF (JFreeChart c) {
-        this.chart_evaluationRF.setChart(c);
+    public void setChartEvaluationChiffre (JFreeChart c) {
+        this.chart_evaluationChiffres.setChart(c);
     }
     
      public void setChartStatsGenerales (JFreeChart c) {
         this.chart_statsGenerales.setChart(c);
     }   
+    
+    public void setChartEvaluationAlgos (JFreeChart c) {
+        this.chart_evaluationAlgos.setChart(c);
+    }
 }

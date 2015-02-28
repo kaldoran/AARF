@@ -11,11 +11,11 @@ package app_auto.utils;
  * @author Kevin
  */
 public class AlgosConstantes {
-    public final static String LABEL_MANH = "KPPV-Matrice [Manhattan]";
-    public final static String LABEL_EUCL = "KPPV-Matrice [Euclidienne]";
-    public final static String LABEL_CHEB = "KPPV-Matrice [Chebyshev]";
-    public final static String LABEL_FREE = "KPPV-Freeman";
-    public final static String LABEL_RDN = "Reseau de Neurone";
+    public final static String LABEL_MANH = "KM [Manh]";
+    public final static String LABEL_EUCL = "KM [Eucl]";
+    public final static String LABEL_CHEB = "KM [Cheb]";
+    public final static String LABEL_FREE = "K Freeman";
+    public final static String LABEL_RDN = "R Neurone";
     
     public final static int MANHATTAN = 0;
     public final static int EUCLIDIENNE = 1;
