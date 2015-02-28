@@ -46,18 +46,7 @@ public class Writer {
         Stats stats = Reader.recupStats();
 
         if (stats != null) {
-            stats.setNbTests(stats.getNbTests() + 1);
-
-            int[][] tmp = stats.getChiffreBonsMauvais();
-
-            if (resultat == 0) {
-                stats.setNbBons(stats.getNbBons() + 1);
-                tmp[chiffre][0] += 1;
-            } else {
-                stats.setNbMauvais(stats.getNbMauvais() + 1);
-                tmp[chiffre][1] += 1;
-            }
-            stats.setChiffreBonsMauvais(tmp);
+            stats.addStat(chiffre, resultat, IgConstante.ALGO_NUMBER);
             
             Writer.remplacerStats(stats);
         }

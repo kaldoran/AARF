@@ -8,6 +8,7 @@ package app_auto.ig;
 import app_auto.algo.KPlusProcheVoisin;
 import app_auto.graph.TraceurGraphique;
 import app_auto.ig.graph.FenetreGraphe;
+import app_auto.utils.AlgosConstantes;
 import app_auto.utils.ChiffreMatriceFreeman;
 import app_auto.utils.IgConstante;
 import app_auto.utils.Reader;
@@ -194,11 +195,11 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         } else if (source.equals(apropos)) {
             BoiteDialogueImage bdi = new BoiteDialogueImage(null, "A propos", true, "Apprentissage Automatique", IgConstante.APROPOS, "/Ressources/jacquenetForever.png");
         } else if (source.equals(euclidienne)) {
-            IgConstante.ALGO_NUMBER = KPlusProcheVoisin.EUCLIDIENNE;
+            IgConstante.ALGO_NUMBER = AlgosConstantes.EUCLIDIENNE;
         } else if (source.equals(manhattan)) {
-            IgConstante.ALGO_NUMBER = KPlusProcheVoisin.MANHATTAN;
+            IgConstante.ALGO_NUMBER = AlgosConstantes.MANHATTAN;
         } else if (source.equals(codeFreeman)) {
-            IgConstante.ALGO_NUMBER = KPlusProcheVoisin.CODEFREEMAN;
+            IgConstante.ALGO_NUMBER = AlgosConstantes.CODEFREEMAN;
         } else if (source.equals(three)) {
             IgConstante.NUMBER_KPPV = KPlusProcheVoisin._3_VOISINS;
         } else if (source.equals(five)) {

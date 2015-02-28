@@ -5,25 +5,37 @@
  */
 package app_auto.utils;
 
+import java.util.HashMap;
+import java.util.Iterator;
+
 /**
  *
  * @author Kevin
  */
 public class Stats {
-    int nbTests;
-    int nbBons;
-    int nbMauvais;
-    int[][] chiffreBonsMauvais;
+    
+    private int nbTests;
+    private int nbBons;
+    private int nbMauvais;
+    private int[][] chiffreBonsMauvais;
+    private HashMap<String, int[]> resultsAlgos;
 
     public Stats() {
         this.nbTests = 0;
         this.nbBons = 0;
         this.nbMauvais = 0;
         this.chiffreBonsMauvais = new int[10][2];
+        this.resultsAlgos = new HashMap<>();
+        int[] tabVide = {0,0};
+        int i;
         
-        for(int i = 0; i < 10; ++i){
-            chiffreBonsMauvais[i][0] = 0;
-            chiffreBonsMauvais[i][1] = 0;
+        for(i = 0; i < 10; ++i){
+            chiffreBonsMauvais[i] = tabVide;
+        }
+        String[] algosLabels = AlgosConstantes.labels();
+        
+        for(i = 0; i < algosLabels.length; ++i){
+            resultsAlgos.put(algosLabels[i], tabVide);
         }
     }
     
@@ -58,13 +70,62 @@ public class Stats {
     public void setChiffreBonsMauvais(int[][] chiffreBonsMauvais) {
         this.chiffreBonsMauvais = chiffreBonsMauvais;
     }
+
+    public HashMap<String, int[]> getResultsAlgos() {
+        return resultsAlgos;
+    }
+
+    public void setResultsAlgos(HashMap<String, int[]> resultsAlgos) {
+        this.resultsAlgos = resultsAlgos;
+    }
+    
+    public void addStat(int chiffre, int resultat, int algo){
+        String label = AlgosConstantes.labelParNum(algo);
+        int[] tmpLR = resultsAlgos.get(label);
+        
+        nbTests++;
+        
+        if (resultat == 0) {
+            nbBons++;
+            chiffreBonsMauvais[chiffre][0]++;
+            tmpLR[0]++;
+        } else {
+            nbMauvais++;
+            chiffreBonsMauvais[chiffre][1]++;
+            tmpLR[1]++;
+        }
+        System.out.println("man" + resultsAlgos.get(AlgosConstantes.LABEL_MANH)[0] + " " + resultsAlgos.get(AlgosConstantes.LABEL_MANH)[1]);
+        System.out.println("free" + resultsAlgos.get(AlgosConstantes.LABEL_FREE)[0] + " " + resultsAlgos.get(AlgosConstantes.LABEL_FREE)[1]);
+        
+        resultsAlgos.put(label, tmpLR);
+        
+    }
     
     @Override
     public String toString(){
-        String chaine = nbTests + "s" + nbBons + "s" + nbMauvais + "\n";
+        int i;
+        String clef;
+        Iterator it;
+        Boolean hasNext;
+        String chaine = nbTests + "#" + nbBons + "#" + nbMauvais + "@";
         
-        for(int i = 0; i < 10; ++i){
-            chaine += i + "s" + chiffreBonsMauvais[i][0] + "s" + chiffreBonsMauvais[i][1] + "\n";
+        for(i = 0; i < 9; ++i){
+            chaine += i + "#" + chiffreBonsMauvais[i][0] + "#" + chiffreBonsMauvais[i][1] + "%";
+        }
+        chaine += i + "#" + chiffreBonsMauvais[i][0] + "#" + chiffreBonsMauvais[i][1] + "@";
+        
+        it = resultsAlgos.keySet().iterator();
+        hasNext = it.hasNext();
+        
+        while(hasNext){
+            clef = (String)it.next();
+            int[] tmpR = resultsAlgos.get(clef);
+            
+            chaine += clef + "#" + tmpR[0] + "#" + tmpR[1];
+            
+            if(hasNext = it.hasNext()){
+                chaine += "%";
+            }
         }
         
         return chaine;

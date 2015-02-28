@@ -10,6 +10,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -108,29 +110,50 @@ public class Reader {
         
         String ligne;
         String[] champs;
+        String[] valeurs;
+        String[] sousValeurs;
+       
         int[] tbm = new int[3];
         int[][] cbm = new int[10][2];
+        HashMap<String, int[]> ra = new HashMap<>();
         
         try {
             lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_STATS)));
             
             ligne = lectResume.readLine();
-            champs = ligne.split("s");
             
-            tbm[0] = Integer.parseInt(champs[0]);
-            tbm[1] = Integer.parseInt(champs[1]);
-            tbm[2] = Integer.parseInt(champs[2]);
+            champs = ligne.split("@");
             
-            while((ligne = lectResume.readLine()) != null) {
-                champs = ligne.split("s");
-                cbm[i][0] = Integer.parseInt(champs[1]);
-                cbm[i][1] = Integer.parseInt(champs[2]);
-                ++i;
+            valeurs = champs[0].split("#");
+            tbm[0] = Integer.parseInt(valeurs[0]);
+            tbm[1] = Integer.parseInt(valeurs[1]);
+            tbm[2] = Integer.parseInt(valeurs[2]);
+            
+            valeurs = champs[1].split("%");
+            for(i = 0; i < valeurs.length; ++i){
+                sousValeurs = valeurs[i].split("#");
+                
+                cbm[i][0] = Integer.parseInt(sousValeurs[1]);
+                cbm[i][1] = Integer.parseInt(sousValeurs[2]);
             }
-            
-            if(i != 10){
+            if( valeurs.length!= 10){
                 lectResume.close();
                 return null;
+            }
+            
+            valeurs = champs[2].split("%");
+            for(i = 0; i < valeurs.length; ++i){
+                sousValeurs = valeurs[i].split("#");
+                int[] tmpVal = new int[2];
+                
+                System.out.println(valeurs[i]);
+                System.out.println(sousValeurs[0]);
+                System.out.println(sousValeurs[1]);
+                System.out.println(sousValeurs[2]);
+                
+                tmpVal[0] = Integer.parseInt(sousValeurs[1]);
+                tmpVal[1] = Integer.parseInt(sousValeurs[2]);
+                ra.put(sousValeurs[0], tmpVal);
             }
             
             stats = new Stats();
@@ -139,6 +162,7 @@ public class Reader {
             stats.setNbBons(tbm[1]);
             stats.setNbMauvais(tbm[2]);
             stats.setChiffreBonsMauvais(cbm);
+            stats.setResultsAlgos(ra);
             
             lectResume.close();
             

@@ -1,17 +1,12 @@
 package app_auto.algo;
 
-import app_auto.graph.TraceurGraphique;
+import app_auto.utils.AlgosConstantes;
 import app_auto.utils.ChiffreMatriceFreeman;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
 public class KPlusProcheVoisin {
-    
-    public static final int MANHATTAN = 0;
-    public static final int EUCLIDIENNE = 1;
-    public static final int CHEBYSHEV = 2;
-    public static final int CODEFREEMAN = 3;
     
     public static final int _3_VOISINS = 3;
     public static final int _5_VOISINS = 5;
@@ -55,18 +50,18 @@ public class KPlusProcheVoisin {
         //Calcul des distances par rapport à x pour chaque point de la base
         while (it_s.hasNext()) {
             ChiffreMatriceFreeman cmf = it_s.next();
-
+            
             switch (ALGO_DISTANCE) {
 
-                case MANHATTAN:
+                case AlgosConstantes.MANHATTAN:
                     cmf.setDistance(manhattanDistance(matrice_x, cmf.getMatrice()));
                     break;
 
-                case EUCLIDIENNE:
+                case AlgosConstantes.EUCLIDIENNE:
                     cmf.setDistance(euclideanDistance(matrice_x, cmf.getMatrice()));
                     break;
 
-                case CHEBYSHEV:
+                case AlgosConstantes.CHEBYSHEV:
                     cmf.setDistance(chebyshevDistance(matrice_x, cmf.getMatrice()));
                     break;
 

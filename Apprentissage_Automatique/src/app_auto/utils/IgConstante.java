@@ -29,7 +29,7 @@ public class IgConstante {
     public static JButton BOUTON_VALIDATION;
     public static BoutonRadio BOUTON_RADIO;
     public static int NUMBER_KPPV = KPlusProcheVoisin._3_VOISINS;
-    public static int ALGO_NUMBER = KPlusProcheVoisin.MANHATTAN;
+    public static int ALGO_NUMBER = AlgosConstantes.MANHATTAN;
     
     // Constantes du titre du label.
     public final static TitledBorder OUT = new TitledBorder("Out");
