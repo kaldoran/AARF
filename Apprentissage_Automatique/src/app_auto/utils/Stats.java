@@ -35,7 +35,13 @@ public class Stats {
         String[] algosLabels = AlgosConstantes.labels();
         
         for(i = 0; i < algosLabels.length; ++i){
-            resultsAlgos.put(algosLabels[i], tabVide);
+            if(algosLabels[i].startsWith("K")){
+                resultsAlgos.put(algosLabels[i] + " 3V", tabVide);
+                resultsAlgos.put(algosLabels[i] + " 5V", tabVide);
+                resultsAlgos.put(algosLabels[i] + " 7V", tabVide);
+            } else {
+                resultsAlgos.put(algosLabels[i], tabVide);
+            }
         }
     }
     
@@ -79,8 +85,11 @@ public class Stats {
         this.resultsAlgos = resultsAlgos;
     }
     
-    public void addStat(int chiffre, int resultat, int algo){
-        String label = AlgosConstantes.labelParNum(algo);
+    public void addStat(int chiffre, int resultat){
+        String label = AlgosConstantes.labelParNum(IgConstante.ALGO_NUMBER);
+        if(label.startsWith("K")){
+            label += " " + IgConstante.NUMBER_KPPV + "V";
+        }
         int[] tmpLR = resultsAlgos.get(label);
         
         nbTests++;

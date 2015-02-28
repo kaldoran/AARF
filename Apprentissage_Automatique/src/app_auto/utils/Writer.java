@@ -47,7 +47,7 @@ public class Writer {
         Stats stats = Reader.recupStats();
 
         if (stats != null) {
-            stats.addStat(chiffre, resultat, IgConstante.ALGO_NUMBER);
+            stats.addStat(chiffre, resultat);
 
             Writer.remplacerStats(stats);
         }
