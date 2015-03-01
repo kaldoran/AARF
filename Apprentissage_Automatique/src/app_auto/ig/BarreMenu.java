@@ -33,6 +33,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
     private JMenu menu_fichier;
     private JMenuItem mfich_nouveau;
     private JMenuItem validate;
+    private JMenuItem recharger;
     private JMenuItem quitter;
 
     private JMenu kpp;
@@ -79,6 +80,12 @@ public class BarreMenu extends JMenuBar implements ActionListener {
 
         validate.addActionListener(this);
 
+        recharger = new JMenuItem("Recharger Base");
+        recharger.setAccelerator(KeyStroke.getKeyStroke('R',
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
+        recharger.setToolTipText("Rafraichir la base d'apprentissage.");
+        recharger.addActionListener(this);
+
         quitter = new JMenuItem("Quitter");
         quitter.setAccelerator(KeyStroke.getKeyStroke('Q',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
@@ -114,6 +121,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
          */
         menu_fichier.add(mfich_nouveau);
         menu_fichier.add(validate);
+        menu_fichier.add(recharger);
         menu_fichier.add(quitter);
 
         divers.add(test_freeman);
@@ -180,6 +188,8 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         }
         else if (source.equals(mfich_nouveau)) {
             IgConstante.DESSIN.clean();
+        } else if (source.equals(recharger)){
+            IgConstante.BASE_APPRENTISSAGE = new Reader().recupTotal();
         } else if (source.equals(quitter)) {
             System.exit(0);
         } else if (source.equals(test_freeman)) {
@@ -207,6 +217,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         } else if (source.equals(seven)) {
             IgConstante.NUMBER_KPPV = KPlusProcheVoisin._7_VOISINS;
         } else if (source.equals(afficher_graphes)) {
+            IgConstante.BASE_APPRENTISSAGE = new Reader().recupTotal();
             fenetre_graphe.getPanneauGraphes().setChartRepresentationDonneeApprentissage(
                     TraceurGraphique.creerRepresentationDonneeApprentissage(IgConstante.BASE_APPRENTISSAGE));
             Stats stats = Reader.recupStats();
