@@ -23,6 +23,10 @@ public class AlgosConstantes {
     public final static int CODEFREEMAN = 3;
     public final static int NEURONES = 4;
     
+    public final static int LARG_MAT_CONV = 10;
+    public final static int HAUT_MAT_CONV = 10;
+    
+    
     public final static String labelParNum(int num){
         switch(num){
             case MANHATTAN:

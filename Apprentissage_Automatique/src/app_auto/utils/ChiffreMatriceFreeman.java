@@ -63,6 +63,10 @@ public class ChiffreMatriceFreeman implements Serializable, Comparable<ChiffreMa
         return chiffre + "#" + chaineMatrice() + "#" + freeman + "\n";
     }
     
+    public int[][] getConvMatrice(int larg,int haut){
+        return convMatrice(this.matrice, larg, haut);
+    }
+    
     public String chaineMatrice() {
         String chaineMatrice = "";
         int j,i;
@@ -131,6 +135,58 @@ public class ChiffreMatriceFreeman implements Serializable, Comparable<ChiffreMa
         } catch (Erreurs.FreemanFaux ex) {
             Logger.getLogger(ChiffreMatriceFreeman.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public int[][] completerMatrice(int[][] matrice){
+        int compLong = matrice[0].length+1;
+        int[][] matriceComp = new int[matrice.length+1][compLong];
+        int j,i;
+        
+        for(j = 0; j < matrice.length; ++j) {
+            for(i = 0; i < matrice[0].length; ++i) {
+                matriceComp[j][i] = matrice[j][i];
+            }
+            matriceComp[j][i] = 0;
+        }
+        for(i = 0; i < compLong; ++i) {
+            matriceComp[j][i] = 0;
+        }
+        
+        return matriceComp;
+    }
+    
+    public int[][] convMatrice(int[][] matriceBase, int larg, int haut){
+        int[][] matrice = completerMatrice(matriceBase);
+        int largConv = matrice[0].length/larg;
+        int hautConv = matrice.length/haut;
+        int tmpJ = 0, tmpI = 0;
+        int tmpH = 0, tmpL = 0;
+        int c = 0;
+        //int q = 1/(larg*haut);
+        int i,j,n,m;
+        int[][] matriceConv = new int[hautConv][largConv];
+        
+        for(j = 0; j < hautConv; ++j) {
+            for(i = 0; i < largConv; ++i) {
+                tmpI = i*larg;
+                tmpL = larg + tmpI;
+                
+                tmpJ = j*haut;
+                tmpH = haut + tmpJ;
+                
+                for(n = tmpJ; n < tmpH; ++n){
+                    for(m = tmpI; m < tmpL; ++m){
+                        c += matrice[n][m];//*q;
+                    }
+                }
+                if(c > 0){
+                matriceConv[j][i] = c;
+                c = 0;
+                }
+            }       
+        }
+        
+        return matriceConv;
     }
 
     @Override

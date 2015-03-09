@@ -13,6 +13,7 @@ import app_auto.utils.ChiffreMatriceFreeman;
 import app_auto.utils.IgConstante;
 import app_auto.utils.Reader;
 import app_auto.utils.Stats;
+import app_auto.utils.Writer;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,6 +35,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
     private JMenuItem mfich_nouveau;
     private JMenuItem validate;
     private JMenuItem recharger;
+    private JMenuItem baseVersArff;
     private JMenuItem quitter;
 
     private JMenu kpp;
@@ -71,26 +73,31 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         mfich_nouveau = new JMenuItem("Nouveau");
         mfich_nouveau.setAccelerator(KeyStroke.getKeyStroke('N',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
-
         mfich_nouveau.addActionListener(this);
 
         validate = new JMenuItem("Valider");
         validate.setAccelerator(KeyStroke.getKeyStroke('S',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
-
         validate.addActionListener(this);
 
         recharger = new JMenuItem("Recharger Base");
         recharger.setAccelerator(KeyStroke.getKeyStroke('R',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
-        recharger.setToolTipText("Rafraichir la base d'apprentissage.");
+        recharger.setToolTipText("Rafraichir la base d'apprentissage.");   
         recharger.addActionListener(this);
 
+        baseVersArff = new JMenuItem("Base vers arff");
+        baseVersArff.setAccelerator(KeyStroke.getKeyStroke('T',
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
+        baseVersArff.setToolTipText("Crée un fichier .arff correspondant à la base de connaissance.");
+        baseVersArff.addActionListener(this);
+        
         quitter = new JMenuItem("Quitter");
         quitter.setAccelerator(KeyStroke.getKeyStroke('Q',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
-
         quitter.addActionListener(this);
+        
+        
 
         test_freeman = new JMenuItem("Tester Freeman");
         test_freeman.setAccelerator(KeyStroke.getKeyStroke('F',
@@ -122,6 +129,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         menu_fichier.add(mfich_nouveau);
         menu_fichier.add(validate);
         menu_fichier.add(recharger);
+        menu_fichier.add(baseVersArff);
         menu_fichier.add(quitter);
 
         divers.add(test_freeman);
@@ -190,6 +198,9 @@ public class BarreMenu extends JMenuBar implements ActionListener {
             IgConstante.DESSIN.clean();
         } else if (source.equals(recharger)){
             IgConstante.BASE_APPRENTISSAGE = new Reader().recupTotal();
+        } else if (source.equals(baseVersArff)){
+            Reader lect = new Reader();
+            Writer.tradBaseEnArff(lect.recupTotal(), AlgosConstantes.LARG_MAT_CONV, AlgosConstantes.HAUT_MAT_CONV);
         } else if (source.equals(quitter)) {
             System.exit(0);
         } else if (source.equals(test_freeman)) {
