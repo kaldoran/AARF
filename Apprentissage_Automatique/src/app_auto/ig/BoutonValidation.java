@@ -69,7 +69,9 @@ public class BoutonValidation extends JPanel implements ActionListener {
         if (e.getSource().equals(reset)) {
             IgConstante.CODE_FREEMAN.setText("");
             IgConstante.VALEUR_TROUVEE.setText("");
-            IgConstante.BOUTON_VALIDATION.setEnabled(false);
+            if ( IgConstante.BOUTON_RADIO.ajoutSelect() ) {
+                IgConstante.BOUTON_VALIDATION.setEnabled(false);
+            }
         } else if (e.getSource().equals(IgConstante.BOUTON_VALIDATION)) {
             BufferedImageToMatrix bim = new BufferedImageToMatrix(IgConstante.DESSIN.getImage());
             int[][] matrice = bim.getMatrix();
