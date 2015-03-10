@@ -13,8 +13,13 @@ import java.io.File;
  */
 public class FichierConstante {
     public final static String REPERTOIRE_APPRENTISSAGE = System.getProperties().getProperty("user.dir") + File.separator + "Base_Apprentissage" + File.separator;
+    
     public final static String FICHIER_BASE = REPERTOIRE_APPRENTISSAGE + "Base";
+    
     public final static String FICHIER_STATS = REPERTOIRE_APPRENTISSAGE + "Stats";
+    
     public final static String PREFIX_ARFF = REPERTOIRE_APPRENTISSAGE + "Base_RdN_";
     public final static String ARFF = ".arff";
+    
+    public final static String PREFIX_RDN = REPERTOIRE_APPRENTISSAGE + "Objet_RdN_";
 }
