@@ -26,21 +26,23 @@ import weka.core.Utils;
  * @author Kevin
  */
 public class ReseauNeurones {
-    MultilayerPerceptron rdn; 
+    MultilayerPerceptron rdn;
 
     public ReseauNeurones(String hiddenLay) {
         rdn = initRdN(hiddenLay);
     }
-    
-    public void training(String ficArff){    
+
+    public void training(String ficArff) {
         try {
             FileReader trainreader = new FileReader(Writer.verifFichier(FichierConstante.PREFIX_ARFF + "300" + FichierConstante.ARFF, 300));
 
             Instances train = new Instances(trainreader);
             train.setClassIndex(train.numAttributes() - 1);
-            
+
             rdn.setOptions(Utils.splitOptions("-L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H 4"));
             rdn.buildClassifier(train);
+
+            sauverRdN();
             
             trainreader.close();
             
