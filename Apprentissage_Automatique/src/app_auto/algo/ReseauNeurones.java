@@ -5,6 +5,7 @@
  */
 package app_auto.algo;
 
+import app_auto.utils.AlgosConstantes;
 import app_auto.utils.FichierConstante;
 import app_auto.utils.Writer;
 import java.io.File;
@@ -17,6 +18,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import weka.classifiers.Evaluation;
 import weka.classifiers.functions.MultilayerPerceptron;
 import weka.core.Instances;
 import weka.core.Utils;
@@ -31,30 +33,6 @@ public class ReseauNeurones {
     public ReseauNeurones(String hiddenLay) {
         rdn = initRdN(hiddenLay);
     }
-
-    public void training(String ficArff) {
-        try {
-            FileReader trainreader = new FileReader(Writer.verifFichier(FichierConstante.PREFIX_ARFF + "300" + FichierConstante.ARFF, 300));
-
-            Instances train = new Instances(trainreader);
-            train.setClassIndex(train.numAttributes() - 1);
-
-            rdn.setOptions(Utils.splitOptions("-L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H 4"));
-            rdn.buildClassifier(train);
-
-            sauverRdN();
-            
-            trainreader.close();
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ReseauNeurones.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ReseauNeurones.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(ReseauNeurones.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
     
     public static final MultilayerPerceptron initRdN(String hiddenLay){
         File ficRdN = new File(FichierConstante.PREFIX_RDN + hiddenLay);
@@ -64,12 +42,49 @@ public class ReseauNeurones {
         }
         else{
             MultilayerPerceptron rdn = new MultilayerPerceptron();
-            rdn.setHiddenLayers(hiddenLay);
             
             return rdn;
         }
     }
 
+    public void training(int nbInput) {
+        try {
+            FileReader trainReader = new FileReader(Writer.verifFichier(FichierConstante.PREFIX_ARFF_TEST + nbInput + FichierConstante.ARFF, nbInput));
+            Instances train = new Instances(trainReader);
+            train.setClassIndex(train.numAttributes() - 1);
+
+            FileReader validReader = new FileReader(Writer.verifFichier(FichierConstante.PREFIX_ARFF_VALID + nbInput + FichierConstante.ARFF, nbInput));
+            Instances valid = new Instances(validReader);
+            valid.setClassIndex(valid.numAttributes() - 1);
+            
+            System.out.println("Training avec option : " + AlgosConstantes.RDN_OPTIONS);
+
+            rdn.setOptions(Utils.splitOptions(AlgosConstantes.RDN_OPTIONS));
+            rdn.buildClassifier(train); 
+            sauverRdN();
+            
+            Evaluation eval = new Evaluation(train);
+            eval.evaluateModel(rdn, valid);
+            
+            Writer.logTestRdn(eval.toSummaryString("Résultats pour les options :" + AlgosConstantes.RDN_OPTIONS, false));
+            
+            trainReader.close();
+            validReader.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ReseauNeurones.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ReseauNeurones.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ReseauNeurones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void tester(int[][] matrice){
+      
+        
+        
+    }
+    
     private static MultilayerPerceptron chargerRdN(File ficRdN) {
         if (ficRdN.isFile()) {
             try {

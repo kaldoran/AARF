@@ -6,6 +6,7 @@
 package app_auto.ig;
 
 import app_auto.algo.KPlusProcheVoisin;
+import app_auto.algo.ReseauNeurones;
 import app_auto.graph.TraceurGraphique;
 import app_auto.ig.graph.FenetreGraphe;
 import app_auto.utils.AlgosConstantes;
@@ -38,12 +39,14 @@ public class BarreMenu extends JMenuBar implements ActionListener {
     private JMenuItem baseVersArff;
     private JMenuItem quitter;
 
-    private JMenu kpp;
+    private JMenu algo;
     private ButtonGroup distance;
     private JCheckBoxMenuItem manhattan;
     private JCheckBoxMenuItem euclidienne;
     private JCheckBoxMenuItem codeFreeman;
+    private JCheckBoxMenuItem neurones;
     private JMenu kpp_value;
+    private JMenuItem training;
 
     private ButtonGroup number;
     private JCheckBoxMenuItem three;
@@ -139,23 +142,32 @@ public class BarreMenu extends JMenuBar implements ActionListener {
 
         this.add(menu_fichier);
 
-        kpp = new JMenu("KPP Configuration");
+        algo = new JMenu("Algo Configuration");
         euclidienne = new JCheckBoxMenuItem("Euclidienne");
         manhattan = new JCheckBoxMenuItem("Manhattan");
         codeFreeman = new JCheckBoxMenuItem("Code Freeman");
+        neurones = new JCheckBoxMenuItem("Reseau de Neurones");
+        training = new JMenuItem("Trainning");
+        training.setVisible(false);
 
-        kpp.add(euclidienne);
-        kpp.add(manhattan);
-        kpp.add(codeFreeman);
+        algo.add(euclidienne);
+        algo.add(manhattan);
+        algo.add(codeFreeman);
+        algo.add(neurones);
+        algo.add(training);
         
         euclidienne.addActionListener(this);
         manhattan.addActionListener(this);
         codeFreeman.addActionListener(this);
+        neurones.addActionListener(this);
+        training.addActionListener(this);
 
         distance = new ButtonGroup();
         distance.add(euclidienne);
         distance.add(manhattan);
         distance.add(codeFreeman);
+        distance.add(neurones);
+        
 
         kpp_value = new JMenu("Kpp Value");
         three = new JCheckBoxMenuItem("3");
@@ -178,8 +190,8 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         manhattan.setSelected(true);
         three.setSelected(true);
 
-        kpp.add(kpp_value);
-        this.add(kpp);
+        algo.add(kpp_value);
+        this.add(algo);
 
         this.add(divers);
         
@@ -200,7 +212,9 @@ public class BarreMenu extends JMenuBar implements ActionListener {
             IgConstante.BASE_APPRENTISSAGE = new Reader().recupTotal();
         } else if (source.equals(baseVersArff)){
             Reader lect = new Reader();
-            Writer.tradBaseEnArff(lect.recupTotal(), AlgosConstantes.LARG_MAT_CONV, AlgosConstantes.HAUT_MAT_CONV);
+            String percValid = JOptionPane.showInputDialog(null, "Quel pourcentage de la base voulez vous en validation (0 à 66%)", "Pourcentage de validation", JOptionPane.QUESTION_MESSAGE);
+            
+            Writer.tradBaseEnArff(lect.recupTotal(), AlgosConstantes.LARG_MAT_CONV, AlgosConstantes.HAUT_MAT_CONV, Integer.parseInt(percValid));
         } else if (source.equals(quitter)) {
             System.exit(0);
         } else if (source.equals(test_freeman)) {
@@ -216,11 +230,24 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         } else if (source.equals(apropos)) {
             BoiteDialogueImage bdi = new BoiteDialogueImage(null, "A propos", true, "Apprentissage Automatique", IgConstante.APROPOS, "/Ressources/jacquenetForever.png");
         } else if (source.equals(euclidienne)) {
+            kpp_value.setVisible(true);
+            training.setVisible(false);
             IgConstante.ALGO_NUMBER = AlgosConstantes.EUCLIDIENNE;
         } else if (source.equals(manhattan)) {
+            kpp_value.setVisible(true);
+            training.setVisible(false);
             IgConstante.ALGO_NUMBER = AlgosConstantes.MANHATTAN;
         } else if (source.equals(codeFreeman)) {
+            kpp_value.setVisible(true);
+            training.setVisible(false);
             IgConstante.ALGO_NUMBER = AlgosConstantes.CODEFREEMAN;
+        } else if (source.equals(neurones)) {
+            kpp_value.setVisible(false);
+            training.setVisible(true);
+            IgConstante.ALGO_NUMBER = AlgosConstantes.NEURONES;
+        }  else if (source.equals(training)) {
+            ReseauNeurones rdn = new ReseauNeurones("100");
+            rdn.training(300);
         } else if (source.equals(three)) {
             IgConstante.NUMBER_KPPV = KPlusProcheVoisin._3_VOISINS;
         } else if (source.equals(five)) {

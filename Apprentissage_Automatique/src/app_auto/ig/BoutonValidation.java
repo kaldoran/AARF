@@ -6,6 +6,7 @@
 package app_auto.ig;
 
 import app_auto.algo.KPlusProcheVoisin;
+import app_auto.algo.ReseauNeurones;
 import app_auto.utils.AlgosConstantes;
 import app_auto.utils.IgConstante;
 import app_auto.utils.BufferedImageToMatrix;
@@ -88,27 +89,33 @@ public class BoutonValidation extends JPanel implements ActionListener {
             IgConstante.CODE_FREEMAN.setToolTipText(resFree);
 
             if (IgConstante.BOUTON_RADIO.testSelect()) {
-                // on calcul les k-plus proche voisin 
-                String s;
-                if(IgConstante.ALGO_NUMBER == AlgosConstantes.CODEFREEMAN) {
-                    s = String.valueOf(kppv.kppv(resFree, IgConstante.BASE_APPRENTISSAGE, IgConstante.NUMBER_KPPV ));
-
+                if(IgConstante.ALGO_NUMBER == AlgosConstantes.NEURONES){
+                    ReseauNeurones rdn = new ReseauNeurones("100");
+                    
+                    rdn.tester(matrice);
                 } else {
-                    s = String.valueOf(kppv.kppv(matrice, IgConstante.BASE_APPRENTISSAGE, IgConstante.NUMBER_KPPV, IgConstante.ALGO_NUMBER));
+                    // on calcul les k-plus proche voisin 
+                    String s;
+                    if(IgConstante.ALGO_NUMBER == AlgosConstantes.CODEFREEMAN) {
+                        s = String.valueOf(kppv.kppv(resFree, IgConstante.BASE_APPRENTISSAGE, IgConstante.NUMBER_KPPV ));
+
+                    } else {
+                        s = String.valueOf(kppv.kppv(matrice, IgConstante.BASE_APPRENTISSAGE, IgConstante.NUMBER_KPPV, IgConstante.ALGO_NUMBER));
+                    }
+
+                    IgConstante.VALEUR_TROUVEE.setText(s);
+
+                    try {
+                        sleep(100);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(BoutonValidation.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    ImageIcon icone = new ImageIcon(getClass().getResource("/Ressources/iconeQuestion.png"));
+                    resultat = JOptionPane.showConfirmDialog(null, "Le bon chiffre a-t-il été trouvé ?", "Resultat", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icone);
+
+                    Writer.majStat(Integer.parseInt(s), resultat);
                 }
-
-                IgConstante.VALEUR_TROUVEE.setText(s);
-
-                try {
-                    sleep(100);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(BoutonValidation.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                ImageIcon icone = new ImageIcon(getClass().getResource("/Ressources/iconeQuestion.png"));
-                resultat = JOptionPane.showConfirmDialog(null, "Le bon chiffre a-t-il été trouvé ?", "Resultat", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icone);
-
-                Writer.majStat(Integer.parseInt(s), resultat);
             } else {
                 Writer.enregistrer(IgConstante.VALEUR_TROUVEE.getText(), matrice, resFree);
             }

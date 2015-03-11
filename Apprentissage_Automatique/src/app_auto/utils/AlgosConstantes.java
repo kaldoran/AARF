@@ -23,9 +23,11 @@ public class AlgosConstantes {
     public final static int CODEFREEMAN = 3;
     public final static int NEURONES = 4;
     
-    public final static int LARG_MAT_CONV = 10;
-    public final static int HAUT_MAT_CONV = 10;
+    public final static int LARG_MAT_CONV = 5;
+    public final static int HAUT_MAT_CONV = 5;
     
+    public final static String RDN_OPTIONS = "-L 0.02 -M 0.2 -N 500 -V 20 -S 0 -E 20 -H 300,200";
+       
     
     public final static String labelParNum(int num){
         switch(num){

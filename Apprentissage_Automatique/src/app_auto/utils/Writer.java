@@ -67,7 +67,7 @@ public class Writer {
         }
     }
     
-      public static final void initStats() {
+    private static void initStats() {
         Stats initStats = new Stats();
 
         try {
@@ -82,10 +82,18 @@ public class Writer {
         }
     }
       
-    public final static void ecrireEntreeArff(int[][] matrice, String chiffre){
+    public final static void ecrireEntreeArff(int[][] matrice, String chiffre, Boolean test){
         try {
             int nbInput = matrice[0].length*matrice.length;
-            FileWriter redac = new FileWriter(Writer.verifFichier(FichierConstante.PREFIX_ARFF + nbInput + FichierConstante.ARFF, nbInput), true);
+            
+            String path;
+            if(test){
+                path = FichierConstante.PREFIX_ARFF_TEST + nbInput + FichierConstante.ARFF;
+            } else {
+                path = FichierConstante.PREFIX_ARFF_VALID + nbInput + FichierConstante.ARFF;
+            }
+            
+            FileWriter redac = new FileWriter(Writer.verifFichier(path, nbInput), true);
 
             String entree = "";
             int longueur = matrice.length-1;
@@ -111,20 +119,38 @@ public class Writer {
         }
     }
     
-    public final static void tradBaseEnArff(ArrayList<ChiffreMatriceFreeman> base, int larg, int haut){
+    public final static void tradBaseEnArff(ArrayList<ChiffreMatriceFreeman> base, int larg, int haut, int percValid){
+        if(percValid > 66){
+            percValid = 66;
+        } else if(percValid < 0){
+            percValid = 0;
+        }
+        
         int nbEx = base.size();
+        int nbValid = (nbEx*percValid)/100;
+        int i;
         ChiffreMatriceFreeman tmp;
         int[][] tmpmat;
-        for(int i = 0; i < nbEx; ++i){
+        
+        for(i = 0; i < nbValid; ++i){
             tmp = base.get(i);
             tmpmat = tmp.getConvMatrice(larg, haut);
-            Writer.ecrireEntreeArff(tmpmat, tmp.getChiffre());
+            Writer.ecrireEntreeArff(tmpmat, tmp.getChiffre(), false);
         }
+        
+        while(i < nbEx){
+            tmp = base.get(i);
+            tmpmat = tmp.getConvMatrice(larg, haut);
+            Writer.ecrireEntreeArff(tmpmat, tmp.getChiffre(), true);
+            
+            ++i;
+        }
+        
     }
     
-    public final static void initArff(int nbInput){
+    private static void initArff(String path, int nbInput){
         try {
-            FileWriter redac = new FileWriter(FichierConstante.PREFIX_ARFF + nbInput + FichierConstante.ARFF);
+            FileWriter redac = new FileWriter(path);
             
             String init = "@relation Base_RdN_" + nbInput + "inputs\n\n";
 
@@ -132,7 +158,7 @@ public class Writer {
                 init += "@attribute m"+ i +" numeric\n";
             }
             init += "@attribute chiffre {0,1,2,3,4,5,6,7,8,9}\n\n";
-            init += "@base\n";
+            init += "@data\n";
         
             
             redac.write(init);
@@ -141,9 +167,20 @@ public class Writer {
         } catch (IOException ex) {
             Logger.getLogger(Writer.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
+    public final static void logTestRdn(String resultats){
+        try {
+            FileWriter redac = new FileWriter(Writer.verifFichier(FichierConstante.FICHIER_LOG_RDN, 0), true);
+            
+            redac.write("|----------\n" + resultats + "----------|\n");
+            
+            redac.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Writer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public final static File verifFichier(String path, int nbInput) {
         File fic = new File(path);
 
@@ -154,8 +191,8 @@ public class Writer {
 
                 if (path.equals(FichierConstante.FICHIER_STATS)) {
                     Writer.initStats();
-                } else if(path.startsWith(FichierConstante.PREFIX_ARFF)) {
-                    Writer.initArff(nbInput);
+                } else if(path.startsWith(FichierConstante.PREFIX_ARFF_TEST) || path.startsWith(FichierConstante.PREFIX_ARFF_VALID)) {
+                    Writer.initArff(path, nbInput);
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Writer.class.getName()).log(Level.SEVERE, null, ex);
