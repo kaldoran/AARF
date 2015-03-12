@@ -18,7 +18,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import weka.classifiers.Evaluation;
 import weka.classifiers.functions.MultilayerPerceptron;
 import weka.core.Instances;
 import weka.core.Utils;
@@ -30,46 +29,39 @@ import weka.core.Utils;
 public class ReseauNeurones {
     MultilayerPerceptron rdn;
 
-    public ReseauNeurones(String hiddenLay) {
-        rdn = initRdN(hiddenLay);
+    public ReseauNeurones() {
+        rdn = initRdN();
     }
     
-    public static final MultilayerPerceptron initRdN(String hiddenLay){
-        File ficRdN = new File(FichierConstante.PREFIX_RDN + hiddenLay);
+    public static final MultilayerPerceptron initRdN(){
+        File ficRdN = new File(FichierConstante.SAVE_RDN);
+        System.out.println("Initialisation Reseau de Neurones.");
         
         if(ficRdN.isFile()){
             return chargerRdN(ficRdN);
         }
         else{
+            System.out.println("Nouveau Reseau.");
             MultilayerPerceptron rdn = new MultilayerPerceptron();
             
             return rdn;
         }
     }
 
-    public void training(int nbInput) {
+    public void training() {
         try {
-            FileReader trainReader = new FileReader(Writer.verifFichier(FichierConstante.PREFIX_ARFF_TEST + nbInput + FichierConstante.ARFF, nbInput));
+            FileReader trainReader = new FileReader(Writer.verifFichier(FichierConstante.FICHIER_ARFF_TRAIN));
             Instances train = new Instances(trainReader);
             train.setClassIndex(train.numAttributes() - 1);
-
-            FileReader validReader = new FileReader(Writer.verifFichier(FichierConstante.PREFIX_ARFF_VALID + nbInput + FichierConstante.ARFF, nbInput));
-            Instances valid = new Instances(validReader);
-            valid.setClassIndex(valid.numAttributes() - 1);
             
             System.out.println("Training avec option : " + AlgosConstantes.RDN_OPTIONS);
 
             rdn.setOptions(Utils.splitOptions(AlgosConstantes.RDN_OPTIONS));
-            rdn.buildClassifier(train); 
+            rdn.buildClassifier(train);
+            
             sauverRdN();
             
-            Evaluation eval = new Evaluation(train);
-            eval.evaluateModel(rdn, valid);
-            
-            Writer.logTestRdn(eval.toSummaryString("Résultats pour les options :" + AlgosConstantes.RDN_OPTIONS, false));
-            
             trainReader.close();
-            validReader.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ReseauNeurones.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -78,11 +70,20 @@ public class ReseauNeurones {
             Logger.getLogger(ReseauNeurones.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void tester(int[][] matrice){
-      
-        
-        
+
+    public int tester() {
+        try {
+            FileReader validReader = new FileReader(Writer.verifFichier(FichierConstante.FICHIER_ARFF_VALID));
+            Instances valid = new Instances(validReader);
+            valid.setClassIndex(valid.numAttributes() - 1);
+
+            validReader.close();
+
+            return (int)Math.round(rdn.classifyInstance(valid.lastInstance()));
+        } catch (Exception ex) {
+            Logger.getLogger(ReseauNeurones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
     }
     
     private static MultilayerPerceptron chargerRdN(File ficRdN) {
@@ -90,7 +91,8 @@ public class ReseauNeurones {
             try {
                 FileInputStream save = new FileInputStream(ficRdN);
                 ObjectInputStream ois = new ObjectInputStream(save);
-
+                
+                System.out.println("Chargement Reseau de Neurones.");
                 MultilayerPerceptron rdn = (MultilayerPerceptron) ois.readObject();
 
                 ois.close();
@@ -107,12 +109,13 @@ public class ReseauNeurones {
     }
 
     private void sauverRdN() {
-        File ficRdN = Writer.verifFichier(FichierConstante.PREFIX_RDN + rdn.getHiddenLayers(), 0);
+        File ficRdN = Writer.verifFichier(FichierConstante.SAVE_RDN);
         
         try {
             FileOutputStream save = new FileOutputStream(ficRdN);
             ObjectOutputStream oos = new ObjectOutputStream(save);
-
+            
+            System.out.println("Sauvegarde Reseau de Neurones.");
             oos.writeObject(rdn);
 
             oos.flush();

@@ -18,11 +18,10 @@ public class FichierConstante {
     
     public final static String FICHIER_STATS = REPERTOIRE_APPRENTISSAGE + "Stats";
     
-    public final static String PREFIX_ARFF_TEST = REPERTOIRE_APPRENTISSAGE + "Base_test_RdN_";
-    public final static String PREFIX_ARFF_VALID = REPERTOIRE_APPRENTISSAGE + "Base_valid_RdN_";
-    public final static String ARFF = ".arff";
+    public final static String FICHIER_ARFF_TRAIN = REPERTOIRE_APPRENTISSAGE + "Base_train_RdN_" + AlgosConstantes.NB_ENTREE + ".arff";
+    public final static String FICHIER_ARFF_VALID = REPERTOIRE_APPRENTISSAGE + "Base_valid_RdN_" + AlgosConstantes.NB_ENTREE + ".arff";
     
-    public final static String PREFIX_RDN = REPERTOIRE_APPRENTISSAGE + "Objet_RdN_";
+    public final static String SAVE_RDN = REPERTOIRE_APPRENTISSAGE + "Objet_RdN_" + AlgosConstantes.NB_ENTREE;
     
     public final static String FICHIER_LOG_RDN = REPERTOIRE_APPRENTISSAGE + "Log_tests_RdN";
 }

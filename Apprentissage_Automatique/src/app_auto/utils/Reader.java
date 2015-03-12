@@ -26,7 +26,7 @@ public class Reader {
         ArrayList<ChiffreMatriceFreeman> liste = new ArrayList<>();
 
         try {
-            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_BASE, 0)));
+            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_BASE)));
             String resume;
             while ((resume = lectResume.readLine()) != null) {
                 String[] champs = resume.split("#");
@@ -53,7 +53,7 @@ public class Reader {
 
     public ChiffreMatriceFreeman recupLigne(int ligne) {
         try {
-            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_BASE, 0)));
+            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_BASE)));
 
             if (ligne < 1) {
                 throw err.new LigneNonPresente();
@@ -118,7 +118,7 @@ public class Reader {
         HashMap<String, int[]> ra = new HashMap<>();
 
         try {
-            lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_STATS, 0)));
+            lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_STATS)));
 
             ligne = lectResume.readLine();
 

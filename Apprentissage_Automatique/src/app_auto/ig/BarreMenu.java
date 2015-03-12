@@ -212,9 +212,8 @@ public class BarreMenu extends JMenuBar implements ActionListener {
             IgConstante.BASE_APPRENTISSAGE = new Reader().recupTotal();
         } else if (source.equals(baseVersArff)){
             Reader lect = new Reader();
-            String percValid = JOptionPane.showInputDialog(null, "Quel pourcentage de la base voulez vous en validation (0 à 66%)", "Pourcentage de validation", JOptionPane.QUESTION_MESSAGE);
             
-            Writer.tradBaseEnArff(lect.recupTotal(), AlgosConstantes.LARG_MAT_CONV, AlgosConstantes.HAUT_MAT_CONV, Integer.parseInt(percValid));
+            Writer.tradBaseEnArff(lect.recupTotal(), AlgosConstantes.LARG_MAT_CONV, AlgosConstantes.HAUT_MAT_CONV, false);
         } else if (source.equals(quitter)) {
             System.exit(0);
         } else if (source.equals(test_freeman)) {
@@ -246,8 +245,8 @@ public class BarreMenu extends JMenuBar implements ActionListener {
             training.setVisible(true);
             IgConstante.ALGO_NUMBER = AlgosConstantes.NEURONES;
         }  else if (source.equals(training)) {
-            ReseauNeurones rdn = new ReseauNeurones("100");
-            rdn.training(300);
+            ReseauNeurones rdn = new ReseauNeurones();
+            rdn.training();
         } else if (source.equals(three)) {
             IgConstante.NUMBER_KPPV = KPlusProcheVoisin._3_VOISINS;
         } else if (source.equals(five)) {

@@ -162,7 +162,6 @@ public class ChiffreMatriceFreeman implements Serializable, Comparable<ChiffreMa
         int tmpJ = 0, tmpI = 0;
         int tmpH = 0, tmpL = 0;
         int c = 0;
-        //int q = 1/(larg*haut);
         int i,j,n,m;
         int[][] matriceConv = new int[hautConv][largConv];
         
@@ -188,6 +187,32 @@ public class ChiffreMatriceFreeman implements Serializable, Comparable<ChiffreMa
         
         return matriceConv;
     }
+    
+    public final static int[] redFreeman(String freeman, int nbParties){
+        int l = freeman.length();
+        int tailleParties = l/nbParties;
+        int nbVal = nbParties*8;
+        int[] occFree = new int[nbVal];
+        int[] nbValPart = new int[nbParties];
+        int i,j,indOcc, indTab;
+        
+        for(j = 0; j < nbParties; ++j){
+            indOcc = j*tailleParties;
+            indTab = j*8;
+            for(i = 0; i < tailleParties; ++i){
+                ++occFree[Character.getNumericValue(freeman.charAt(i + indOcc)) + indTab];
+                ++nbValPart[j];
+            }
+        }
+        for(j = 0; j < nbParties; ++j){
+            indTab = j*8;
+            for(i = 0; i < 8; ++i) {
+                occFree[i + indTab] = (occFree[i + indTab]*100)/nbValPart[j];
+            }
+        }
+        
+        return occFree;
+    }  
 
     @Override
     public int compareTo(ChiffreMatriceFreeman cmf) {
