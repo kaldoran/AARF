@@ -1,0 +1,135 @@
+\documentclass[10pt,a4paper]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage[top=1cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{} 
+\lhead{ \hspace{0.1cm} M1 WI 2014-2015  \hspace{0.4cm} \vline}
+\chead{Interoperabilité}
+\rhead{K.B - B.B - K.L - N.R}
+\rfoot{\thepage}
+
+\author{Kevin BASCOL, Bachir BOUACHERIA, Kevin LAOUSSING, Nicolas REYNAUD}
+\title{ Apprentissage automatique : Reconnaissance des formes}
+
+\makeatletter
+\renewcommand{\thesection}{\@arabic\c@section}
+\makeatother
+
+\begin{document}
+
+\makeatletter
+	\begin{titlepage}
+	
+	\centering
+		{
+		\vspace*{5cm}
+		\hrule height 2pt
+		\vspace{0.7cm}
+		\Huge \textbf{\@title}}\\
+		\vspace{0.7cm}
+		\hrule height 2pt
+		
+		\vfill
+		\vspace{1cm}
+		\@author\\
+		\end{titlepage}
+\makeatother
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+\renewcommand{\contentsname}{Sommaire}
+\begingroup\makeatletter
+\def\@makeschapterhead#1{%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  #1\par\nobreak
+    \vskip 20pt% <---- à réduire pour avoir plus de place
+  }}\makeatother
+\tableofcontents
+\endgroup
+\thispagestyle{empty}
+\setcounter{page}{0}
+\newpage
+
+\newgeometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%					INTRODUCTION					%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\begin{flushleft}
+
+La reconnaissance de formes est une branche de l'intelligence artificielle qui fait appel aux techniques d'apprentissage de automatique. Durant ce projet, nous avons réalisé un logiciel de reconnaissance de forme, où les formes sont les nombres de 0 à 9.
+La réalisation comprend la développement d'une interface graphique ergonomique, facilitant la s
+Pour permettre la reconnaissance, deux méthodes ont été implémenter : les k-plus-proches voisins, et le réseau de neurones.
+
+
+\end{flushleft}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%					ORGANISATION					%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Organisation du projet}
+
+\subsection{Planning}
+\begin{flushleft}
+•
+\end{flushleft}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%					FONCTIONNALITES				%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Fonctionnalités}
+
+\subsection{Description de la fonctionnalité}
+\begin{flushleft}
+
+\end{flushleft}
+
+\subsection{Description technique}
+\begin{flushleft}
+
+\end{flushleft}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%						ETUDE						%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Etude}
+
+\subsection{Description de la fonctionnalité}
+\begin{flushleft}
+•
+\end{flushleft}
+
+\subsection{Description technique}
+\begin{flushleft}
+•
+\end{flushleft}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%						CONCLUSION					%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusion}
+\begin{flushleft}
+•
+\end{flushleft}
+\end{document}
