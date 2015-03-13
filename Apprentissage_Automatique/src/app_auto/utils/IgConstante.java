@@ -52,4 +52,5 @@ public class IgConstante {
     
     public static long DERNIERE_LIGNE = 0;
 
+    public static Boolean AJOUT_TEST = false;
 }

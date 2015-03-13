@@ -67,7 +67,8 @@ public class BarreMenu extends JMenuBar implements ActionListener {
 
     private JMenu tests;
     private JMenuItem testEns;
-    private JMenuItem creaTest;
+    private JMenuItem activAjoutTest;
+    private JMenuItem desAjoutTest;
 
     private FenetreGraphe fenetre_graphe;
 
@@ -139,9 +140,15 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         testEns.addActionListener(this);
         testEns.setToolTipText("Tester les exemples de la base de test.");
 
-        creaTest = new JMenuItem("Ajout exemple");
-        creaTest.addActionListener(this);
-        creaTest.setToolTipText("Ajouter des exemples dans la base de test.");
+        activAjoutTest = new JMenuItem("Activer ajout");
+        activAjoutTest.addActionListener(this);
+        activAjoutTest.setToolTipText("Activer l'ajout des nouveaux exemple dans la base de test.");
+        desAjoutTest.setVisible(!IgConstante.AJOUT_TEST);
+        
+        desAjoutTest = new JMenuItem("Desactiver ajout");
+        desAjoutTest.addActionListener(this);
+        desAjoutTest.setToolTipText("Desactiver l'ajout des nouveaux exemple dans la base de test.");
+        desAjoutTest.setVisible(IgConstante.AJOUT_TEST);
 
         /**
          * Constructions
@@ -158,8 +165,9 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         divers.add(apropos);
 
         tests.add(testEns);
-        tests.add(creaTest);
-
+        tests.add(activAjoutTest);
+        tests.add(desAjoutTest);
+        
         this.add(menu_fichier);
 
         algo = new JMenu("Algo Configuration");
@@ -285,7 +293,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
                     TraceurGraphique.creerRepresentationStatsGenerales(stats));
 
             fenetre_graphe.setVisible(true);
-        } else if (source.equals(tests)) {
+        } else if (source.equals(testEns)) {
             Reader lect = new Reader();
             ArrayList<ChiffreMatriceFreeman> baseTest = lect.recupTotal(FichierConstante.FICHIER_TEST);
             ChiffreMatriceFreeman cmf;
@@ -353,6 +361,10 @@ public class BarreMenu extends JMenuBar implements ActionListener {
                     Writer.majStat(Integer.parseInt(s), 1);
                 }
             }
+        } else if(source.equals(desAjoutTest)){
+            IgConstante.AJOUT_TEST = false;
+        } else if (source.equals(activAjoutTest)){
+            IgConstante.AJOUT_TEST = true;
         }
     }
 }

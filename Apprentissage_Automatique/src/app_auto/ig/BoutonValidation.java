@@ -125,7 +125,11 @@ public class BoutonValidation extends JPanel implements ActionListener {
 
                 Writer.majStat(Integer.parseInt(s), resultat);
             } else {
-                Writer.enregistrer(IgConstante.VALEUR_TROUVEE.getText(), matrice, resFree);
+                if(IgConstante.AJOUT_TEST){
+                    Writer.enregistrerSous(FichierConstante.FICHIER_TEST, IgConstante.VALEUR_TROUVEE.getText(), matrice, resFree);
+                } else {
+                    Writer.enregistrer(IgConstante.VALEUR_TROUVEE.getText(), matrice, resFree);
+                }
             }
         } else if (e.getSource().equals(IgConstante.BOUTON_ANNULER)) {
 
