@@ -106,12 +106,13 @@ Enfin nous terminerons par une conclusion qui résumera l'efficacité des algori
 		\includegraphics[scale=0.5]{./Ressource/IG.png}
  	\caption{Interface graphique de Mini-François}
 \end{figure}
+
 \subsubsection{Module de saisi de données}
 \begin{flushleft}
-Pour interagir avec le logiciel nous avons développé un module de saisi possédant deux modes : un mode permettant de générer des données d'apprentissage pour créer une base d'apprentissage, et un mode pour tester notre système.\newline
+Pour interagir avec le logiciel nous avons développé un module de saisi possédant deux modes : un mode permettant de générer des données d'apprentissage pour créer une base d'apprentissage, et un mode pour tester notre système.\newline \newline
 Le module est composé de :
 
-\begin{itemize}
+\begin{itemize}[label=$-$,leftmargin=*,parsep=0cm,itemsep=0.1cm,topsep=0cm]
 \item un cavena de dimension de 200x150 pour dessiner un chiffre à la souris.
 
 \item un champ de texte "out/in" dans lequel on indique le chiffre qu'on dessine dans le cavena.
@@ -153,9 +154,10 @@ On peut cocher l'algorithme (ainsi que les paramètres qu'on souhaite utiliser")
 
 \subsubsection{Module de visualisation statistique des données d'apprentissages}
 \begin{flushleft}
+
 Le module de visualisation statistique des données d'apprentissage nous permet d'évaluer la progression d'apprentissage de notre systèmes à travers divers graphiques :
 
-\begin{itemize}
+\begin{itemize}[label=$-$,leftmargin=*,parsep=0cm,itemsep=0.1cm,topsep=0cm]
 
 \item un histogramme représentant l'état de la base d'apprentissage (nombre d'exemples par chiffre).
 
@@ -175,10 +177,13 @@ Le module de visualisation statistique des données d'apprentissage nous permet 
 
 \subsubsection{Algorithme k-PPV}
 l'utilisation de l'algorithme des k plus proches voisins, consiste à résoudre la problématique en utilisant des distances.
-dans notre application, on a utilisé 4 distances différentes qui sont : Distance euclidienne
-- Distance de Manhattan 
-- Distance de Chebyshev
-- Distance d'édition(où de Levenshtein)
+dans notre application, on a utilisé 4 distances différentes qui sont : 
+\begin{itemize}[label=$-$,leftmargin=*,parsep=0cm,itemsep=0cm,topsep=0cm]
+\item Distance euclidienne
+\item Distance de Manhattan 
+\item Distance de Chebyshev
+\item Distance d'édition(où de Levenshtein)
+\end{itemize}
 tel-que l'algorithme utilise les 3 premières distances pour comparer des matrices entre elles, alors que la distance d'édition est utilisés pour trouver la distance entre deux chaine de code de Freeman 
 qui représentent le chiffre.
 Après plusieurs essayes, on a constaté que l'algorithme des k plus proche voisin est plus performant quand on utilise la distance d'édition (code de Freeman), contrairement à l'utilisation de la distance de Chebyshev.
