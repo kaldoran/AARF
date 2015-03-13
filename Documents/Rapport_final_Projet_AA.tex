@@ -104,9 +104,8 @@ nous avons ensuite choisi d'utiliser WEKA pour réaliser le réseau de neurones.
 Le projet a été réalisé en langage java, avec le gestionnaire de version Git.
 \end{flushleft}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%					FONCTIONNALITES					%%%
+%%%					FONCTIONNALITES				%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Fonctionnalités}
@@ -182,6 +181,7 @@ Le module de visualisation statistique des données d'apprentissage nous permet 
 \subsection{Algorithmes d'apprentissage}
 
 \subsubsection{Base d'apprentissage}
+La base d'apprentissage est écrite directement dans un fichier texte. Ceci a l'avantage d'être relativement facile d'utilisation et permet aussi de vérifier les données aisément, mais cela demande aussi un peu plus de processus intermédiaires qu'avec l'utilisation, par exemple, d'une base de donnée.
 
 \subsubsection{Algorithme k-PPV}
 l'utilisation de l'algorithme des k plus proches voisins, consiste à résoudre la problématique en utilisant des distances.
@@ -227,7 +227,7 @@ Il faut, tout d'abord, traduire la base d'apprentissage classique en fichier arf
 %%%						ETUDE						%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Etude}
+\section{Étude}
 
 
 \begin{flushleft}
@@ -258,7 +258,15 @@ De même, les différents méthode de calcul de distances influent peu sur les r
 
 \section{Conclusion}
 \begin{flushleft}
-•
+Dans notre projet, les meilleurs algorithmes sont ceux qui utilisent le code de freeman en entrée, ils affichent un taux de réussite de plus de 90\%. Alors que les algorithmes utilisant les matrices tournent autour de 75\% de réussite.\\
+Nous avons donc réussi à créer un programme qui est assez simple d'utilisation et plutôt performant.\\
+\vspace*{0.3cm}
+Pour aller plus loin...\\
+\vspace*{0.1cm}
+Au niveau du programme, nous pourrions tenter de revoir les entrées des algos en essayant d'autres formes comme avec la division du code de freeman en parties pour le réseau de neurones.\\
+Nous aurions dû aussi demander à l'utilisateur testant l'application plus d'information lors de la validation pour pouvoir dresser une table de confusion complète.\\
+\vspace*{0.1cm}
+Au niveau du code, nous pourrions essayé de trouver un moyen pour utiliser (beaucoup) moins de mémoire vive dont notre programme est particulièrement friand.\\
 \end{flushleft}
 
 
