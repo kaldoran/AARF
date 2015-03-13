@@ -122,9 +122,7 @@ Le module est composé de :
 \item un groupe de deux radio-boutons pour sélectionner le mode du module de saisi.
 
 \item un bouton "Valider" pour valider l'acquisition de la donnée (en mode ajout) et pour lancer le test (en mode test).
-
 \item un bouton "Reset" pour annuler l'acquisition de la donnée en cas d'erreur. Le bouton reset remet a zero les champs du Code de freeman, le champs "Out/In" suivant le mode, et vide la zone de dessin.
-
 \end{itemize}
 
 \end{flushleft}
@@ -201,7 +199,9 @@ quant à l'utilisation de nombre différent de voisins (3-ppv, 5-ppv et 7-ppv), 
 Pour le réseau de neurones, comme nous étions en retard, nous avons choisi d'utiliser une implémentation déjà faite sur internet. Nous avons choisit d'utiliser celle de WEKA comme nous avions déjà eu un aperçu pendant la séance de TP.\\
 \vspace*{0.3cm}
 Tout d'abord nous avons tenté d'utiliser comme entrée la matrice. Comme nous utilisons une matrice de 150x200 celle-ci donnerait un nombre trop conséquent de pixel à passer en entrée. Nous avons donc réduit la matrice à l'aide d'une matrice 10x10 ce qui a réduit le nombre d'entrée à 300. Pour effectuer la réduction nous sommons les valeurs contenues dans la matrice 10x10 et remplissons alors la nouvelle matrice avec ces valeurs (on utilisait donc pas une matrice binaire).\\
-Nous avons effectué de nombreux tests avec différentes variantes de couches et de learning rate. Avec cette méthode nous avons réussi à atteindre un taux de réussite de 80\% maximum, ce qui était relativement satisfaisant par rapport aux autres algorithmes utilisant la matrice comme entrée.
+Nous avons effectué de nombreux tests avec différentes variantes de couches et de learning rate. Avec cette méthode nous avons réussi à atteindre un taux de réussite de 80\% maximum, ce qui était relativement satisfaisant par rapport aux autres algorithmes utilisant la matrice comme entrée.\\
+\vspace*{0.3cm}
+Ensuite nous avons essayé d'utiliser comme entrée le code de freeman. Pour le code de freeman le problème est d'arriver à obtenir un nombre d'entrées constant. La première idée à été de compter le pourcentage d'occurrence de chaque vecteur de freeman, mais cette méthode c'est avérée trop peu restrictive et fournissait un taux de réussite inférieur à 30\%.
 
 \end{flushleft}
 
