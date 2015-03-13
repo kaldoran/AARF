@@ -176,12 +176,14 @@ tel-que l'algorithme utilise les 3 premières distances pour comparer des matric
 qui représentent le chiffre.
 Après plusieurs essayes, on a constaté que l'algorithme des k plus proche voisin est plus performant quand on utilise la distance d'édition (code de Freeman), contrairement à l'utilisation de la distance de Chebyshev.
 quant à l'utilisation de nombre différent de voisins (3-ppv, 5-ppv et 7-ppv), on constate qu'il n'y a pas une grande différence entre les taux de réussite.
+
 \subsubsection{Algorithme réseau de neurones}
 \begin{flushleft}
 
 Pour le réseau de neurones, comme nous étions en retard, nous avons choisi d'utiliser une implémentation déjà faite sur internet. Nous avons choisit d'utiliser celle de WEKA comme nous avions déjà eu un aperçu pendant la séance de TP.\\
 \vspace*{0.3cm}
-Tout d'abord nous avons tenté d'utiliser comme entrée la matrice. Comme nous utilisons une matrice de 150x200 celle-ci donnerait un nombre trop conséquent de pixel à passer en entrée. Nous avons donc réduit la matrice à l'aide d'une matrice 10x10 ce qui a réduit le nombre d'entrée à 300.
+Tout d'abord nous avons tenté d'utiliser comme entrée la matrice. Comme nous utilisons une matrice de 150x200 celle-ci donnerait un nombre trop conséquent de pixel à passer en entrée. Nous avons donc réduit la matrice à l'aide d'une matrice 10x10 ce qui a réduit le nombre d'entrée à 300. Pour effectuer la réduction nous sommons les valeurs contenues dans la matrice 10x10 et remplissons alors la nouvelle matrice avec ces valeurs (on utilisait donc pas une matrice binaire).\\
+Nous avons effectué de nombreux tests avec différentes variantes de couches et de learning rate. Avec cette méthode nous avons réussi à atteindre un taux de réussite de 80\% maximum, ce qui était relativement satisfaisant par rapport aux autres algorithmes utilisant la matrice comme entrée.
 
 \end{flushleft}
 
