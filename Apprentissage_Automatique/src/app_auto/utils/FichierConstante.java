@@ -16,6 +16,8 @@ public class FichierConstante {
     
     public final static String FICHIER_BASE = REPERTOIRE_APPRENTISSAGE + "Base";
     
+    public final static String FICHIER_TEST = REPERTOIRE_APPRENTISSAGE + "Tests";
+    
     public final static String FICHIER_STATS = REPERTOIRE_APPRENTISSAGE + "Stats";
     
     public final static String FICHIER_ARFF_TRAIN = REPERTOIRE_APPRENTISSAGE + "Base_train_RdN_" + AlgosConstantes.NB_ENTREE + ".arff";

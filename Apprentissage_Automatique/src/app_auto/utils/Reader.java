@@ -23,10 +23,14 @@ public class Reader {
     private final Erreurs err = new Erreurs();
 
     public ArrayList<ChiffreMatriceFreeman> recupTotal() {
+        return recupTotal(FichierConstante.FICHIER_BASE);
+    }
+    
+    public ArrayList<ChiffreMatriceFreeman> recupTotal(String path){
         ArrayList<ChiffreMatriceFreeman> liste = new ArrayList<>();
 
         try {
-            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(FichierConstante.FICHIER_BASE)));
+            BufferedReader lectResume = new BufferedReader(new FileReader(Writer.verifFichier(path)));
             String resume;
             while ((resume = lectResume.readLine()) != null) {
                 String[] champs = resume.split("#");
@@ -48,7 +52,6 @@ public class Reader {
             }
             return null;
         }
-
     }
 
     public ChiffreMatriceFreeman recupLigne(int ligne) {

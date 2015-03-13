@@ -11,6 +11,7 @@ import app_auto.graph.TraceurGraphique;
 import app_auto.ig.graph.FenetreGraphe;
 import app_auto.utils.AlgosConstantes;
 import app_auto.utils.ChiffreMatriceFreeman;
+import app_auto.utils.FichierConstante;
 import app_auto.utils.IgConstante;
 import app_auto.utils.Reader;
 import app_auto.utils.Stats;
@@ -18,7 +19,12 @@ import app_auto.utils.Writer;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static java.lang.Thread.sleep;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -58,7 +64,11 @@ public class BarreMenu extends JMenuBar implements ActionListener {
     private JMenuItem test_freeman_ligne;
     private JMenuItem afficher_graphes;
     private JMenuItem apropos;
-    
+
+    private JMenu tests;
+    private JMenuItem testEns;
+    private JMenuItem creaTest;
+
     private FenetreGraphe fenetre_graphe;
 
     public BarreMenu() {
@@ -69,6 +79,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
          */
         menu_fichier = new JMenu("Fichier");
         divers = new JMenu("Divers");
+        tests = new JMenu("Tester");
 
         /**
          * allocations JMenuItem
@@ -86,7 +97,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         recharger = new JMenuItem("Recharger Base");
         recharger.setAccelerator(KeyStroke.getKeyStroke('R',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
-        recharger.setToolTipText("Rafraichir la base d'apprentissage.");   
+        recharger.setToolTipText("Rafraichir la base d'apprentissage.");
         recharger.addActionListener(this);
 
         baseVersArff = new JMenuItem("Base vers arff");
@@ -94,13 +105,11 @@ public class BarreMenu extends JMenuBar implements ActionListener {
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
         baseVersArff.setToolTipText("Crée un fichier .arff correspondant à la base de connaissance.");
         baseVersArff.addActionListener(this);
-        
+
         quitter = new JMenuItem("Quitter");
         quitter.setAccelerator(KeyStroke.getKeyStroke('Q',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
         quitter.addActionListener(this);
-        
-        
 
         test_freeman = new JMenuItem("Tester Freeman");
         test_freeman.setAccelerator(KeyStroke.getKeyStroke('F',
@@ -113,18 +122,26 @@ public class BarreMenu extends JMenuBar implements ActionListener {
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
         test_freeman_ligne.addActionListener(this);
         test_freeman_ligne.setToolTipText("Tester le code de freeman se trouvant à une ligne donnée dand le fichier de base d'apprentissage.");
-        
+
         afficher_graphes = new JMenuItem("Afficher graphiques");
         afficher_graphes.setAccelerator(KeyStroke.getKeyStroke('G',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         afficher_graphes.addActionListener(this);
         afficher_graphes.setToolTipText("Afficher les représentations graphique de l'apprentissage de Mini-François");
-        
+
         apropos = new JMenuItem("A propos");
         apropos.setAccelerator(KeyStroke.getKeyStroke('A',
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); // Ctrl + N (Windows & Linux ) - Commande + N (Mac )
         apropos.addActionListener(this);
         apropos.setToolTipText("En savoir plus sur notre projet.");
+
+        testEns = new JMenuItem("Tester");
+        testEns.addActionListener(this);
+        testEns.setToolTipText("Tester les exemples de la base de test.");
+
+        creaTest = new JMenuItem("Ajout exemple");
+        creaTest.addActionListener(this);
+        creaTest.setToolTipText("Ajouter des exemples dans la base de test.");
 
         /**
          * Constructions
@@ -139,6 +156,9 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         divers.add(test_freeman_ligne);
         divers.add(afficher_graphes);
         divers.add(apropos);
+
+        tests.add(testEns);
+        tests.add(creaTest);
 
         this.add(menu_fichier);
 
@@ -155,7 +175,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         algo.add(codeFreeman);
         algo.add(neurones);
         algo.add(training);
-        
+
         euclidienne.addActionListener(this);
         manhattan.addActionListener(this);
         codeFreeman.addActionListener(this);
@@ -167,7 +187,6 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         distance.add(manhattan);
         distance.add(codeFreeman);
         distance.add(neurones);
-        
 
         kpp_value = new JMenu("Kpp Value");
         three = new JCheckBoxMenuItem("3");
@@ -177,7 +196,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         kpp_value.add(three);
         kpp_value.add(five);
         kpp_value.add(seven);
-        
+
         three.addActionListener(this);
         five.addActionListener(this);
         seven.addActionListener(this);
@@ -194,7 +213,8 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         this.add(algo);
 
         this.add(divers);
-        
+        this.add(tests);
+
         fenetre_graphe = new FenetreGraphe();
     }
 
@@ -205,14 +225,13 @@ public class BarreMenu extends JMenuBar implements ActionListener {
 
         if (source.equals(validate)) {
             IgConstante.BOUTON_VALIDATION.doClick();
-        }
-        else if (source.equals(mfich_nouveau)) {
+        } else if (source.equals(mfich_nouveau)) {
             IgConstante.DESSIN.clean();
-        } else if (source.equals(recharger)){
+        } else if (source.equals(recharger)) {
             IgConstante.BASE_APPRENTISSAGE = new Reader().recupTotal();
-        } else if (source.equals(baseVersArff)){
+        } else if (source.equals(baseVersArff)) {
             Reader lect = new Reader();
-            
+
             Writer.tradBaseEnArff(lect.recupTotal(), AlgosConstantes.LARG_MAT_CONV, AlgosConstantes.HAUT_MAT_CONV, false);
         } else if (source.equals(quitter)) {
             System.exit(0);
@@ -244,7 +263,7 @@ public class BarreMenu extends JMenuBar implements ActionListener {
             kpp_value.setVisible(false);
             training.setVisible(true);
             IgConstante.ALGO_NUMBER = AlgosConstantes.NEURONES;
-        }  else if (source.equals(training)) {
+        } else if (source.equals(training)) {
             ReseauNeurones rdn = new ReseauNeurones();
             rdn.training();
         } else if (source.equals(three)) {
@@ -264,8 +283,76 @@ public class BarreMenu extends JMenuBar implements ActionListener {
                     TraceurGraphique.creerRepresentationEvalAlgos(stats));
             fenetre_graphe.getPanneauGraphes().setChartStatsGenerales(
                     TraceurGraphique.creerRepresentationStatsGenerales(stats));
-            
+
             fenetre_graphe.setVisible(true);
+        } else if (source.equals(tests)) {
+            Reader lect = new Reader();
+            ArrayList<ChiffreMatriceFreeman> baseTest = lect.recupTotal(FichierConstante.FICHIER_TEST);
+            ChiffreMatriceFreeman cmf;
+            KPlusProcheVoisin kppv = new KPlusProcheVoisin();
+            int l = baseTest.size();
+            String s;
+            int i;
+            int[] voisins = new int[3];
+            voisins[0] = KPlusProcheVoisin._3_VOISINS;
+            voisins[1] = KPlusProcheVoisin._5_VOISINS;
+            voisins[2] = KPlusProcheVoisin._7_VOISINS;
+            
+            
+            for(i = 0; i < l; ++i){
+                cmf = baseTest.get(i);
+                
+                IgConstante.ALGO_NUMBER = AlgosConstantes.CODEFREEMAN;
+                for(i = 0; i < 3; ++i){
+                    IgConstante.NUMBER_KPPV = voisins[i];
+                    
+                    s = String.valueOf(kppv.kppv(cmf.getFreeman(), IgConstante.BASE_APPRENTISSAGE, IgConstante.NUMBER_KPPV));
+                    
+                    if (s.equals(cmf.getChiffre())) {
+                        Writer.majStat(Integer.parseInt(s), 0);
+                    } else {
+                        Writer.majStat(Integer.parseInt(s), 1);
+                    }
+                }
+                    
+                IgConstante.ALGO_NUMBER = AlgosConstantes.MANHATTAN;
+                for(i = 0; i < 3; ++i){
+                    IgConstante.NUMBER_KPPV = voisins[i];
+                    
+                    s = String.valueOf(kppv.kppv(cmf.getMatrice(), IgConstante.BASE_APPRENTISSAGE, IgConstante.NUMBER_KPPV, IgConstante.ALGO_NUMBER));
+                    
+                    if (s.equals(cmf.getChiffre())) {
+                        Writer.majStat(Integer.parseInt(s), 0);
+                    } else {
+                        Writer.majStat(Integer.parseInt(s), 1);
+                    }
+                }
+                
+                IgConstante.ALGO_NUMBER = AlgosConstantes.EUCLIDIENNE;
+                for(i = 0; i < 3; ++i){
+                    IgConstante.NUMBER_KPPV = voisins[i];
+                    
+                    s = String.valueOf(kppv.kppv(cmf.getMatrice(), IgConstante.BASE_APPRENTISSAGE, IgConstante.NUMBER_KPPV, IgConstante.ALGO_NUMBER));
+                    
+                    if (s.equals(cmf.getChiffre())) {
+                        Writer.majStat(Integer.parseInt(s), 0);
+                    } else {
+                        Writer.majStat(Integer.parseInt(s), 1);
+                    }
+                }
+      
+                IgConstante.ALGO_NUMBER = AlgosConstantes.NEURONES;
+                ReseauNeurones rdn = new ReseauNeurones();
+
+                Writer.ecrireEntreeArff(ChiffreMatriceFreeman.redFreeman(cmf.getFreeman(), AlgosConstantes.NB_PART), AlgosConstantes.NB_PART, "?");
+                s = Integer.toString(rdn.tester());
+
+                if (s.equals(cmf.getChiffre())) {
+                    Writer.majStat(Integer.parseInt(s), 0);
+                } else {
+                    Writer.majStat(Integer.parseInt(s), 1);
+                }
+            }
         }
     }
 }
