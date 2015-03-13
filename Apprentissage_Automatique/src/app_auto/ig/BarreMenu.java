@@ -139,16 +139,15 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         testEns = new JMenuItem("Tester");
         testEns.addActionListener(this);
         testEns.setToolTipText("Tester les exemples de la base de test.");
-
+        
         activAjoutTest = new JMenuItem("Activer ajout");
         activAjoutTest.addActionListener(this);
         activAjoutTest.setToolTipText("Activer l'ajout des nouveaux exemple dans la base de test.");
-        desAjoutTest.setVisible(!IgConstante.AJOUT_TEST);
         
         desAjoutTest = new JMenuItem("Desactiver ajout");
         desAjoutTest.addActionListener(this);
         desAjoutTest.setToolTipText("Desactiver l'ajout des nouveaux exemple dans la base de test.");
-        desAjoutTest.setVisible(IgConstante.AJOUT_TEST);
+        desAjoutTest.setVisible(false);
 
         /**
          * Constructions
@@ -296,19 +295,22 @@ public class BarreMenu extends JMenuBar implements ActionListener {
         } else if (source.equals(testEns)) {
             Reader lect = new Reader();
             ArrayList<ChiffreMatriceFreeman> baseTest = lect.recupTotal(FichierConstante.FICHIER_TEST);
+            
             ChiffreMatriceFreeman cmf;
             KPlusProcheVoisin kppv = new KPlusProcheVoisin();
+            
             int l = baseTest.size();
+            int i, j;
+            
             String s;
-            int i;
+            
             int[] voisins = new int[3];
             voisins[0] = KPlusProcheVoisin._3_VOISINS;
             voisins[1] = KPlusProcheVoisin._5_VOISINS;
             voisins[2] = KPlusProcheVoisin._7_VOISINS;
             
-            
-            for(i = 0; i < l; ++i){
-                cmf = baseTest.get(i);
+            for(j = 0; j < l; ++j){
+                cmf = baseTest.get(j);
                 
                 IgConstante.ALGO_NUMBER = AlgosConstantes.CODEFREEMAN;
                 for(i = 0; i < 3; ++i){
@@ -362,8 +364,14 @@ public class BarreMenu extends JMenuBar implements ActionListener {
                 }
             }
         } else if(source.equals(desAjoutTest)){
+            desAjoutTest.setVisible(false);
+            activAjoutTest.setVisible(true);
+            
             IgConstante.AJOUT_TEST = false;
         } else if (source.equals(activAjoutTest)){
+            desAjoutTest.setVisible(true);
+            activAjoutTest.setVisible(false);
+            
             IgConstante.AJOUT_TEST = true;
         }
     }
