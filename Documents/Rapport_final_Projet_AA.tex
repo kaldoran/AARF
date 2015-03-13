@@ -15,7 +15,7 @@
 \fancyhead{}
 \fancyfoot{} 
 \lhead{ \hspace{0.1cm} M1 WI 2014-2015  \hspace{0.4cm} \vline}
-\chead{Interoperabilité}
+\chead{Apprentissage automatique}
 \rhead{K.B - B.B - K.L - N.R}
 \rfoot{\thepage}
 
@@ -62,7 +62,6 @@
 \setcounter{page}{0}
 \newpage
 
-
 \newgeometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -107,7 +106,7 @@ Enfin nous terminerons par une conclusion qui résumera l'efficacité des algori
 		\includegraphics[scale=0.5]{./Ressource/IG.png}
  	\caption{Interface graphique de Mini-François}
 \end{figure}
-\subsubsection{Module de saisi de donnée}
+\subsubsection{Module de saisi de données}
 \begin{flushleft}
 Pour interagir avec le logiciel nous avons développé un module de saisi possédant deux modes : un mode permettant de générer des données d'apprentissage pour créer une base d'apprentissage, et un mode pour tester notre système.\newline
 Le module est composé de :
@@ -147,8 +146,10 @@ Si le radio bouton "Mode Ajout" est sélectionné alors le logiciel enregistre l
 
 \subsubsection{Module de configuration}
 
+\begin{flushleft}
 Le module de configuration permet de renseigner les paramètres de nos algorithmes. Il est accessible à partir du menu "Algo Configuration".\\
 On peut cocher l'algorithme (ainsi que les paramètres qu'on souhaite utiliser") que le logiciel doit utiliser en "mode test". 
+\end{flushleft}
 
 \subsubsection{Module de visualisation statistique des données d'apprentissages}
 \begin{flushleft}
@@ -162,13 +163,6 @@ On peut cocher l'algorithme (ainsi que les paramètres qu'on souhaite utiliser")
 \subsubsection{Algorithme k-PPV}
 
 \subsubsection{Algorithme réseau de neurones}
-\begin{flushleft}
-
-Pour le réseau de neurones, comme nous étions en retard, nous avons choisi d'utiliser une implémentation déjà faite sur internet. Nous avons choisit d'utiliser celle de WEKA comme nous avions déjà eu un apperçu pendant la séance de TP.\\
-\vspace*{0.3cm}
-Tout d'abord nous avons tenté d'utiliser comme entrée la matrice. Comme nous utilisons une matrice de 150x200 celle-ci donnerait un nombre trop conséquent de pixel à passer en entrée. Nous avons donc réduit la matrice à l'aide d'une matrice 10x10 ce qui a réduit le nombre d'entrée à 300.
-
-\end{flushleft}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%						ETUDE						%%%
@@ -195,17 +189,4 @@ Tout d'abord nous avons tenté d'utiliser comme entrée la matrice. Comme nous u
 \begin{flushleft}
 •
 \end{flushleft}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%						ANNEXES						%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Sources}
-\begin{description}
-	\item[WEKA] \url{http://weka.sourceforge.net/doc.dev/overview-summary.html}
-\end{description}
 \end{document}
-
-
-
