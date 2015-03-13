@@ -161,7 +161,15 @@ On peut cocher l'algorithme (ainsi que les paramètres qu'on souhaite utiliser")
 \subsubsection{Base d'apprentissage}
 
 \subsubsection{Algorithme k-PPV}
-
+l'utilisation de l'algorithme des k plus proches voisins, consiste à résoudre la problématique en utilisant des distances.
+dans notre application, on a utilisé 4 distances différentes qui sont : Distance euclidienne
+- Distance de Manhattan 
+- Distance de Chebyshev
+- Distance d'édition(où de Levenshtein)
+tel-que l'algorithme utilise les 3 premières distances pour comparer des matrices entre elles, alors que la distance d'édition est utilisés pour trouver la distance entre deux chaine de code de Freeman 
+qui représentent le chiffre.
+Après plusieurs essayes, on a constaté que l'algorithme des k plus proche voisin est plus performant quand on utilise la distance d'édition (code de Freeman), contrairement à l'utilisation de la distance de Chebyshev.
+quant à l'utilisation de nombre différent de voisins (3-ppv, 5-ppv et 7-ppv), on constate qu'il n'y a pas une grande différence entre les taux de réussite.
 \subsubsection{Algorithme réseau de neurones}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
