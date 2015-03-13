@@ -350,6 +350,19 @@ public class BarreMenu extends JMenuBar implements ActionListener {
                         Writer.majStat(Integer.parseInt(s), 1);
                     }
                 }
+                
+                IgConstante.ALGO_NUMBER = AlgosConstantes.CHEBYSHEV;
+                for(i = 0; i < 3; ++i){
+                    IgConstante.NUMBER_KPPV = voisins[i];
+                    
+                    s = String.valueOf(kppv.kppv(cmf.getMatrice(), IgConstante.BASE_APPRENTISSAGE, IgConstante.NUMBER_KPPV, IgConstante.ALGO_NUMBER));
+                    
+                    if (s.equals(cmf.getChiffre())) {
+                        Writer.majStat(Integer.parseInt(s), 0);
+                    } else {
+                        Writer.majStat(Integer.parseInt(s), 1);
+                    }
+                }
       
                 IgConstante.ALGO_NUMBER = AlgosConstantes.NEURONES;
                 ReseauNeurones rdn = new ReseauNeurones();
