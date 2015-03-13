@@ -102,6 +102,26 @@ Enfin nous terminerons par une conclusion qui résumera l'efficacité des algori
 
 \subsection{Module de saisi de données}
 
+Pour interagir avec le logiciel nous avons développé un module de saisi possédant deux modes : un mode permettant de générer des données d'apprentissage pour créer une base d'apprentissage, et un mode pour tester notre système.\\
+Le module est composé de :
+\begin{itemize}
+
+\item un cavena de dimension de 200x150 pour dessiner un chiffre à la souris.
+
+\item un champ de texte "out/in" dans lequel on indique le chiffre qu'on dessine dans le cavena.
+
+\item un autre champ de texte "code de freeman" dans lequel apparaît le code freeman du chiffre dessiné.
+
+\item un bouton "Valider" pour valider l'acquisition de la donnée (en mode ajout) et pour lancer le test (en mode test).
+
+\item un bouton "Reset" pour annuler l'acquisition de la donnée en cas d'erreur. (Par exemple si on dessine un chiffre A dans le cavena mais qu'il ne correspond pas au chiffre B entré dans le champ de texte "out/in" et qu'on a valider l'acquisition par mégarde, il est possible d'annuler l'acquisition grâce au bouton "Reset").
+\end{itemize}
+
+\begin{center}
+
+\includegraphics[scale=0.5]{./Ressource/Module_saisi.png}
+\end{center}
+
 \subsubsection{Mode ajout}
 \begin{flushleft}
 
