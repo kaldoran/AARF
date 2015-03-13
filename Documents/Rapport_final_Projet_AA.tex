@@ -62,6 +62,7 @@
 \setcounter{page}{0}
 \newpage
 
+
 \newgeometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -149,6 +150,13 @@ Si le radio bouton "Mode Ajout" est sélectionné alors le logiciel enregistre l
 \subsubsection{Algorithme k-PPV}
 
 \subsubsection{Algorithme réseau de neurones}
+\begin{flushleft}
+
+Pour le réseau de neurones, comme nous étions en retard, nous avons choisi d'utiliser une implémentation déjà faite sur internet. Nous avons choisit d'utiliser celle de WEKA comme nous avions déjà eu un apperçu pendant la séance de TP.\\
+\vspace*{0.3cm}
+Tout d'abord nous avons tenté d'utiliser comme entrée la matrice. Comme nous utilisons une matrice de 150x200 celle-ci donnerait un nombre trop conséquent de pixel à passer en entrée. Nous avons donc réduit la matrice à l'aide d'une matrice 10x10 ce qui a réduit le nombre d'entrée à 300.
+
+\end{flushleft}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%						ETUDE						%%%
@@ -175,4 +183,17 @@ Si le radio bouton "Mode Ajout" est sélectionné alors le logiciel enregistre l
 \begin{flushleft}
 •
 \end{flushleft}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%						ANNEXES						%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Sources}
+\begin{description}
+	\item[WEKA] \url{http://weka.sourceforge.net/doc.dev/overview-summary.html}
+\end{description}
 \end{document}
+
+
+
