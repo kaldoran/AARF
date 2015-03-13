@@ -29,6 +29,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.jfree.util.StringUtils;
 
 /**
  *
@@ -87,7 +88,14 @@ public class BoutonValidation extends JPanel implements ActionListener {
             }
 
             IgConstante.CODE_FREEMAN.setText(resFree);
-            IgConstante.CODE_FREEMAN.setToolTipText(resFree);
+            
+            String[] cutResFree = resFree.split("(?<=\\G.{40})");
+            String output = "<html>"; /* Need this for multi line tooltip */
+            for (String s : cutResFree)
+                output += s + "<br>";
+            output += "</html>";
+            
+            IgConstante.CODE_FREEMAN.setToolTipText(output);
 
             if (IgConstante.BOUTON_RADIO.testSelect()) {
                 // on calcul les k-plus proche voisin 
