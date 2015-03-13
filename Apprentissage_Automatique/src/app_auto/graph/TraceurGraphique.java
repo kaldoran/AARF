@@ -5,6 +5,7 @@
  */
 package app_auto.graph;
 
+import app_auto.utils.AlgosConstantes;
 import app_auto.utils.ChiffreMatriceFreeman;
 import app_auto.utils.Stats;
 import java.awt.Color;
@@ -172,17 +173,11 @@ public class TraceurGraphique {
     }
 
     public static JFreeChart creerRepresentationEvalAlgos(Stats stats) {
-        int i = 0, l = 0;
+        int i = 0;
         HashMap<String, int[]> statsAlgos = stats.getResultsAlgos();
 
-        ArrayList<String> series = new ArrayList<>();
+        String[] series = AlgosConstantes.labels();
         String label;
-
-        Iterator it = statsAlgos.keySet().iterator();
-        while (it.hasNext()) {
-            series.add((String) it.next());
-            ++i;
-        }
 
         // column keys...
         String bon = "Résultats justes";
@@ -190,13 +185,31 @@ public class TraceurGraphique {
 
         // create the dataset...
         DefaultCategoryDataset donnees_stats = new DefaultCategoryDataset();
-        l = series.size();
-        for (i = 0; i < l; ++i) {
-            label = series.get(i);
-            int[] tmpR = statsAlgos.get(label);
+        
+        for (i = 0; i < series.length; ++i) {
+            label = series[i];
+            
+            if(label.startsWith("K")){
+                int[] tmpR3 = statsAlgos.get(label + " 3V");
 
-            donnees_stats.addValue(tmpR[0], bon, label);
-            donnees_stats.addValue(tmpR[1], mauvais, label);
+                donnees_stats.addValue(tmpR3[0], bon, label + " 3V");
+                donnees_stats.addValue(tmpR3[1], mauvais, label + " 3V");
+                
+                int [] tmpR5 = statsAlgos.get(label + " 5V");
+
+                donnees_stats.addValue(tmpR5[0], bon, label + " 5V");
+                donnees_stats.addValue(tmpR5[1], mauvais, label + " 5V");
+                
+                int [] tmpR7 = statsAlgos.get(label + " 7V");
+
+                donnees_stats.addValue(tmpR7[0], bon, label + " 7V");
+                donnees_stats.addValue(tmpR7[1], mauvais, label + " 7V");
+            } else {
+                int[] tmpR = statsAlgos.get(label);
+
+                donnees_stats.addValue(tmpR[0], bon, label);
+                donnees_stats.addValue(tmpR[1], mauvais, label);
+            }
         }
 
         // create the chart...
