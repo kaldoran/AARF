@@ -72,7 +72,7 @@
 \begin{flushleft}
 
 La reconnaissance de formes est une branche de l'intelligence artificielle qui fait appel aux techniques d'apprentissage automatique. Durant ce projet, nous avons réalisé un logiciel de reconnaissance de formes, où les formes sont les nombres de 0 à 9.
-La réalisation comprend la développement d'une interface graphique ergonomique facilitant la construction d'une base d'apprentissage, la manipulation des algorithmes d'apprentissage et la visualisation des résultats des tests d'apprentissage. Et elle comprend aussi l'implémentation de deux méthodes d'apprentissages : les k-plus-proches voisins, et le réseau de neurones.\\
+La réalisation comprend le développement d'une interface graphique ergonomique facilitant la construction d'une base d'apprentissage, la manipulation des algorithmes d'apprentissage et la visualisation des résultats des tests d'apprentissage. Et elle comprend aussi l'implémentation de deux méthodes d'apprentissages : les k-plus-proches voisins, et le réseau de neurones.\\
 Dans un premier temps nous allons présenter notre organisation autour de ce projet. Puis dans un deuxième temps, nous décrirons les fonctionnalités de notre logiciel. Nous présenterons par la suite les résultats et les performances de notre logiciel à la reconnaissance des nombres.\\
 Enfin nous terminerons par une conclusion qui résumera l'efficacité des algorithmes.
 
@@ -86,7 +86,7 @@ Enfin nous terminerons par une conclusion qui résumera l'efficacité des algori
 
 \section{Organisation du projet}
 
-\subsection{Plannings}
+\subsection{Planning}
 \begin{flushleft}
 Le planning prévisionnel et le planning final sont disponibles en annexe.
 \end{flushleft}
@@ -218,7 +218,7 @@ Si vous avez le fichier "Objet\_RdN\_64" fourni dans le répertoire de base d'ap
 Vous n'avez alors rien à faire simplement à sélectionner réseau de neurone dans le menu "Algo configuration" et tester vos chiffres.\\
 \vspace*{0.1cm}
 Si vous n'avez pas ce fichier:\\
-Il faut, tout d'abord, traduire la base d'apprentissage classique en fichier arff en cliquant sur le bouton "base vers arff" du menu "Fichier". Ensuite, sélectionner "Réseau de neurone" dans le menu "Algo configuration", retourner dans ce menu et le bouton "Training" est alors apparu, cliquer dessus pour entrainer le réseau (ATTENTION ceci dure environ 20 minutes). Lorsque le menu est fermé le réseau est entrainé et est donc prêt à être utilisé.
+Il faut, tout d'abord, traduire la base d'apprentissage classique en fichier arff en cliquant sur le bouton "base vers arff" du menu "Fichier". Ensuite, sélectionner "Réseau de neurone" dans le menu "Algo configuration", retourner dans ce menu et le bouton "Training" est alors apparu, cliquer dessus pour entraîner le réseau (ATTENTION ceci dure environ 20 minutes). Lorsque le menu est fermé le réseau est entraîné et est donc prêt à être utilisé.
 
 \end{flushleft}
 
@@ -229,14 +229,26 @@ Il faut, tout d'abord, traduire la base d'apprentissage classique en fichier arf
 
 \section{Etude}
 
-\subsection{Description de la fonctionnalité}
-\begin{flushleft}
-•
-\end{flushleft}
 
-\subsection{Description technique}
 \begin{flushleft}
-•
+Nous avons réalisé une étude de la précision des algorithmes en passant un même jeu d'exemples de test sur chacun des algorithmes, avec des paramètres différents.
+Notre système a appris environ 4000 exemples (400/par chiffre).
+Le jeu d'exemples de tests contient environ 600 exemples.\newline \newline
+\newpage
+Nous avons obtenu ce résultat :
+\begin{figure}[!h]
+	\center
+		\includegraphics[scale=0.5]{./Ressource/Statistiques.png}
+ 	\caption{Résultats sur 600 exemples de tests}
+\end{figure}
+
+
+D'après les graphiques obtenus nous voyons que notre système a une précision générale de 81\%.\\
+Le chiffre 1 est le chiffre sur lequel notre système a le plus d'échec. Cela peut être expliquer par le fait que le chiffre 1 peut s'écrire de trois manières différentes.\\
+Nous pouvons remarquer que l'algorithme du réseau de neurone est le plus efficace en terme de précision, en effet c'est l'algorithme qui présente le taux d'échec le plus bas suivi de l'algorithme des k-plus-proche-voisin avec le code de freeman.\\
+On peut noter que la valeur de k dans l'algorithme des k-plus-proche-voisin, avec les matrices aussi bien qu'avec les codes de freeman, a peut d'influence sur les résultats finaux.\\
+De même, les différents méthode de calcul de distances influent peu sur les résultats finaux.
+
 \end{flushleft}
 
 
