@@ -100,13 +100,18 @@ Enfin nous terminerons par une conclusion qui résumera l'efficacité des algori
 
 \section{Fonctionnalités}
 
-\subsection{Module de saisi de données}
-
+\subsection{Interface graphique}
+\begin{figure}[!h]
+	\center
+		\includegraphics[scale=0.5]{./Ressource/IG.png}
+ 	\caption{Interface graphique de Mini-François}
+\end{figure}
+\subsubsection{Module de saisi de donnée}
 \begin{flushleft}
-Pour interagir avec le logiciel nous avons développé un module de saisi possédant deux modes : un mode permettant de générer des données d'apprentissage pour créer une base d'apprentissage, et un mode pour tester notre système.\\
+Pour interagir avec le logiciel nous avons développé un module de saisi possédant deux modes : un mode permettant de générer des données d'apprentissage pour créer une base d'apprentissage, et un mode pour tester notre système.\newline
 Le module est composé de :
-\begin{itemize}
 
+\begin{itemize}
 \item un cavena de dimension de 200x150 pour dessiner un chiffre à la souris.
 
 \item un champ de texte "out/in" dans lequel on indique le chiffre qu'on dessine dans le cavena.
@@ -119,25 +124,32 @@ Le module est composé de :
 
 \item un bouton "Reset" pour annuler l'acquisition de la donnée en cas d'erreur. (Par exemple si on dessine un chiffre A dans le cavena mais qu'il ne correspond pas au chiffre B entré dans le champ de texte "out/in" et qu'on a valider l'acquisition par mégarde, il est possible d'annuler l'acquisition grâce au bouton "Reset").
 \end{itemize}
+
 \end{flushleft}
 
-\begin{center}
+\begin{figure}[!h]
+	\center
+		\includegraphics[scale=0.5]{./Ressource/Module_saisi.png}
+ 	\caption{Module de saisi de données}
+\end{figure}
 
-\includegraphics[scale=0.5]{./Ressource/Module_saisi.png}
-\end{center}
-
-\subsubsection{Mode test}
+\paragraph*{Mode test}
 \begin{flushleft}
-
+Si le radio bouton "Mode Test" est sélectionné alors le logiciel lance l'algorithme avec les paramètres spécifiés dans le menu "Algo configuration" et le chiffre dessiné dans le cavena.
 \end{flushleft}
 
 
-\subsubsection{Mode ajout}
+\paragraph*{Mode ajout}
 \begin{flushleft}
 Si le radio bouton "Mode Ajout" est sélectionné alors le logiciel enregistre le code de freeman et la matrice correspondant au chiffre dessiné dans le cavena dans un fichier "Base" correspondant à la base d'apprentissage du logiciel.
 \end{flushleft}
 
-\subsection{Module de visualisation statistique des données d'apprentissages}
+\subsubsection{Module de configuration}
+
+Le module de configuration permet de renseigner les paramètres de nos algorithmes. Il est accessible à partir du menu "Algo Configuration".\\
+On peut cocher l'algorithme (ainsi que les paramètres qu'on souhaite utiliser") que le logiciel doit utiliser en "mode test". 
+
+\subsubsection{Module de visualisation statistique des données d'apprentissages}
 \begin{flushleft}
 
 \end{flushleft}
